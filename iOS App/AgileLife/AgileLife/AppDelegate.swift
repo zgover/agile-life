@@ -17,6 +17,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let navigationBarAppearace = UINavigationBar.appearance()
+        
+        // Navbar button colors
+        navigationBarAppearace.tintColor = UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1)
+        
+        // Navbar background color
+        navigationBarAppearace.barTintColor = UIColor(red: 36/255, green: 103/255, blue: 101/255, alpha: 1)
+        
+        // Navbar title color, font and size
+        navigationBarAppearace.titleTextAttributes = [
+            NSForegroundColorAttributeName:UIColor.whiteColor(),
+            NSFontAttributeName: UIFont.boldSystemFontOfSize(20.0)
+        ]
+        
+        // Status bar text color
+        UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+        
         return true
     }
 
