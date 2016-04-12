@@ -14,6 +14,7 @@
 		B6E614531CBC5381003FB446 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B6E614521CBC5381003FB446 /* Assets.xcassets */; };
 		B6E614561CBC5381003FB446 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6E614541CBC5381003FB446 /* LaunchScreen.storyboard */; };
 		B6E614611CBC54B4003FB446 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B6E614601CBC54B4003FB446 /* SWRevealViewController.m */; };
+		B6E614691CBC71A8003FB446 /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E614681CBC71A8003FB446 /* ViewControllerExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		B6E6145D1CBC54B3003FB446 /* AgileLife-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AgileLife-Bridging-Header.h"; sourceTree = "<group>"; };
 		B6E6145F1CBC54B4003FB446 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
 		B6E614601CBC54B4003FB446 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
+		B6E614681CBC71A8003FB446 /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 		B6E614471CBC5381003FB446 /* AgileLife */ = {
 			isa = PBXGroup;
 			children = (
+				B6E614671CBC7193003FB446 /* Extensions */,
 				B6E614621CBC54D3003FB446 /* Libraries */,
 				B6E614641CBC5507003FB446 /* Models */,
 				B6E614651CBC551D003FB446 /* Views */,
@@ -112,6 +115,14 @@
 				B6E6144A1CBC5381003FB446 /* ViewController.swift */,
 			);
 			name = Controllers;
+			sourceTree = "<group>";
+		};
+		B6E614671CBC7193003FB446 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				B6E614681CBC71A8003FB446 /* ViewControllerExtensions.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -188,6 +199,7 @@
 				B6E614511CBC5381003FB446 /* AgileLife.xcdatamodeld in Sources */,
 				B6E6144B1CBC5381003FB446 /* ViewController.swift in Sources */,
 				B6E614491CBC5381003FB446 /* AppDelegate.swift in Sources */,
+				B6E614691CBC71A8003FB446 /* ViewControllerExtensions.swift in Sources */,
 				B6E614611CBC54B4003FB446 /* SWRevealViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
