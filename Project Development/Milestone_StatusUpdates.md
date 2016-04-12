@@ -1,0 +1,20 @@
+**04-11-2016:**
+--------------------------------
+- **What features were worked on**?
+	- Home Screen
+	- Side Menu
+- **How far along is each feature**?
+	- **Home Screen**
+		- Navigation bar colors were set.
+		- Side menu button/icon was added
+	- **Side Menu**
+		- Side menu was added and implemented from a library called `SWRevealViewController`. [GitHub Link](https://github.com/John-Lluch/SWRevealViewController).
+		- Header design was implemented.
+		- Dummy text was added for the total completion calculation.
+		- Added home screen button and linked appropriately.
+- **Where is the developer struggling**?
+	- Zachary Gover did not face any specific issues.
+- **Were any change requests submitted?**
+	- No change requests were submitted.
+- **Is the milestone still on pace to be completed on time?**
+	- Yes milestone is still on track to be completed.
