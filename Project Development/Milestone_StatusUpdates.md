@@ -1,9 +1,34 @@
+**04-13-2016:**
+--------------------------------
+- **What features were worked on?**
+	- Launch Screen
+	- Side Menu
+	- App Icons
+- **How far along is each feature?**
+	- **Uncategorized**
+		- 	Added all necessary scenes in which are linked from the side menu.
+	- **Launch Screen**
+		- Launch screen design has been completed.
+	- **Side Menu**
+		- Custom tableview rows have finished design.
+		- *Agile Life* tableview in the side menu has been implemented, while linking to their corresponding view.
+		- Completed design for the board list custom table header.
+	- **App Icons**
+		- App icons have finished being added the application.
+- **Where is the developer struggling?**
+	- Table view row auto resize on Agile Life menu in the side bar and a bigger height for the board list.
+- **Were any change requests submitted?**
+	- No change requests were submitted.
+- **Is the milestone still on pace to be completed on time?**
+	- Yes milestone is still on track to be completed.
+
+
 **04-11-2016:**
 --------------------------------
-- **What features were worked on**?
+- **What features were worked on?**
 	- Home Screen
 	- Side Menu
-- **How far along is each feature**?
+- **How far along is each feature?**
 	- **Home Screen**
 		- Navigation bar colors were set.
 		- Side menu button/icon was added
@@ -12,7 +37,7 @@
 		- Header design was implemented.
 		- Dummy text was added for the total completion calculation.
 		- Added home screen button and linked appropriately.
-- **Where is the developer struggling**?
+- **Where is the developer struggling?**
 	- Zachary Gover did not face any specific issues.
 - **Were any change requests submitted?**
 	- No change requests were submitted.

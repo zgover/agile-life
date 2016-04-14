@@ -31,7 +31,8 @@ extension UIViewController {
         // Open the side menu by the bar button item
         if revealViewController() != nil {
             let deviceWidth = UIScreen.mainScreen().bounds.size.width
-            revealViewController().rearViewRevealWidth = (80 / 100) * deviceWidth;
+            let sideMenuWidth = round(80 / 100 * deviceWidth)
+            revealViewController().rearViewRevealWidth = sideMenuWidth
             
             menuBtn.target = revealViewController()
             menuBtn.action = "revealToggle:"
