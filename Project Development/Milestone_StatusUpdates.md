@@ -17,7 +17,7 @@
 - **Where is the developer struggling?**
 	- Linking the add board screen from 2 views behind itself (Completed).
 - **Were any change requests submitted?**
-	- No change requests were submitted.
+	- 1 Change request was submitted to change the selector for each stage.
 - **Is the milestone still on pace to be completed on time?**
 	- Yes milestone is still on track to be completed.
 
