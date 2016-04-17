@@ -1,14 +1,14 @@
 //
-//  BLSideMenuTableHeader.swift
+//  HomeScreenTableViewHeader.swift
 //  AgileLife
 //
-//  Created by Zachary Gover on 4/13/16.
+//  Created by Zachary Gover on 4/16/16.
 //  Copyright © 2016 Full Sail University. All rights reserved.
 //
 
 import UIKit
 
-class BLSideMenuTableHeader: UITableViewHeaderFooterView {
+class HomeScreenTableViewHeader: UITableViewHeaderFooterView {
 
     /* ==========================================
     *
@@ -16,7 +16,6 @@ class BLSideMenuTableHeader: UITableViewHeaderFooterView {
     *
     * =========================================== */
     
-    @IBOutlet weak var boards: UILabel!
-    @IBOutlet weak var addBoardBtn: UIButton!
+    @IBOutlet weak var boardName: UILabel!
 
 }

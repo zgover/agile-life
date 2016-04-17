@@ -1,4 +1,35 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="Test1.xcdatamodel" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
-    <elements/>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
+    <entity name="Boards" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stage_one" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="stage_one_icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stage_one_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stage_three" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="stage_three_icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stage_three_name" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="stage_two" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="stage_two_icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stage_two_name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Stories" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="stage" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="Subtasks" syncable="YES">
+        <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="deadline" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="task_description" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Boards" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="Stories" positionX="-54" positionY="9" width="128" height="120"/>
+        <element name="Subtasks" positionX="-36" positionY="81" width="128" height="120"/>
+    </elements>
 </model>

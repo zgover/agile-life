@@ -11,6 +11,8 @@ import UIKit
 private let boardCellIdentifier = "SideMenuBoardCell"
 private let agileCellIdentifier = "SideMenuAgileCell"
 private let blSideMenuHeaderIdentifier = "BLSideMenuTableHeader"
+private let blSideMenuFooterIdentifier = "BLSideMenuTableFooter"
+private let alSideMenuHeaderIdentifier = "ALSideMenuTableHeader"
 
 class SideMenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -19,6 +21,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     * MARK: Outlet Connections
     *
     * =========================================== */
+    
     @IBOutlet weak var tableView: UITableView!
     
     
@@ -27,23 +30,38 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     * MARK: Global Variables
     *
     * =========================================== */
-    let menuItems:[String] = ["Donate", "About", "Support", "Legal"]
     
+    let menuItems:[String] = ["Donate", "About", "Support", "Legal"]
+    var directToCreateBoard = Bool()
     
     /* ==========================================
     *
     * MARK: Default Methods
     *
     * =========================================== */
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Set default values
+        directToCreateBoard = false
         
         // Register board list table header identifier
         tableView.registerNib(
             UINib(nibName: blSideMenuHeaderIdentifier, bundle: nil),
             forHeaderFooterViewReuseIdentifier: blSideMenuHeaderIdentifier
+        )
+        
+        // Register board list table footer identifier
+        tableView.registerNib(
+            UINib(nibName: blSideMenuFooterIdentifier, bundle: nil),
+            forHeaderFooterViewReuseIdentifier: blSideMenuFooterIdentifier
+        )
+        
+        // Register Agile Life table header identifier
+        tableView.registerNib(
+            UINib(nibName: alSideMenuHeaderIdentifier, bundle: nil),
+            forHeaderFooterViewReuseIdentifier: alSideMenuHeaderIdentifier
         )
     }
     
@@ -84,9 +102,26 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         return 50
     }
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 45
+    }
+    
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(blSideMenuHeaderIdentifier) as! BLSideMenuTableHeader
+            header.addBoardBtn.addTarget(self, action: Selector("addBoard"), forControlEvents: .TouchUpInside)
+            return header
+        } else if section == 1 {
+            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(alSideMenuHeaderIdentifier) as! ALSideMenuTableHeader
+            return header
+        }
+        
+        return nil
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0 {
+            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(blSideMenuFooterIdentifier) as! BLSideMenuTableFooter
             return header
         }
         
@@ -126,5 +161,30 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
+    }
+    
+    /* ==========================================
+    *
+    * MARK: Segue Methods
+    *
+    * =========================================== */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Destinations
+        if let destinaton = segue.destinationViewController as? HomeScreenNavigationController {
+            if self.directToCreateBoard == true {
+                self.directToCreateBoard = false
+                destinaton.directToCreateBoard = true
+            }
+        }
+    }
+    
+    /* ==========================================
+    *
+    * MARK: Table View Custom Methods
+    *
+    * =========================================== */
+    func addBoard() {
+        self.directToCreateBoard = true
+        self.performSegueWithIdentifier("homeScreenSegue", sender: nil)
     }
 }

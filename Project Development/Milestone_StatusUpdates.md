@@ -1,4 +1,27 @@
-**04-13-2016:**
+**04-16-2016:**
+--------------------------------
+- **What features were worked on?**
+	- Side Menu
+	- Home Screen
+	- Create Board
+- **How far along is each feature?**
+	- **Uncategorized**
+		- Added all necessary view controllers in which are linked from the side menu.
+		- Started creating the data model.
+	- **Side Menu**
+		- Linked the add board button to the add board screen.
+	- **Home Screen**
+		- Designed home page table view for each board and up to 3 stories per preview.
+	- **Create Board**
+		- Designed create board screen.
+- **Where is the developer struggling?**
+	- Linking the add board screen from 2 views behind itself (Completed).
+- **Were any change requests submitted?**
+	- No change requests were submitted.
+- **Is the milestone still on pace to be completed on time?**
+	- Yes milestone is still on track to be completed.
+
+	**04-13-2016:**
 --------------------------------
 - **What features were worked on?**
 	- Launch Screen
@@ -6,7 +29,7 @@
 	- App Icons
 - **How far along is each feature?**
 	- **Uncategorized**
-		- 	Added all necessary scenes in which are linked from the side menu.
+		- Added all necessary scenes in which are linked from the side menu.
 	- **Launch Screen**
 		- Launch screen design has been completed.
 	- **Side Menu**
@@ -16,7 +39,7 @@
 	- **App Icons**
 		- App icons have finished being added the application.
 - **Where is the developer struggling?**
-	- Table view row auto resize on Agile Life menu in the side bar and a bigger height for the board list.
+	- Table view row auto resize on Agile Life menu in the side bar and a bigger height for the board list (Completed).
 - **Were any change requests submitted?**
 	- No change requests were submitted.
 - **Is the milestone still on pace to be completed on time?**
