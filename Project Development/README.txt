@@ -11,7 +11,7 @@
 	- Create board screen
 	- Home screen
 
-## Change log: #
+## Change log: ##
 
 #### 04-16-2016: ####
 

@@ -21,7 +21,7 @@
 - **Is the milestone still on pace to be completed on time?**
 	- Yes milestone is still on track to be completed.
 
-	**04-13-2016:**
+**04-13-2016:**
 --------------------------------
 - **What features were worked on?**
 	- Launch Screen
