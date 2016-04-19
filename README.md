@@ -3,7 +3,7 @@
 ********************************
 
 - **Author:** Zachary Gover
-- **Current Stable Version:** 1.0.0 <br>
+- **Current Stable Version:** 1.0.0
 - **Bitbucket Repository:** [https://bitbucket.org/Zachary1748/agile-life](https://bitbucket.org/Zachary1748/agile-life)
 - **Available Features:**
 	- Side menu
