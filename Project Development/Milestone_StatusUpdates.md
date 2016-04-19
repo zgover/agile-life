@@ -1,3 +1,24 @@
+**04-19-2016:**
+--------------------------------
+- **What features were worked on?**
+	- Create Board
+	- Home Screen
+- **How far along is each feature?**
+	- **Uncategorized**
+		- 
+	- **Create Board**
+		- Implemented CoreData
+		- Implemented functionality to create a board.
+		- Added user feedback (alerts) when any of the validation is incorrect.
+	- **Home Screen**
+		- Started listing each board on the home screen.
+- **Where is the developer struggling?**
+	- Linking the add board screen from 2 views behind itself (Completed).
+- **Were any change requests submitted?**
+	- 1 Change request was submitted to change the selector for each stage.
+- **Is the milestone still on pace to be completed on time?**
+	- Yes milestone is still on track to be completed.
+
 **04-16-2016:**
 --------------------------------
 - **What features were worked on?**

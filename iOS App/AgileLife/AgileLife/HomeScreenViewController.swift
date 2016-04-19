@@ -12,7 +12,7 @@ private let HomeScreenCellIdentfier = "HomeScreenTableViewCell"
 private let HomeScreenHeaderIdentifier = "HomeScreenTableViewHeader"
 private let HomeScreenFooterIdentifier = "HomeScreenTableViewFooter"
 
-class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ViewDelegates {
     
     /* ==========================================
     *
@@ -30,6 +30,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     * =========================================== */
     
     var directToCreateBoard = false
+    var CoreModels = CoreDataModels()
     
     /* ==========================================
     *
@@ -40,6 +41,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         super.setDefualtNav(menuBtn)
+        CoreModels.fetchBoards()
         
         // Set default values
         
@@ -60,6 +62,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             UINib(nibName: HomeScreenFooterIdentifier, bundle: nil),
             forHeaderFooterViewReuseIdentifier: HomeScreenFooterIdentifier
         )
+        
+        //CoreModels.createBoard("School Board", stage_one_icon: "hourglass", stage_one_name: "Backlog", stage_two: nil, stage_two_icon: nil, stage_two_name: nil, stage_three: nil, stage_three_icon: nil, stage_three_name: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -80,7 +84,11 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     * =========================================== */
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 2
+        if let count = CoreModels.allBoards?.count {
+            return count
+        }
+        
+        return 0
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -113,13 +121,25 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(HomeScreenHeaderIdentifier) as! HomeScreenTableViewHeader
-        header.boardName.text = "School Board"
+        header.boardName.text = CoreModels.allBoards![section].name
         return header
     }
     
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = tableView.dequeueReusableHeaderFooterViewWithIdentifier(HomeScreenFooterIdentifier) as! HomeScreenTableViewFooter
         return footer
+    }
+    
+    /* ==========================================
+    *
+    * MARK: Custom Delegates
+    *
+    * =========================================== */
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destination = segue.destinationViewController as? CreateBoardViewController {
+            destination.delegate = self
+        }
     }
 
     /* ==========================================
@@ -132,5 +152,16 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         self.performSegueWithIdentifier("createBoardSegue", sender: sender)
     }
 
+    
+    /* ==========================================
+    *
+    * MARK: Custom Delegates
+    *
+    * =========================================== */
+    
+    func createdBoard(didPass: Bool) {
+        CoreModels.fetchBoards()
+        tableView.reloadData()
+    }
 }
 

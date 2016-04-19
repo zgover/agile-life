@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  StoryListViewController.swift
 //  AgileLife
 //
 //  Created by Zachary Gover on 4/16/16.

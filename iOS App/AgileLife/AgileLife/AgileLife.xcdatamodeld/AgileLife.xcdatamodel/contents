@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9525" systemVersion="15B42" minimumToolsVersion="Automatic">
-    <entity name="Boards" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="stage_one" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="stage_one_icon" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="stage_one_name" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Boards" representedClassName=".Boards" syncable="YES">
+        <attribute name="date_created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="stage_four_icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stage_four_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="stage_one_icon" attributeType="String" syncable="YES"/>
+        <attribute name="stage_one_name" attributeType="String" syncable="YES"/>
         <attribute name="stage_three" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="stage_three_icon" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="stage_three_name" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="stage_three_name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stage_two" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="stage_two_icon" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="stage_two_name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="story_lists" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Stories" inverseName="board" inverseEntity="Stories" syncable="YES"/>
     </entity>
-    <entity name="Stories" syncable="YES">
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="priority" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="stage" optional="YES" attributeType="String" syncable="YES"/>
+    <entity name="Stories" representedClassName=".Stories" syncable="YES">
+        <attribute name="date_created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
+        <attribute name="notes" attributeType="String" syncable="YES"/>
+        <attribute name="priority" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="stage" attributeType="String" syncable="YES"/>
+        <relationship name="board" maxCount="1" deletionRule="Nullify" destinationEntity="Boards" inverseName="story_lists" inverseEntity="Boards" syncable="YES"/>
+        <relationship name="sub_tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Subtasks" inverseName="story" inverseEntity="Subtasks" syncable="YES"/>
     </entity>
-    <entity name="Subtasks" syncable="YES">
+    <entity name="Subtasks" representedClassName=".Subtasks" syncable="YES">
         <attribute name="completed" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="deadline" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="date_created" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="deadline" attributeType="Date" syncable="YES"/>
+        <attribute name="id" attributeType="String" syncable="YES"/>
+        <attribute name="name" attributeType="String" syncable="YES"/>
         <attribute name="task_description" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="story" maxCount="1" deletionRule="Nullify" destinationEntity="Stories" inverseName="sub_tasks" inverseEntity="Stories" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Boards" positionX="-63" positionY="-18" width="128" height="210"/>
-        <element name="Stories" positionX="-54" positionY="9" width="128" height="120"/>
-        <element name="Subtasks" positionX="-36" positionY="81" width="128" height="120"/>
+        <element name="Boards" positionX="-326" positionY="-79" width="128" height="253"/>
+        <element name="Stories" positionX="-135" positionY="-6" width="128" height="163"/>
+        <element name="Subtasks" positionX="61" positionY="9" width="128" height="148"/>
     </elements>
 </model>
