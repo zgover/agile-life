@@ -11,7 +11,7 @@
 	- Create board screen
 	- Home screen
 
-## Change log: #
+## Change log: ##
 
 #### 04-16-2016: ####
 
@@ -47,3 +47,19 @@
 		- Completed design for the board list custom table header.
 	- **App Icons**
 		- App icons have finished being added the application.
+
+		
+#### 04-11-2016: ####
+
+- **What features were worked on?**
+	- Home Screen
+	- Side Menu
+- **How far along is each feature?**
+	- **Home Screen**
+		- Navigation bar colors were set.
+		- Side menu button/icon was added
+	- **Side Menu**
+		- Side menu was added and implemented from a library called `SWRevealViewController`. [GitHub Link](https://github.com/John-Lluch/SWRevealViewController).
+		- Header design was implemented.
+		- Dummy text was added for the total completion calculation.
+		- Added home screen button and linked appropriately.
