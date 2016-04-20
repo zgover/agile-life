@@ -682,61 +682,147 @@
             </objects>
             <point key="canvasLocation" x="3001" y="-109"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--School Board-->
+        <scene sceneID="Sqw-qy-NT2">
+            <objects>
+                <viewController id="kE9-Wc-teD" customClass="StageTwoViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="SDC-ev-fnd"/>
+                        <viewControllerLayoutGuide type="bottom" id="rTn-dG-6Gp"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hiy-b7-H6W">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y8e-lJ-VYm" userLabel="BG">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="y8e-lJ-VYm" secondAttribute="bottom" id="5GC-Pl-tJA"/>
+                            <constraint firstItem="y8e-lJ-VYm" firstAttribute="top" secondItem="SDC-ev-fnd" secondAttribute="bottom" id="HKl-SC-8cu"/>
+                            <constraint firstItem="y8e-lJ-VYm" firstAttribute="leading" secondItem="Hiy-b7-H6W" secondAttribute="leading" id="YxR-8h-PPx"/>
+                            <constraint firstAttribute="trailing" secondItem="y8e-lJ-VYm" secondAttribute="trailing" id="cOy-j0-gLw"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.0" green="0.2156862745" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Stage 2" image="edit-square" id="MfH-fL-Nhp"/>
+                    <navigationItem key="navigationItem" title="School Board" id="4SO-Bu-ych">
+                        <barButtonItem key="leftBarButtonItem" image="HamburgerIcon" id="z3Y-H9-3AX">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuBtn" destination="z3Y-H9-3AX" id="j9C-dx-Lu6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hRS-Ds-hFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4043" y="935"/>
+        </scene>
+        <!--School Board-->
+        <scene sceneID="gyB-Zo-uwN">
+            <objects>
+                <viewController id="gd7-oS-S67" customClass="StageOneViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="83V-oc-dmD"/>
+                        <viewControllerLayoutGuide type="bottom" id="55k-iY-Dac"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="PPa-GF-NTf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BCb-Ff-zI1" userLabel="BG">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="BCb-Ff-zI1" secondAttribute="trailing" id="By5-nX-ckt"/>
+                            <constraint firstItem="BCb-Ff-zI1" firstAttribute="leading" secondItem="PPa-GF-NTf" secondAttribute="leading" id="Pd2-Lr-yQd"/>
+                            <constraint firstItem="BCb-Ff-zI1" firstAttribute="top" secondItem="83V-oc-dmD" secondAttribute="bottom" id="isp-Nn-YQg"/>
+                            <constraint firstAttribute="bottom" secondItem="BCb-Ff-zI1" secondAttribute="bottom" id="sUP-Fo-u96"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.0" green="0.2156862745" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Stage 1" image="hourglass" id="zbG-0t-0IS"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="School Board" id="yBe-93-0V8">
+                        <barButtonItem key="leftBarButtonItem" image="HamburgerIcon" id="mbL-Gx-ttc">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="menuBtn" destination="mbL-Gx-ttc" id="3LJ-yx-krl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TRz-ov-239" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4043" y="279"/>
+        </scene>
+        <!--School Board-->
+        <scene sceneID="0Kp-3m-xZM">
+            <objects>
+                <tabBarController id="u4d-xn-tby" customClass="StoryListViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="School Board" id="md5-RS-CwB">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="p0I-0k-OXs"/>
+                        <barButtonItem key="leftBarButtonItem" image="HamburgerIcon" id="mB5-0M-jMe">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="edit-pencil" id="pYb-9P-SOB">
+                            <inset key="imageInsets" minX="12" minY="8" maxX="0.0" maxY="8"/>
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="w28-HO-1bF">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.0" green="0.2156862745" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </tabBar>
+                    <connections>
+                        <outlet property="menuBtn" destination="mB5-0M-jMe" id="ZBB-nA-EU9"/>
+                        <segue destination="gd7-oS-S67" kind="relationship" relationship="viewControllers" id="ggD-Gp-bUJ"/>
+                        <segue destination="kE9-Wc-teD" kind="relationship" relationship="viewControllers" id="tQv-bh-UDA"/>
+                        <segue destination="Bkg-7f-WW3" kind="relationship" relationship="viewControllers" id="osS-P5-Kz2"/>
+                        <segue destination="Jmt-6p-igf" kind="relationship" relationship="viewControllers" id="sUQ-5e-HRo"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mkP-lc-RuL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2193" y="619"/>
+        </scene>
+        <!--Story List Navigation View Controller-->
         <scene sceneID="FRR-fo-pu3">
             <objects>
-                <navigationController id="H26-Cg-HyB" sceneMemberID="viewController">
+                <navigationController id="H26-Cg-HyB" customClass="StoryListNavigationViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qms-tC-1gc">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="ozP-Zf-UTG" kind="relationship" relationship="rootViewController" id="u0X-bs-z6d"/>
+                        <segue destination="u4d-xn-tby" kind="relationship" relationship="rootViewController" id="9Ej-dJ-voO"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXs-wB-85U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1400" y="619"/>
-        </scene>
-        <!--Story List View-->
-        <scene sceneID="NP2-rx-KeN">
-            <objects>
-                <viewController id="ozP-Zf-UTG" userLabel="Story List View" customClass="StoryListViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="cSm-Cu-aVm"/>
-                        <viewControllerLayoutGuide type="bottom" id="t0l-dJ-Gem"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Nsi-uD-iNm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QHD-m2-mxI">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="QHD-m2-mxI" secondAttribute="trailing" id="R98-vW-pJE"/>
-                            <constraint firstItem="QHD-m2-mxI" firstAttribute="top" secondItem="cSm-Cu-aVm" secondAttribute="bottom" id="Xc6-eN-Asv"/>
-                            <constraint firstItem="QHD-m2-mxI" firstAttribute="leading" secondItem="Nsi-uD-iNm" secondAttribute="leading" id="dkJ-7d-gOF"/>
-                            <constraint firstItem="t0l-dJ-Gem" firstAttribute="top" secondItem="QHD-m2-mxI" secondAttribute="bottom" id="jsL-fA-304"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="School Board" id="Acj-ih-fx2">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="mGa-Zg-Gp9"/>
-                        <barButtonItem key="leftBarButtonItem" image="HamburgerIcon" id="mB5-0M-jMe">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <connections>
-                        <outlet property="menuBtn" destination="mB5-0M-jMe" id="exi-hf-F49"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="H1t-q5-jqX" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2193" y="619"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="4Nx-4T-LAs">
@@ -962,16 +1048,105 @@
             </objects>
             <point key="canvasLocation" x="2193" y="3511"/>
         </scene>
+        <!--School Board-->
+        <scene sceneID="7ge-nn-g4h">
+            <objects>
+                <viewController id="Bkg-7f-WW3" customClass="StageThreeViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="g1U-Ah-uj4"/>
+                        <viewControllerLayoutGuide type="bottom" id="ChW-FT-8ng"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cp6-mg-Bjl">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="liy-3u-TmW" userLabel="BG">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="liy-3u-TmW" secondAttribute="trailing" id="5hx-eE-MRB"/>
+                            <constraint firstItem="liy-3u-TmW" firstAttribute="leading" secondItem="cp6-mg-Bjl" secondAttribute="leading" id="B4r-67-HUy"/>
+                            <constraint firstAttribute="bottom" secondItem="liy-3u-TmW" secondAttribute="bottom" id="Kko-Da-Y60"/>
+                            <constraint firstItem="liy-3u-TmW" firstAttribute="top" secondItem="g1U-Ah-uj4" secondAttribute="bottom" id="yl1-xa-wll"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.0" green="0.2156862745" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Stage 3" image="users" id="BZt-t3-Y7Z"/>
+                    <navigationItem key="navigationItem" title="School Board" id="x5V-ma-Lgj">
+                        <barButtonItem key="leftBarButtonItem" image="HamburgerIcon" id="2ay-6G-Sxc">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuBtn" destination="2ay-6G-Sxc" id="KAw-Ku-YSA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="paM-tx-iES" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4696" y="279"/>
+        </scene>
+        <!--School Board-->
+        <scene sceneID="ApJ-6n-8aw">
+            <objects>
+                <viewController id="Jmt-6p-igf" customClass="StageFourViewController" customModule="AgileLife" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="HRY-7Z-Uum"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZdF-AY-nil"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="DyB-bG-AZT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCw-Tu-ihe" userLabel="BG">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xCw-Tu-ihe" firstAttribute="leading" secondItem="DyB-bG-AZT" secondAttribute="leading" id="0wi-yX-2wF"/>
+                            <constraint firstAttribute="trailing" secondItem="xCw-Tu-ihe" secondAttribute="trailing" id="HaB-bW-s7c"/>
+                            <constraint firstItem="xCw-Tu-ihe" firstAttribute="top" secondItem="HRY-7Z-Uum" secondAttribute="bottom" id="SKK-wf-Sa1"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="xCw-Tu-ihe" secondAttribute="bottom" id="lG6-vl-foc"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.0" green="0.2156862745" blue="0.019607843140000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Stage 4" image="check-square" id="GiW-bs-W82"/>
+                    <navigationItem key="navigationItem" title="School Board" id="ZB1-42-Dw8">
+                        <barButtonItem key="leftBarButtonItem" image="HamburgerIcon" id="TVe-HM-bbo">
+                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="menuBtn" destination="TVe-HM-bbo" id="VLw-i7-ZnN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cQU-ZC-xEV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4696" y="935"/>
+        </scene>
     </scenes>
     <resources>
         <image name="CellArrow" width="15" height="29"/>
         <image name="HamburgerIcon" width="50" height="34"/>
         <image name="HomeBtn" width="100" height="27"/>
         <image name="SideMenuBG" width="400" height="232"/>
+        <image name="check-square" width="30" height="30"/>
         <image name="edit-pencil" width="35" height="42"/>
-        <image name="edit-square" width="46" height="47"/>
-        <image name="hourglass" width="34" height="41"/>
-        <image name="users" width="43" height="41"/>
+        <image name="edit-square" width="30" height="30"/>
+        <image name="hourglass" width="30" height="30"/>
+        <image name="users" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ahl-jb-78N"/>

@@ -49,6 +49,12 @@ class CoreDataModels {
     *
     * =========================================== */
     
+    func fetchAll() {
+        fetchBoards()
+        fetchStories()
+        fetchSubtasks()
+    }
+    
     func fetchBoards() -> ReturnStatus {
         // Set default values for CoreData properties
         let fetchRequest = NSFetchRequest(entityName: "Boards")
@@ -58,8 +64,8 @@ class CoreDataModels {
         do {
             if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Boards] {
                 self.allBoards = result
-                print(result)
-                print("recieved boards")
+                //print(result)
+                //print("recieved boards")
                 return .Success
             } else {
                 print("No boards")
@@ -80,8 +86,8 @@ class CoreDataModels {
         do {
             if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Stories] {
                 self.allStories = result
-                print(result)
-                print("recieved stories")
+                //print(result)
+                //print("recieved stories")
                 return .Success
             } else {
                 print("No stories")
@@ -102,8 +108,8 @@ class CoreDataModels {
         do {
             if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
                 self.allSubtasks = result
-                print(result)
-                print("recieved subtasks")
+                //print(result)
+                //print("recieved subtasks")
                 return .Success
             } else {
                 print("No subtasks")

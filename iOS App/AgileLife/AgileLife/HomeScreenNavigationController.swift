@@ -50,9 +50,7 @@ class HomeScreenNavigationController: UINavigationController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destination = segue.destinationViewController as? HomeScreenViewController {
             destination.directToCreateBoard = true
-            print("nav = true")
         }
-        print(segue.sourceViewController)
     }
 
 }

@@ -3,6 +3,8 @@
 - **What features were worked on?**
 	- Create Board
 	- Home Screen
+	- Side Menu
+	- Story List
 - **How far along is each feature?**
 	- **Uncategorized**
 		- 
@@ -12,10 +14,16 @@
 		- Added user feedback (alerts) when any of the validation is incorrect.
 	- **Home Screen**
 		- Started listing each board on the home screen.
+	- **Side Menu**
+		- Started listing each board in the side menu.
+		- Linked and passed the currently selected board to the board detail view (StoryListViewController).
+	- **Story List**
+		- Implemented stages on a UITabBar, based off of what the user configured when they had created the board.
+		- Added all four stage screens
 - **Where is the developer struggling?**
 	- Linking the add board screen from 2 views behind itself (Completed).
 - **Were any change requests submitted?**
-	- 1 Change request was submitted to change the selector for each stage.
+	- No change request were submitted.
 - **Is the milestone still on pace to be completed on time?**
 	- Yes milestone is still on track to be completed.
 

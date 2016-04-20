@@ -9,5 +9,5 @@
 import Foundation
 
 @objc protocol ViewDelegates {
-    optional func createdBoard(didPass: Bool)
+    //optional func updateData()
 }

@@ -34,7 +34,6 @@ class CreateBoardViewController: UIViewController {
     * =========================================== */
     
     var CoreModels = CoreDataModels()
-    var delegate:ViewDelegates!
     
     /* ==========================================
     *
@@ -109,24 +108,24 @@ class CreateBoardViewController: UIViewController {
         // Create the board
         let creationResult = CoreModels.createBoard(
             boardNameInput.text!, stage_one_icon: "hourglass", stage_one_name: stage1Input.text!,
-            stage_two: stage2Switch.on, stage_two_icon: "hourglass", stage_two_name: stage2Input.text,
-            stage_three: stage3Switch.on, stage_three_icon: "hourglass", stage_three_name: stage3Input.text
+            stage_two: stage2Switch.on, stage_two_icon: "edit-square", stage_two_name: stage2Input.text,
+            stage_three: stage3Switch.on, stage_three_icon: "users", stage_three_name: stage3Input.text
         )
         
         // Dismiss view controller or notify the user based in the returned result of creating a board.
         switch creationResult {
         case .Success:
-            delegate.createdBoard!(true)
+            
             self.navigationController?.popViewControllerAnimated(true)
-            //self.dismissViewControllerAnimated(true, completion: nil)
+            
         default:
+            
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Error", message: "An error has occurred, please review all fields and make sure they are correct; before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(title: "Error", message: "An error has occurred! please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
             self.presentViewController(alertController, animated: true, completion: nil)
             
-            break
         }
     }
 }

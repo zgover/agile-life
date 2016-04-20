@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B6268AC21CC70C8700486ECF /* StageOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AC11CC70C8700486ECF /* StageOneViewController.swift */; };
+		B6268AC41CC70C9100486ECF /* StageTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AC31CC70C9100486ECF /* StageTwoViewController.swift */; };
+		B6268AC61CC70C9B00486ECF /* StageThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AC51CC70C9B00486ECF /* StageThreeViewController.swift */; };
+		B6268AC81CC70CA400486ECF /* StageFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AC71CC70CA400486ECF /* StageFourViewController.swift */; };
+		B6C986BC1CC6A11100B60D54 /* StoryListNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */; };
 		B6E614491CBC5381003FB446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E614481CBC5381003FB446 /* AppDelegate.swift */; };
 		B6E6144B1CBC5381003FB446 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E6144A1CBC5381003FB446 /* HomeScreenViewController.swift */; };
 		B6E6144E1CBC5381003FB446 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B6E6144C1CBC5381003FB446 /* Main.storyboard */; };
@@ -49,6 +54,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B6268AC11CC70C8700486ECF /* StageOneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageOneViewController.swift; sourceTree = "<group>"; };
+		B6268AC31CC70C9100486ECF /* StageTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageTwoViewController.swift; sourceTree = "<group>"; };
+		B6268AC51CC70C9B00486ECF /* StageThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageThreeViewController.swift; sourceTree = "<group>"; };
+		B6268AC71CC70CA400486ECF /* StageFourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageFourViewController.swift; sourceTree = "<group>"; };
+		B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListNavigationViewController.swift; sourceTree = "<group>"; };
 		B6E614451CBC5381003FB446 /* AgileLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgileLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E614481CBC5381003FB446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6E6144A1CBC5381003FB446 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
@@ -190,6 +200,11 @@
 				B6F9AC151CC3065A006CF314 /* AboutViewController.swift */,
 				B6F9AC171CC30664006CF314 /* SupportViewController.swift */,
 				B6F9AC191CC3066D006CF314 /* LegalViewController.swift */,
+				B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */,
+				B6268AC11CC70C8700486ECF /* StageOneViewController.swift */,
+				B6268AC31CC70C9100486ECF /* StageTwoViewController.swift */,
+				B6268AC51CC70C9B00486ECF /* StageThreeViewController.swift */,
+				B6268AC71CC70CA400486ECF /* StageFourViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -333,13 +348,17 @@
 				B6F9AC141CC3064B006CF314 /* DonateViewController.swift in Sources */,
 				B6F9AC571CC64948006CF314 /* ViewDelegates.swift in Sources */,
 				B6F9AC4D1CC50638006CF314 /* Boards.swift in Sources */,
+				B6268AC81CC70CA400486ECF /* StageFourViewController.swift in Sources */,
+				B6C986BC1CC6A11100B60D54 /* StoryListNavigationViewController.swift in Sources */,
 				B6E614861CC06611003FB446 /* CreateBoardViewController.swift in Sources */,
 				B6F9AC0A1CC29D45006CF314 /* HomeScreenTableViewCell.swift in Sources */,
 				B6F9AC0C1CC2FDAB006CF314 /* HomeScreenTableViewHeader.swift in Sources */,
 				B6E614511CBC5381003FB446 /* AgileLife.xcdatamodeld in Sources */,
 				B6F9AC1E1CC307DC006CF314 /* HomeScreenTableViewFooter.swift in Sources */,
 				B6F9AC511CC50638006CF314 /* Subtasks.swift in Sources */,
+				B6268AC21CC70C8700486ECF /* StageOneViewController.swift in Sources */,
 				B6F9AC4E1CC50638006CF314 /* Stories+CoreDataProperties.swift in Sources */,
+				B6268AC61CC70C9B00486ECF /* StageThreeViewController.swift in Sources */,
 				B6E6144B1CBC5381003FB446 /* HomeScreenViewController.swift in Sources */,
 				B6F9AC551CC646DB006CF314 /* GlobalEnums.swift in Sources */,
 				B6E614781CBF2FC4003FB446 /* BLSideMenuTableHeader.swift in Sources */,
@@ -357,6 +376,7 @@
 				B6F9AC181CC30664006CF314 /* SupportViewController.swift in Sources */,
 				B6F9AC021CC28EB1006CF314 /* HomeScreenNavigationController.swift in Sources */,
 				B6F9AC501CC50638006CF314 /* Subtasks+CoreDataProperties.swift in Sources */,
+				B6268AC41CC70C9100486ECF /* StageTwoViewController.swift in Sources */,
 				B6F9AC4C1CC50638006CF314 /* Boards+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

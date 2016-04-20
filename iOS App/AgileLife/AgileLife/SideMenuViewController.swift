@@ -33,6 +33,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     
     let menuItems:[String] = ["Donate", "About", "Support", "Legal"]
     var directToCreateBoard = Bool()
+    var CoreModels = CoreDataModels()
     
     /* ==========================================
     *
@@ -42,6 +43,8 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        CoreModels.fetchAll()
+        tableView.reloadData()
         
         // Set default values
         directToCreateBoard = false
@@ -65,6 +68,11 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         )
     }
     
+    override func viewWillAppear(animated: Bool) {
+        CoreModels.fetchAll()
+        tableView.reloadData()
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -82,7 +90,12 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            return 2
+            if let count = CoreModels.allBoards?.count {
+                return count
+            }
+            
+            return 0
+            
         } else if section == 1 {
             return menuItems.count
         }
@@ -110,6 +123,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         if section == 0 {
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(blSideMenuHeaderIdentifier) as! BLSideMenuTableHeader
             header.addBoardBtn.addTarget(self, action: Selector("addBoard"), forControlEvents: .TouchUpInside)
+            header.headerLabel.text = "Boards"
             return header
         } else if section == 1 {
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(alSideMenuHeaderIdentifier) as! ALSideMenuTableHeader
@@ -132,12 +146,15 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         if indexPath.section == 0 {
             // Build the board item cell
             if let cell = tableView.dequeueReusableCellWithIdentifier(boardCellIdentifier, forIndexPath: indexPath) as? BLSideMenuCell {
-                cell.boardName.text             = "School Board"
-                cell.storyCount.text            = "23 Stories"
-                cell.percentageComplete.text    = "32% Complete"
-                cell.progressView.setProgress(0.32, animated: true)
-                
-                return cell
+                if let board = CoreModels.allBoards?[indexPath.row] {
+                    let storyCount                  = board.story_lists?.count
+                    cell.boardName.text             = board.name
+                    cell.storyCount.text            = "\(storyCount == nil ? 0 : storyCount!) Stories"
+                    cell.percentageComplete.text    = "32% Complete"
+                    cell.progressView.setProgress(0.32, animated: true)
+                    
+                    return cell
+                }
             }
         } else if indexPath.section == 1 {
             // Build the menu item cells for the Agile Life section
@@ -154,7 +171,10 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 0 {
             // Open board detail view
-            performSegueWithIdentifier("boardDetailSegue", sender: nil)
+            if let currentBoard = CoreModels.allBoards?[indexPath.row] {
+                CoreModels.currentBoard = currentBoard
+                performSegueWithIdentifier("boardDetailSegue", sender: nil)
+            }
         } else if indexPath.section == 1 {
             // Open corresponding menu item from the Agile Life section.
             performSegueWithIdentifier("\(menuItems[indexPath.row].lowercaseString)Segue", sender: nil)
@@ -170,11 +190,26 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     * =========================================== */
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Destinations
-        if let destinaton = segue.destinationViewController as? HomeScreenNavigationController {
+        
+        // Home
+        if let destination = segue.destinationViewController as? HomeScreenNavigationController {
+            // Go directly to the create board screen
             if self.directToCreateBoard == true {
                 self.directToCreateBoard = false
-                destinaton.directToCreateBoard = true
+                destination.directToCreateBoard = true
             }
+            
+            // Proceed as normal here
+            //if let targetController = destination.topViewController as? HomeScreenViewController {
+                //targetController.delegate = self
+            //}
+        }
+        
+        // Story List
+        else if let destination = segue.destinationViewController as? StoryListNavigationViewController,
+            let targetController = destination.topViewController as? StoryListViewController {
+            targetController.CoreModels = self.CoreModels
+            //targetController.delegate = self
         }
     }
     

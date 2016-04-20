@@ -59,7 +59,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
                 <outlet property="addBoardBtn" destination="YU4-PE-4IK" id="aNJ-O4-4TP"/>
-                <outlet property="boards" destination="wmp-AC-IFf" id="hGR-1K-S6t"/>
+                <outlet property="headerLabel" destination="wmp-AC-IFf" id="VzG-av-iuc"/>
             </connections>
         </view>
     </objects>

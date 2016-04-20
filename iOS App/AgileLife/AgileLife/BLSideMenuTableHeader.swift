@@ -16,7 +16,7 @@ class BLSideMenuTableHeader: UITableViewHeaderFooterView {
     *
     * =========================================== */
     
-    @IBOutlet weak var boards: UILabel!
+    @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var addBoardBtn: UIButton!
 
 }

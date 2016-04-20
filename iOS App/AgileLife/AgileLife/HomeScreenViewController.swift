@@ -12,7 +12,7 @@ private let HomeScreenCellIdentfier = "HomeScreenTableViewCell"
 private let HomeScreenHeaderIdentifier = "HomeScreenTableViewHeader"
 private let HomeScreenFooterIdentifier = "HomeScreenTableViewFooter"
 
-class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ViewDelegates {
+class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     /* ==========================================
     *
@@ -77,6 +77,11 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+    override func viewWillAppear(animated: Bool) {
+        CoreModels.fetchAll()
+        tableView.reloadData()
+    }
+    
     /* ==========================================
     *
     * MARK: Tableview Delegate Methods
@@ -137,9 +142,9 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     * =========================================== */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? CreateBoardViewController {
-            destination.delegate = self
-        }
+        //if let destination = segue.destinationViewController as? CreateBoardViewController {
+            //destination.delegate = self
+        //}
     }
 
     /* ==========================================
@@ -159,7 +164,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     *
     * =========================================== */
     
-    func createdBoard(didPass: Bool) {
+    func updateData() {
         CoreModels.fetchBoards()
         tableView.reloadData()
     }
