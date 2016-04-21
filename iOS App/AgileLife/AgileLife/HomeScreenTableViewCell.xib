@@ -127,7 +127,7 @@
             <connections>
                 <outlet property="percentageComplete" destination="MH4-Gg-0zg" id="NdG-s1-DZe"/>
                 <outlet property="progressBar" destination="AQR-4J-8tT" id="qPI-aA-Bcn"/>
-                <outlet property="storyName" destination="Y3P-dM-xvy" id="hKV-Yv-uAG"/>
+                <outlet property="storyName" destination="Y3P-dM-xvy" id="KBg-9L-FKJ"/>
                 <outlet property="subtaskCount" destination="s80-zr-tSk" id="xvu-vn-BGk"/>
             </connections>
         </view>

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateBoardViewController: UIViewController {
+class CreateBoardViewController: UIViewController, UITextFieldDelegate {
 
     /* ==========================================
     *
@@ -43,6 +43,7 @@ class CreateBoardViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        super.setDefualtNav(nil, statusBg: true, bg: true)
 
         // Set default values
     }
@@ -50,6 +51,17 @@ class CreateBoardViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    /* ==========================================
+    *
+    * MARK: TextField Delegates
+    *
+    * =========================================== */
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 
     /* ==========================================

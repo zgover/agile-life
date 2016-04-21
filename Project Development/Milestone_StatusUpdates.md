@@ -1,3 +1,22 @@
+**04-20-2016:**
+--------------------------------
+- **What features were worked on?**
+	- Edit Board
+	- Create Story
+- **How far along is each feature?**
+	- **Edit Board**
+		- Created edit board screen and completed design.
+		- Implemented functionality to edit the existing board.
+	- **Create Story**
+		- Started implementing functionality to create a story (About 1hr left).
+		- Design has been completed.
+- **Where is the developer struggling?**
+	- First arrival on the story list view, the navigation is dimmed in color. 
+- **Were any change requests submitted?**
+	- No change request were submitted.
+- **Is the milestone still on pace to be completed on time?**
+	- Yes milestone is still on track to be completed.
+
 **04-19-2016:**
 --------------------------------
 - **What features were worked on?**
@@ -6,8 +25,6 @@
 	- Side Menu
 	- Story List
 - **How far along is each feature?**
-	- **Uncategorized**
-		- 
 	- **Create Board**
 		- Implemented CoreData
 		- Implemented functionality to create a board.
@@ -21,7 +38,7 @@
 		- Implemented stages on a UITabBar, based off of what the user configured when they had created the board.
 		- Added all four stage screens
 - **Where is the developer struggling?**
-	- Linking the add board screen from 2 views behind itself (Completed).
+	- The developer did not struggle anywhere in specific.
 - **Were any change requests submitted?**
 	- No change request were submitted.
 - **Is the milestone still on pace to be completed on time?**

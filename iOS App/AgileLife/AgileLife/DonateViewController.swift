@@ -26,7 +26,7 @@ class DonateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.setDefualtNav(menuBtn)
+        super.setDefualtNav(menuBtn, statusBg: true, bg: true)
 
         // Do any additional setup after loading the view.
     }

@@ -11,6 +11,10 @@
 		B6268AC41CC70C9100486ECF /* StageTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AC31CC70C9100486ECF /* StageTwoViewController.swift */; };
 		B6268AC61CC70C9B00486ECF /* StageThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AC51CC70C9B00486ECF /* StageThreeViewController.swift */; };
 		B6268AC81CC70CA400486ECF /* StageFourViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AC71CC70CA400486ECF /* StageFourViewController.swift */; };
+		B6268ACA1CC797EA00486ECF /* StoryListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AC91CC797EA00486ECF /* StoryListTableViewCell.swift */; };
+		B6268ACC1CC7980000486ECF /* StoryListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6268ACB1CC7980000486ECF /* StoryListTableViewCell.xib */; };
+		B6268ACE1CC79E1200486ECF /* EditBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268ACD1CC79E1200486ECF /* EditBoardViewController.swift */; };
+		B6268AD01CC862ED00486ECF /* CreateStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268ACF1CC862ED00486ECF /* CreateStoryViewController.swift */; };
 		B6C986BC1CC6A11100B60D54 /* StoryListNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */; };
 		B6E614491CBC5381003FB446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E614481CBC5381003FB446 /* AppDelegate.swift */; };
 		B6E6144B1CBC5381003FB446 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E6144A1CBC5381003FB446 /* HomeScreenViewController.swift */; };
@@ -58,6 +62,10 @@
 		B6268AC31CC70C9100486ECF /* StageTwoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageTwoViewController.swift; sourceTree = "<group>"; };
 		B6268AC51CC70C9B00486ECF /* StageThreeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageThreeViewController.swift; sourceTree = "<group>"; };
 		B6268AC71CC70CA400486ECF /* StageFourViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageFourViewController.swift; sourceTree = "<group>"; };
+		B6268AC91CC797EA00486ECF /* StoryListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListTableViewCell.swift; sourceTree = "<group>"; };
+		B6268ACB1CC7980000486ECF /* StoryListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryListTableViewCell.xib; sourceTree = "<group>"; };
+		B6268ACD1CC79E1200486ECF /* EditBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBoardViewController.swift; sourceTree = "<group>"; };
+		B6268ACF1CC862ED00486ECF /* CreateStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStoryViewController.swift; sourceTree = "<group>"; };
 		B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListNavigationViewController.swift; sourceTree = "<group>"; };
 		B6E614451CBC5381003FB446 /* AgileLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgileLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E614481CBC5381003FB446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -194,6 +202,7 @@
 				B6E6144A1CBC5381003FB446 /* HomeScreenViewController.swift */,
 				B6E6146A1CBD5EA2003FB446 /* SideMenuViewController.swift */,
 				B6E614851CC06611003FB446 /* CreateBoardViewController.swift */,
+				B6268ACD1CC79E1200486ECF /* EditBoardViewController.swift */,
 				B6F9AC011CC28EB1006CF314 /* HomeScreenNavigationController.swift */,
 				B6F9AC111CC3060F006CF314 /* StoryListViewController.swift */,
 				B6F9AC131CC3064B006CF314 /* DonateViewController.swift */,
@@ -205,6 +214,7 @@
 				B6268AC31CC70C9100486ECF /* StageTwoViewController.swift */,
 				B6268AC51CC70C9B00486ECF /* StageThreeViewController.swift */,
 				B6268AC71CC70CA400486ECF /* StageFourViewController.swift */,
+				B6268ACF1CC862ED00486ECF /* CreateStoryViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -248,6 +258,8 @@
 				B6E6146E1CBD6156003FB446 /* AgileLifeTableViewCell.swift */,
 				B6F9AC071CC29A90006CF314 /* HomeScreenTableViewCell.xib */,
 				B6F9AC091CC29D45006CF314 /* HomeScreenTableViewCell.swift */,
+				B6268AC91CC797EA00486ECF /* StoryListTableViewCell.swift */,
+				B6268ACB1CC7980000486ECF /* StoryListTableViewCell.xib */,
 			);
 			name = "Table Cells";
 			sourceTree = "<group>";
@@ -325,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6F9AC101CC2FE56006CF314 /* HomeScreenTableViewHeader.xib in Resources */,
+				B6268ACC1CC7980000486ECF /* StoryListTableViewCell.xib in Resources */,
 				B6F9AC1C1CC307AB006CF314 /* HomeScreenTableViewFooter.xib in Resources */,
 				B6E614561CBC5381003FB446 /* LaunchScreen.storyboard in Resources */,
 				B6E6147A1CC01586003FB446 /* ALSideMenuTableHeader.xib in Resources */,
@@ -355,6 +368,7 @@
 				B6F9AC0C1CC2FDAB006CF314 /* HomeScreenTableViewHeader.swift in Sources */,
 				B6E614511CBC5381003FB446 /* AgileLife.xcdatamodeld in Sources */,
 				B6F9AC1E1CC307DC006CF314 /* HomeScreenTableViewFooter.swift in Sources */,
+				B6268AD01CC862ED00486ECF /* CreateStoryViewController.swift in Sources */,
 				B6F9AC511CC50638006CF314 /* Subtasks.swift in Sources */,
 				B6268AC21CC70C8700486ECF /* StageOneViewController.swift in Sources */,
 				B6F9AC4E1CC50638006CF314 /* Stories+CoreDataProperties.swift in Sources */,
@@ -362,6 +376,7 @@
 				B6E6144B1CBC5381003FB446 /* HomeScreenViewController.swift in Sources */,
 				B6F9AC551CC646DB006CF314 /* GlobalEnums.swift in Sources */,
 				B6E614781CBF2FC4003FB446 /* BLSideMenuTableHeader.swift in Sources */,
+				B6268ACA1CC797EA00486ECF /* StoryListTableViewCell.swift in Sources */,
 				B6E614801CC01B1D003FB446 /* BLSideMenuTableFooter.swift in Sources */,
 				B6E614491CBC5381003FB446 /* AppDelegate.swift in Sources */,
 				B6E614691CBC71A8003FB446 /* ViewControllerExtensions.swift in Sources */,
@@ -378,6 +393,7 @@
 				B6F9AC501CC50638006CF314 /* Subtasks+CoreDataProperties.swift in Sources */,
 				B6268AC41CC70C9100486ECF /* StageTwoViewController.swift in Sources */,
 				B6F9AC4C1CC50638006CF314 /* Boards+CoreDataProperties.swift in Sources */,
+				B6268ACE1CC79E1200486ECF /* EditBoardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

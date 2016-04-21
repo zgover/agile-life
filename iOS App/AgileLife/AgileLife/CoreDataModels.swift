@@ -160,7 +160,7 @@ class CoreDataModels {
         }
     }
     
-    func createStory(name: String, notes: String, stage: String, priority: StoryPriority) -> ReturnStatus {
+    func createStory(name: String, notes: String, stage: String, priority: Int) -> ReturnStatus {
         
         // Add each new property and add it to the users device
         let newStory = Stories(entity: storyEntityDescription, insertIntoManagedObjectContext: managedContext)
@@ -168,7 +168,7 @@ class CoreDataModels {
         newStory.name = name
         newStory.notes = notes
         newStory.stage = stage
-        newStory.priority = priority.rawValue
+        newStory.priority = priority
         newStory.date_created = NSDate()
         newStory.board = currentBoard
         
@@ -198,6 +198,40 @@ class CoreDataModels {
             return .Success
         } catch {
             print("Error creating new subtask")
+            return .Error
+        }
+    }
+    
+    /* ==========================================
+    *
+    * MARK: Object Creation Methods
+    *
+    * =========================================== */
+    
+    func editBoard() -> ReturnStatus {
+        
+        // Fetch the current active board
+        let fetchRequest = NSFetchRequest(entityName: "Boards")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", currentBoard!.id!)
+
+        do {
+            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Boards] {
+                //print(result)
+                //print("Saved Board")
+                
+                if result.count > 0 {
+                    // Save and return
+                    try managedContext.save()
+                    return .Success
+                } else {
+                    return .Error
+                }
+            } else {
+                print("No boards")
+                return .Warning
+            }
+        } catch {
+            print("Failed saving board")
             return .Error
         }
     }

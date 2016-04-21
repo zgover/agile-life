@@ -40,7 +40,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        super.setDefualtNav(menuBtn)
+        super.setDefualtNav(menuBtn, statusBg: true, bg: true)
         CoreModels.fetchBoards()
         
         // Set default values
