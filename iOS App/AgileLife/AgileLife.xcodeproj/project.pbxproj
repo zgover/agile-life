@@ -15,6 +15,12 @@
 		B6268ACC1CC7980000486ECF /* StoryListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6268ACB1CC7980000486ECF /* StoryListTableViewCell.xib */; };
 		B6268ACE1CC79E1200486ECF /* EditBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268ACD1CC79E1200486ECF /* EditBoardViewController.swift */; };
 		B6268AD01CC862ED00486ECF /* CreateStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268ACF1CC862ED00486ECF /* CreateStoryViewController.swift */; };
+		B6268AD61CC99A2600486ECF /* StoryListTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6268AD51CC99A2600486ECF /* StoryListTableHeader.xib */; };
+		B6268AD81CC99B0600486ECF /* StoryListTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AD71CC99B0600486ECF /* StoryListTableHeader.swift */; };
+		B6268ADA1CC9B7F700486ECF /* StoryDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AD91CC9B7F700486ECF /* StoryDetailViewController.swift */; };
+		B6268ADD1CCA584100486ECF /* CreateSubtaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268ADC1CCA584100486ECF /* CreateSubtaskViewController.swift */; };
+		B6268ADF1CCA6E1F00486ECF /* SubtaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268ADE1CCA6E1F00486ECF /* SubtaskDetailViewController.swift */; };
+		B6268AE11CCBFB6800486ECF /* EditStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AE01CCBFB6800486ECF /* EditStoryViewController.swift */; };
 		B6C986BC1CC6A11100B60D54 /* StoryListNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */; };
 		B6E614491CBC5381003FB446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E614481CBC5381003FB446 /* AppDelegate.swift */; };
 		B6E6144B1CBC5381003FB446 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E6144A1CBC5381003FB446 /* HomeScreenViewController.swift */; };
@@ -66,8 +72,14 @@
 		B6268ACB1CC7980000486ECF /* StoryListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryListTableViewCell.xib; sourceTree = "<group>"; };
 		B6268ACD1CC79E1200486ECF /* EditBoardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditBoardViewController.swift; sourceTree = "<group>"; };
 		B6268ACF1CC862ED00486ECF /* CreateStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateStoryViewController.swift; sourceTree = "<group>"; };
+		B6268AD51CC99A2600486ECF /* StoryListTableHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StoryListTableHeader.xib; sourceTree = "<group>"; };
+		B6268AD71CC99B0600486ECF /* StoryListTableHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListTableHeader.swift; sourceTree = "<group>"; };
+		B6268AD91CC9B7F700486ECF /* StoryDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryDetailViewController.swift; sourceTree = "<group>"; };
+		B6268ADC1CCA584100486ECF /* CreateSubtaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSubtaskViewController.swift; sourceTree = "<group>"; };
+		B6268ADE1CCA6E1F00486ECF /* SubtaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtaskDetailViewController.swift; sourceTree = "<group>"; };
+		B6268AE01CCBFB6800486ECF /* EditStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryViewController.swift; sourceTree = "<group>"; };
 		B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListNavigationViewController.swift; sourceTree = "<group>"; };
-		B6E614451CBC5381003FB446 /* AgileLife.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AgileLife.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B6E614451CBC5381003FB446 /* Agile Life.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile Life.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E614481CBC5381003FB446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B6E6144A1CBC5381003FB446 /* HomeScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreenViewController.swift; sourceTree = "<group>"; };
 		B6E6144D1CBC5381003FB446 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,6 +135,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B6268AD11CC9848F00486ECF /* Stories */ = {
+			isa = PBXGroup;
+			children = (
+				B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */,
+				B6F9AC111CC3060F006CF314 /* StoryListViewController.swift */,
+				B6268ACF1CC862ED00486ECF /* CreateStoryViewController.swift */,
+				B6268AC11CC70C8700486ECF /* StageOneViewController.swift */,
+				B6268AC31CC70C9100486ECF /* StageTwoViewController.swift */,
+				B6268AC51CC70C9B00486ECF /* StageThreeViewController.swift */,
+				B6268AC71CC70CA400486ECF /* StageFourViewController.swift */,
+				B6268AD91CC9B7F700486ECF /* StoryDetailViewController.swift */,
+				B6268AE01CCBFB6800486ECF /* EditStoryViewController.swift */,
+			);
+			name = Stories;
+			sourceTree = "<group>";
+		};
+		B6268AD21CC984A000486ECF /* Boards */ = {
+			isa = PBXGroup;
+			children = (
+				B6E614851CC06611003FB446 /* CreateBoardViewController.swift */,
+				B6268ACD1CC79E1200486ECF /* EditBoardViewController.swift */,
+			);
+			name = Boards;
+			sourceTree = "<group>";
+		};
+		B6268AD31CC984BE00486ECF /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				B6E6144A1CBC5381003FB446 /* HomeScreenViewController.swift */,
+				B6F9AC011CC28EB1006CF314 /* HomeScreenNavigationController.swift */,
+				B6E6146A1CBD5EA2003FB446 /* SideMenuViewController.swift */,
+			);
+			name = Layout;
+			sourceTree = "<group>";
+		};
+		B6268AD41CC984CE00486ECF /* Static Screens */ = {
+			isa = PBXGroup;
+			children = (
+				B6F9AC131CC3064B006CF314 /* DonateViewController.swift */,
+				B6F9AC151CC3065A006CF314 /* AboutViewController.swift */,
+				B6F9AC171CC30664006CF314 /* SupportViewController.swift */,
+				B6F9AC191CC3066D006CF314 /* LegalViewController.swift */,
+			);
+			name = "Static Screens";
+			sourceTree = "<group>";
+		};
+		B6268ADB1CCA583300486ECF /* Subtasks */ = {
+			isa = PBXGroup;
+			children = (
+				B6268ADC1CCA584100486ECF /* CreateSubtaskViewController.swift */,
+				B6268ADE1CCA6E1F00486ECF /* SubtaskDetailViewController.swift */,
+			);
+			name = Subtasks;
+			sourceTree = "<group>";
+		};
 		B6E6143C1CBC5381003FB446 = {
 			isa = PBXGroup;
 			children = (
@@ -134,7 +201,7 @@
 		B6E614461CBC5381003FB446 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B6E614451CBC5381003FB446 /* AgileLife.app */,
+				B6E614451CBC5381003FB446 /* Agile Life.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -199,22 +266,11 @@
 		B6E614661CBC5536003FB446 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				B6E6144A1CBC5381003FB446 /* HomeScreenViewController.swift */,
-				B6E6146A1CBD5EA2003FB446 /* SideMenuViewController.swift */,
-				B6E614851CC06611003FB446 /* CreateBoardViewController.swift */,
-				B6268ACD1CC79E1200486ECF /* EditBoardViewController.swift */,
-				B6F9AC011CC28EB1006CF314 /* HomeScreenNavigationController.swift */,
-				B6F9AC111CC3060F006CF314 /* StoryListViewController.swift */,
-				B6F9AC131CC3064B006CF314 /* DonateViewController.swift */,
-				B6F9AC151CC3065A006CF314 /* AboutViewController.swift */,
-				B6F9AC171CC30664006CF314 /* SupportViewController.swift */,
-				B6F9AC191CC3066D006CF314 /* LegalViewController.swift */,
-				B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */,
-				B6268AC11CC70C8700486ECF /* StageOneViewController.swift */,
-				B6268AC31CC70C9100486ECF /* StageTwoViewController.swift */,
-				B6268AC51CC70C9B00486ECF /* StageThreeViewController.swift */,
-				B6268AC71CC70CA400486ECF /* StageFourViewController.swift */,
-				B6268ACF1CC862ED00486ECF /* CreateStoryViewController.swift */,
+				B6268ADB1CCA583300486ECF /* Subtasks */,
+				B6268AD41CC984CE00486ECF /* Static Screens */,
+				B6268AD31CC984BE00486ECF /* Layout */,
+				B6268AD21CC984A000486ECF /* Boards */,
+				B6268AD11CC9848F00486ECF /* Stories */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -236,6 +292,8 @@
 				B6E6147D1CC01930003FB446 /* ALSideMenuTableHeader.swift */,
 				B6F9AC0F1CC2FE56006CF314 /* HomeScreenTableViewHeader.xib */,
 				B6F9AC0B1CC2FDAB006CF314 /* HomeScreenTableViewHeader.swift */,
+				B6268AD51CC99A2600486ECF /* StoryListTableHeader.xib */,
+				B6268AD71CC99B0600486ECF /* StoryListTableHeader.swift */,
 			);
 			name = "Table Headers";
 			sourceTree = "<group>";
@@ -295,7 +353,7 @@
 			);
 			name = AgileLife;
 			productName = AgileLife;
-			productReference = B6E614451CBC5381003FB446 /* AgileLife.app */;
+			productReference = B6E614451CBC5381003FB446 /* Agile Life.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -336,6 +394,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B6268AD61CC99A2600486ECF /* StoryListTableHeader.xib in Resources */,
 				B6F9AC101CC2FE56006CF314 /* HomeScreenTableViewHeader.xib in Resources */,
 				B6268ACC1CC7980000486ECF /* StoryListTableViewCell.xib in Resources */,
 				B6F9AC1C1CC307AB006CF314 /* HomeScreenTableViewFooter.xib in Resources */,
@@ -358,14 +417,17 @@
 			files = (
 				B6E6147E1CC01930003FB446 /* ALSideMenuTableHeader.swift in Sources */,
 				B6F9AC4F1CC50638006CF314 /* Stories.swift in Sources */,
+				B6268AE11CCBFB6800486ECF /* EditStoryViewController.swift in Sources */,
 				B6F9AC141CC3064B006CF314 /* DonateViewController.swift in Sources */,
 				B6F9AC571CC64948006CF314 /* ViewDelegates.swift in Sources */,
 				B6F9AC4D1CC50638006CF314 /* Boards.swift in Sources */,
+				B6268ADD1CCA584100486ECF /* CreateSubtaskViewController.swift in Sources */,
 				B6268AC81CC70CA400486ECF /* StageFourViewController.swift in Sources */,
 				B6C986BC1CC6A11100B60D54 /* StoryListNavigationViewController.swift in Sources */,
 				B6E614861CC06611003FB446 /* CreateBoardViewController.swift in Sources */,
 				B6F9AC0A1CC29D45006CF314 /* HomeScreenTableViewCell.swift in Sources */,
 				B6F9AC0C1CC2FDAB006CF314 /* HomeScreenTableViewHeader.swift in Sources */,
+				B6268ADF1CCA6E1F00486ECF /* SubtaskDetailViewController.swift in Sources */,
 				B6E614511CBC5381003FB446 /* AgileLife.xcdatamodeld in Sources */,
 				B6F9AC1E1CC307DC006CF314 /* HomeScreenTableViewFooter.swift in Sources */,
 				B6268AD01CC862ED00486ECF /* CreateStoryViewController.swift in Sources */,
@@ -377,6 +439,7 @@
 				B6F9AC551CC646DB006CF314 /* GlobalEnums.swift in Sources */,
 				B6E614781CBF2FC4003FB446 /* BLSideMenuTableHeader.swift in Sources */,
 				B6268ACA1CC797EA00486ECF /* StoryListTableViewCell.swift in Sources */,
+				B6268ADA1CC9B7F700486ECF /* StoryDetailViewController.swift in Sources */,
 				B6E614801CC01B1D003FB446 /* BLSideMenuTableFooter.swift in Sources */,
 				B6E614491CBC5381003FB446 /* AppDelegate.swift in Sources */,
 				B6E614691CBC71A8003FB446 /* ViewControllerExtensions.swift in Sources */,
@@ -385,6 +448,7 @@
 				B6F9AC1A1CC3066D006CF314 /* LegalViewController.swift in Sources */,
 				B6F9AC161CC3065A006CF314 /* AboutViewController.swift in Sources */,
 				B6E6146B1CBD5EA2003FB446 /* SideMenuViewController.swift in Sources */,
+				B6268AD81CC99B0600486ECF /* StoryListTableHeader.swift in Sources */,
 				B6E614611CBC54B4003FB446 /* SWRevealViewController.m in Sources */,
 				B6E6146D1CBD6138003FB446 /* BoardListSideMenuTableViewCell.swift in Sources */,
 				B6F9AC121CC3060F006CF314 /* StoryListViewController.swift in Sources */,
@@ -511,7 +575,7 @@
 				INFOPLIST_FILE = AgileLife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fullsail.zacharygover.AgileLife;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Agile Life";
 				SWIFT_OBJC_BRIDGING_HEADER = "AgileLife/AgileLife-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -526,7 +590,7 @@
 				INFOPLIST_FILE = AgileLife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.fullsail.zacharygover.AgileLife;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "Agile Life";
 				SWIFT_OBJC_BRIDGING_HEADER = "AgileLife/AgileLife-Bridging-Header.h";
 			};
 			name = Release;

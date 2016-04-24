@@ -1,14 +1,14 @@
 //
-//  CreateStoryViewController.swift
+//  EditStoryViewController.swift
 //  AgileLife
 //
-//  Created by Zachary Gover on 4/20/16.
+//  Created by Zachary Gover on 4/23/16.
 //  Copyright © 2016 Full Sail University. All rights reserved.
 //
 
 import UIKit
 
-class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
+class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
     
     /* ==========================================
     *
@@ -30,20 +30,27 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     var CoreModels:CoreDataModels!
     var selectedStage:String!
     var stageTotalCount:Int!
+    var stageCount:Int = 0
+    var currentStage:Int!
     
     /* ==========================================
     *
     * MARK: Default Methods
     *
     * =========================================== */
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         super.setDefualtNav(nil, statusBg: true, bg: true)
         stage.selectRow(0, inComponent: 0, animated: false)
         // Do any additional setup after loading the view.
+        
+        name.text = CoreModels.currentStory!.name
+        notes.text = CoreModels.currentStory!.notes
+        stage.selectRow(currentStage, inComponent: 0, animated: false)
+        priority.selectedSegmentIndex = Int(CoreModels.currentStory!.priority!)
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -89,6 +96,13 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let stageName = CoreModels.stageName(row, stageTotalCount: stageTotalCount)
         selectedStage = stageName
+        
+        // Grab index so we may select it on load
+        if selectedStage == CoreModels.currentStory!.stage {
+            currentStage = stageCount
+        }
+        
+        stageCount = stageCount + 1
         return stageName
     }
     
@@ -101,8 +115,8 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     * MARK: Custom Methods
     *
     * =========================================== */
-
-    @IBAction func createStory(sender: UIButton) {
+    
+    @IBAction func editStory(sender: UIButton) {
         // Notify the user if there is anything wrong with the required fields.
         if name.text == "" {
             // Alert the user if this fails
@@ -123,10 +137,12 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
         }
         
         // Create the board
-        let creationResult = CoreModels.createStory(
-            name.text!, notes: notes.text, stage:
-            selectedStage, priority: priority.selectedSegmentIndex + 1
-        )
+        CoreModels.currentStory?.name = name.text
+        CoreModels.currentStory?.notes = notes.text
+        CoreModels.currentStory?.stage = selectedStage
+        CoreModels.currentStory?.priority = priority.selectedSegmentIndex + 1
+        
+        let creationResult = CoreModels.editStory()
         
         // Dismiss view controller or notify the user based in the returned result of creating a board.
         switch creationResult {
@@ -144,4 +160,5 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
             
         }
     }
+
 }

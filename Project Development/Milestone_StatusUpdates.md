@@ -1,8 +1,12 @@
-**04-20-2016:**
+**04-23-2016:**
 --------------------------------
 - **What features were worked on?**
 	- Edit Board
 	- Create Story
+	- Story Details
+	- Edit Story
+	- Create Subtask
+	- Subtask Details
 - **How far along is each feature?**
 	- **Edit Board**
 		- Created edit board screen and completed design.
@@ -10,8 +14,20 @@
 	- **Create Story**
 		- Started implementing functionality to create a story (About 1hr left).
 		- Design has been completed.
+	- **Edit Story**
+		- Edit story functionality has been implemented
+		- Design has been completed
+	- **Story Details**
+		- Design has been completed
+		- funcationlity has been implemented to fetch story details.
+	- **Create Subtask**
+		- Design has been completed.
+		- functionality has been implemented to create the subtask
+	- **Subtask Details**
+		- Design has been completed.
+		- Functionality has been implemented to fetch subtask details.
 - **Where is the developer struggling?**
-	- First arrival on the story list view, the navigation is dimmed in color. 
+	- Combining both a navigation controller (completed).  
 - **Were any change requests submitted?**
 	- No change request were submitted.
 - **Is the milestone still on pace to be completed on time?**

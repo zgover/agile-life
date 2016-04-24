@@ -8,6 +8,9 @@
 
 import UIKit
 
+private var StoryListCellIdentifier = "StoryListTableViewCell"
+private var StoryListHeaderIdentifier = "StoryListTableHeader"
+
 class StageTwoViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     /* ==========================================
@@ -26,6 +29,7 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
     * =========================================== */
     
     var CoreModels:CoreDataModels!
+    var selectedStory:Int!
     
     /* ==========================================
     *
@@ -41,18 +45,30 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
         if let storyList = self.tabBarController as? StoryListViewController {
             self.CoreModels = storyList.CoreModels
         }
+        
+        // Register story list table view cell
+        tableView.registerNib(
+            UINib(nibName: StoryListCellIdentifier, bundle: nil),
+            forCellReuseIdentifier: StoryListCellIdentifier
+        )
+        
+        // Register story list table header identifier
+        tableView.registerNib(
+            UINib(nibName: StoryListHeaderIdentifier, bundle: nil),
+            forHeaderFooterViewReuseIdentifier: StoryListHeaderIdentifier
+        )
     }
     
     override func viewWillAppear(animated: Bool) {
         CoreModels.fetchAll()
+        CoreModels.fetchStories((CoreModels.currentBoard?.stage_two_name)!)
         tableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
     
     /* ==========================================
     *
@@ -60,16 +76,12 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
     *
     * =========================================== */
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-//        if let count = CoreModels.allBoards?.count {
-//            return count
-//        }
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if let count = CoreModels.allStories?.count {
+            return count
+        }
         
         return 0
-    }
-    
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -81,25 +93,56 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        //        if let cell = tableView.dequeueReusableCellWithIdentifier(HomeScreenCellIdentfier) as? HomeScreenTableViewCell {
-        //            cell.storyName.text = "Algebra 1"
-        //            cell.subtaskCount.text = "23 Sub-tasks"
-        //            cell.percentageComplete.text = "32% Complete"
-        //            cell.progressBar.setProgress(0.32, animated: true)
-        //            return cell
-        //        }
+        if let cell = tableView.dequeueReusableCellWithIdentifier(StoryListCellIdentifier) as? StoryListTableViewCell {
+            let subtaskCount = CoreModels.allStories![indexPath.row].sub_tasks?.count
+            cell.storyName.text = CoreModels.allStories![indexPath.row].name
+            cell.subtasks.text = CoreModels.allStories![indexPath.row].name
+            cell.totalCompletion.text = "\(subtaskCount == nil ? 0 : subtaskCount!) Sub-tasks"
+            cell.progressBar.setProgress(0.32, animated: true)
+            cell.priorityBg.backgroundColor = CoreModels.setPriorityBG(Int(CoreModels.allStories![indexPath.row].priority!))
+            return cell
+        }
         
         return UITableViewCell()
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        //        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(HomeScreenHeaderIdentifier) as! HomeScreenTableViewHeader
-        //        header.boardName.text = CoreModels.allBoards![section].name
-        return UIView()
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        selectedStory = indexPath.row
+        
+        if let currentStory = CoreModels.allStories?[selectedStory] {
+            CoreModels.currentStory = currentStory
+            
+            performSegueWithIdentifier("storyDetailSegue", sender: nil)
+        }
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        //        let footer = tableView.dequeueReusableHeaderFooterViewWithIdentifier(HomeScreenFooterIdentifier) as! HomeScreenTableViewFooter
-        return UIView()
+    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(StoryListHeaderIdentifier) as! StoryListTableHeader
+        header.createStory.addTarget(self, action: Selector("addStory"), forControlEvents: .TouchUpInside)
+        
+        return header
+    }
+    
+    /* ==========================================
+    *
+    * MARK: Segue Methods
+    *
+    * =========================================== */
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destination = segue.destinationViewController as? StoryDetailViewController {
+            destination.CoreModels = self.CoreModels
+            destination.selectedStory = selectedStory
+        }
+    }
+    
+    /* ==========================================
+    *
+    * MARK: Custom Methods
+    *
+    * =========================================== */
+    
+    func addStory() {
+        tabBarController!.performSegueWithIdentifier("createStorySegue", sender: nil)
     }
 }

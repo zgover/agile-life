@@ -1,15 +1,15 @@
 //
-//  CreateStoryViewController.swift
+//  CreateSubtaskViewController.swift
 //  AgileLife
 //
-//  Created by Zachary Gover on 4/20/16.
+//  Created by Zachary Gover on 4/22/16.
 //  Copyright © 2016 Full Sail University. All rights reserved.
 //
 
 import UIKit
 
-class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate {
-    
+class CreateSubtaskViewController: UIViewController {
+
     /* ==========================================
     *
     * MARK: Outlet Connections
@@ -17,9 +17,8 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     * =========================================== */
     
     @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var notes: UITextView!
-    @IBOutlet weak var stage: UIPickerView!
-    @IBOutlet weak var priority: UISegmentedControl!
+    @IBOutlet weak var deadline: UITextField!
+    @IBOutlet weak var subtaskDescription: UITextView!
     
     /* ==========================================
     *
@@ -36,11 +35,16 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     * MARK: Default Methods
     *
     * =========================================== */
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         super.setDefualtNav(nil, statusBg: true, bg: true)
-        stage.selectRow(0, inComponent: 0, animated: false)
+        
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        let date = formatter.dateFromString("2015-07-27 19:29:50 +0000") // Returns "Jul 27, 2015, 12:29 PM" PST
+        deadline.text! = String(date!)
+
         // Do any additional setup after loading the view.
     }
 
@@ -51,70 +55,28 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     
     /* ==========================================
     *
-    * MARK: TextField Delegates
-    *
-    * =========================================== */
-    
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-    
-    /* ==========================================
-    *
-    * MARK: UIPickerView Delegates
-    *
-    * =========================================== */
-    
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        var stageCount = 2
-        
-        if CoreModels.currentBoard?.stage_two == 1 {
-            stageCount = stageCount + 1
-        }
-        
-        if CoreModels.currentBoard?.stage_three == 1 {
-            stageCount = stageCount + 1
-        }
-        
-        stageTotalCount = stageCount
-        
-        return stageCount
-    }
-    
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let stageName = CoreModels.stageName(row, stageTotalCount: stageTotalCount)
-        selectedStage = stageName
-        return stageName
-    }
-    
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        selectedStage = CoreModels.stageName(row, stageTotalCount: stageTotalCount)
-    }
-    
-    /* ==========================================
-    *
     * MARK: Custom Methods
     *
     * =========================================== */
-
-    @IBAction func createStory(sender: UIButton) {
+    
+    @IBAction func createSubtask(sender: UIButton) {
         // Notify the user if there is anything wrong with the required fields.
+        //let strTime = "2015-07-27 19:29:50"
+        let formatter = NSDateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        let date = formatter.dateFromString(deadline.text!)
+        
         if name.text == "" {
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Warning", message: "Please specify a story name.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(title: "Warning", message: "Please specify a subtask name.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
             self.presentViewController(alertController, animated: true, completion: nil)
             
             return
-        } else if selectedStage == nil {
+        } else if date == nil  {
             // Alert the user if this is true
-            let alertController = UIAlertController(title: "Warning", message: "Please specify the stage.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(title: "Warning", message: "Please correct the date to the specified format MM/DD/YYYY HH:mm:ss.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
             self.presentViewController(alertController, animated: true, completion: nil)
@@ -123,15 +85,14 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
         }
         
         // Create the board
-        let creationResult = CoreModels.createStory(
-            name.text!, notes: notes.text, stage:
-            selectedStage, priority: priority.selectedSegmentIndex + 1
+        let creationResult = CoreModels.createSubtask(
+            name.text!, deadline: date!, description: subtaskDescription.text, completed: false
         )
         
         // Dismiss view controller or notify the user based in the returned result of creating a board.
         switch creationResult {
         case .Success:
-            
+
             self.navigationController?.popViewControllerAnimated(true)
             
         default:
@@ -144,4 +105,5 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
             
         }
     }
+
 }

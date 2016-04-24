@@ -45,8 +45,9 @@ class StoryListViewController: UITabBarController {
         setStages()
         tabItemsSet = true
         
-        performSegueWithIdentifier("createStorySegue", sender: nil)
-        
+        //performSegueWithIdentifier("createStorySegue", sender: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        storyboard.instantiateViewControllerWithIdentifier("stage1View")
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,6 +59,13 @@ class StoryListViewController: UITabBarController {
         CoreModels.fetchAll()
         self.title = CoreModels.currentBoard?.name
         setStages()
+        
+        if let stage1 = self.viewControllers?.first as? StageOneViewController {
+            stage1.CoreModels.fetchAll()
+            stage1.CoreModels.fetchStories((CoreModels.currentBoard?.stage_one_name)!)
+            stage1.tableView.reloadData()
+        }
+        
         //super.setDefualtNav(menuBtn, statusBg: true, bg: true)
         //tableView.reloadData()
     }

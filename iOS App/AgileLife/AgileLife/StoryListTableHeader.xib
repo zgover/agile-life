@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Story List Table Header" customClass="StoryListTableHeader" customModule="Agile_Life" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aH9-3f-xrp">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YU4-PE-4IK">
+                            <rect key="frame" x="562" y="14" width="30" height="22"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="phR-ih-mT8"/>
+                            </constraints>
+                            <color key="tintColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <state key="normal">
+                                <color key="titleColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleShadowColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wmp-AC-IFf">
+                            <rect key="frame" x="8" y="14.5" width="549" height="22"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="0.74585129309999998" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="YU4-PE-4IK" firstAttribute="leading" secondItem="wmp-AC-IFf" secondAttribute="trailing" constant="5" id="27U-jZ-Bur"/>
+                        <constraint firstItem="wmp-AC-IFf" firstAttribute="leading" secondItem="aH9-3f-xrp" secondAttribute="leadingMargin" id="5QW-pK-cd2"/>
+                        <constraint firstAttribute="trailing" secondItem="YU4-PE-4IK" secondAttribute="trailing" constant="8" id="8Ql-sL-sfE"/>
+                        <constraint firstItem="wmp-AC-IFf" firstAttribute="centerY" secondItem="aH9-3f-xrp" secondAttribute="centerY" id="Ooq-wQ-NQ2"/>
+                        <constraint firstItem="YU4-PE-4IK" firstAttribute="centerY" secondItem="aH9-3f-xrp" secondAttribute="centerY" id="iyg-xo-kgI"/>
+                        <constraint firstItem="wmp-AC-IFf" firstAttribute="leading" secondItem="aH9-3f-xrp" secondAttribute="leading" constant="8" id="und-iq-zYu"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="5QW-pK-cd2"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="aH9-3f-xrp" secondAttribute="bottom" id="A6V-pX-ixi"/>
+                <constraint firstItem="aH9-3f-xrp" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="DwX-I8-nrx"/>
+                <constraint firstAttribute="trailing" secondItem="aH9-3f-xrp" secondAttribute="trailing" id="Gzp-Vt-i65"/>
+                <constraint firstItem="aH9-3f-xrp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="eRz-9P-wPS"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="createStory" destination="YU4-PE-4IK" id="poX-Ak-X72"/>
+                <outlet property="header" destination="wmp-AC-IFf" id="lRc-nI-nDQ"/>
+            </connections>
+        </view>
+    </objects>
+</document>

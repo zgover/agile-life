@@ -51,8 +51,8 @@ class CoreDataModels {
     
     func fetchAll() {
         fetchBoards()
-        fetchStories()
-        fetchSubtasks()
+        fetchStories(nil)
+        fetchSubtasks(nil)
     }
     
     func fetchBoards() -> ReturnStatus {
@@ -77,11 +77,22 @@ class CoreDataModels {
         }
     }
     
-    func fetchStories() -> ReturnStatus {
+    func fetchStories(stageName: String?) -> ReturnStatus {
         // Set default values for CoreData properties
         let fetchRequest = NSFetchRequest(entityName: "Stories")
         let descriptor = NSSortDescriptor(key: "date_created", ascending: false)
+        
         fetchRequest.sortDescriptors = [descriptor]
+        
+        if let stage = stageName {
+            // Fetch by stage and board
+            let stagePredicate = NSPredicate(format: "stage = %@", stage)
+            let boardPredicate = NSPredicate(format: "board = %@ ", currentBoard!)
+            
+            fetchRequest.predicate = NSCompoundPredicate.init(
+                andPredicateWithSubpredicates: [stagePredicate, boardPredicate]
+            )
+        }
         
         do {
             if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Stories] {
@@ -99,11 +110,16 @@ class CoreDataModels {
         }
     }
     
-    func fetchSubtasks() -> ReturnStatus {
+    func fetchSubtasks(story: Stories?) -> ReturnStatus {
         // Set default values for CoreData properties
         let fetchRequest = NSFetchRequest(entityName: "Subtasks")
         let descriptor = NSSortDescriptor(key: "date_created", ascending: false)
         fetchRequest.sortDescriptors = [descriptor]
+        
+        if let stories = story {
+            // Fetch by story type
+            fetchRequest.predicate = NSPredicate(format: "story = %@", stories)
+        }
         
         do {
             if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
@@ -182,7 +198,6 @@ class CoreDataModels {
     }
     
     func createSubtask(name: String, deadline: NSDate, description: String, completed: Bool) -> ReturnStatus {
-        
         // Add each new property and add it to the users device
         let newSubtask = Subtasks(entity: subtaskEntityDescription, insertIntoManagedObjectContext: managedContext)
         newSubtask.id = NSUUID().UUIDString
@@ -192,6 +207,8 @@ class CoreDataModels {
         newSubtask.completed = completed
         newSubtask.date_created = NSDate()
         newSubtask.story = currentStory
+        
+        print(currentStory)
         
         do {
             try managedContext.save()
@@ -204,7 +221,7 @@ class CoreDataModels {
     
     /* ==========================================
     *
-    * MARK: Object Creation Methods
+    * MARK: Object Update Methods
     *
     * =========================================== */
     
@@ -213,7 +230,7 @@ class CoreDataModels {
         // Fetch the current active board
         let fetchRequest = NSFetchRequest(entityName: "Boards")
         fetchRequest.predicate = NSPredicate(format: "id = %@", currentBoard!.id!)
-
+        
         do {
             if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Boards] {
                 //print(result)
@@ -233,6 +250,85 @@ class CoreDataModels {
         } catch {
             print("Failed saving board")
             return .Error
+        }
+    }
+    
+    func editStory() -> ReturnStatus {
+        
+        // Fetch the current active board
+        let fetchRequest = NSFetchRequest(entityName: "Stories")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", currentStory!.id!)
+        
+        do {
+            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Stories] {
+                //print(result)
+                //print("Saved Board")
+                
+                if result.count > 0 {
+                    // Save and return
+                    try managedContext.save()
+                    return .Success
+                } else {
+                    return .Error
+                }
+            } else {
+                print("No boards")
+                return .Warning
+            }
+        } catch {
+            print("Failed saving board")
+            return .Error
+        }
+    }
+    
+    /* ==========================================
+    *
+    * MARK: Detail Methods
+    *
+    * =========================================== */
+    
+    func stageName(row: Int, stageTotalCount: Int) -> String {
+        switch (row, stageTotalCount) {
+        case (0, 2):
+            return (currentBoard?.stage_one_name)!
+        case (0, 3):
+            return (currentBoard?.stage_one_name)!
+        case (0, 4):
+            return (currentBoard?.stage_one_name)!
+        case (1, 2):
+            return (currentBoard?.stage_four_name)!
+        case (1, 3):
+            return (currentBoard?.stage_two_name)!
+        case (1, 4):
+            return (currentBoard?.stage_two_name)!
+        case (2, 3):
+            return (currentBoard?.stage_four_name)!
+        case (2, 4):
+            return (currentBoard?.stage_three_name)!
+        case (3, 4):
+            return (currentBoard?.stage_four_name)!
+        default:
+            return "ERROR!!!!"
+        }
+    }
+    
+    func setPriorityBG(priority: Int) -> UIColor {
+        switch priority {
+        case 1:
+            // Green
+            return UIColor(red: 29/255, green: 146/255, blue: 69/255, alpha: 0.5)
+        case 2:
+            // Yellow
+            return UIColor(red: 204/255, green: 187/255, blue: 45/255, alpha: 0.5)
+        case 3:
+            // Orange
+            return UIColor(red: 204/255, green: 144/255, blue: 47/255, alpha: 0.5)
+        case 4:
+            // Red
+            return UIColor(red: 146/255, green: 30/255, blue: 30/255, alpha: 0.5)
+        default:
+            // Green
+            return UIColor(red: 29/255, green: 146/255, blue: 69/255, alpha: 0.5)
         }
     }
 }
