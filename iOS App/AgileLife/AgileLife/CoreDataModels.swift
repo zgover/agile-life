@@ -197,18 +197,16 @@ class CoreDataModels {
         }
     }
     
-    func createSubtask(name: String, deadline: NSDate, description: String, completed: Bool) -> ReturnStatus {
+    func createSubtask(name: String, deadline: NSDate, description: String) -> ReturnStatus {
         // Add each new property and add it to the users device
         let newSubtask = Subtasks(entity: subtaskEntityDescription, insertIntoManagedObjectContext: managedContext)
         newSubtask.id = NSUUID().UUIDString
         newSubtask.name = name
         newSubtask.deadline = deadline
         newSubtask.task_description = description
-        newSubtask.completed = completed
+        newSubtask.completed = false
         newSubtask.date_created = NSDate()
         newSubtask.story = currentStory
-        
-        print(currentStory)
         
         do {
             try managedContext.save()
@@ -281,6 +279,135 @@ class CoreDataModels {
         }
     }
     
+    func editSubtask() -> ReturnStatus {
+        
+        // Fetch the current active board
+        let fetchRequest = NSFetchRequest(entityName: "Subtasks")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", currentSubtask!.id!)
+        
+        do {
+            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
+                //print(result)
+                //print("Saved Board")
+                
+                if result.count > 0 {
+                    // Save and return
+                    try managedContext.save()
+                    return .Success
+                } else {
+                    return .Error
+                }
+            } else {
+                print("No boards")
+                return .Warning
+            }
+        } catch {
+            print("Failed saving board")
+            return .Error
+        }
+    }
+    
+    /* ==========================================
+    *
+    * MARK: Object Delete Methods
+    *
+    * =========================================== */
+    
+    func deleteBoard() -> ReturnStatus {
+        // Fetch the current active board
+        let fetchRequest = NSFetchRequest(entityName: "Boards")
+        fetchRequest.predicate = NSPredicate(format: "id = %@", currentBoard!.id!)
+        
+        do {
+            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Boards],
+                let selectedEntity = result.first
+            {
+                //print(result)
+                //print("Saved Board")
+                
+                if result.count > 0 {                    
+                    // delete and return
+                    managedContext.deleteObject(selectedEntity)
+                    return .Success
+                } else {
+                    return .Error
+                }
+            } else {
+                print("No boards")
+                return .Warning
+            }
+        } catch {
+            print("Failed deleting board")
+            return .Error
+        }
+    }
+    
+    func deleteStory(board: Bool) -> ReturnStatus {
+        // Fetch the current active board
+        let fetchRequest = NSFetchRequest(entityName: "Stories")
+        
+        if board {
+            fetchRequest.predicate = NSPredicate(format: "board = %@", currentBoard!)
+        } else {
+            fetchRequest.predicate = NSPredicate(format: "id = %@", currentStory!.id!)
+        }
+        
+        do {
+            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Stories] {
+                
+                if result.count > 0 {
+                    // delete and return
+                    for item in result {
+                        managedContext.deleteObject(item)
+                    }
+                    
+                    return .Success
+                } else {
+                    return .Error
+                }
+            } else {
+                print("No stories")
+                return .Warning
+            }
+        } catch {
+            print("Failed deleting story")
+            return .Error
+        }
+    }
+    
+    func deleteSubtask(story: Bool) -> ReturnStatus {
+        // Fetch the current active board
+        let fetchRequest = NSFetchRequest(entityName: "Subtasks")
+        
+        if story {
+            fetchRequest.predicate = NSPredicate(format: "story = %@", currentStory!)
+        } else {
+            fetchRequest.predicate = NSPredicate(format: "id = %@", currentSubtask!.id!)
+        }
+        
+        do {
+            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
+                
+                if result.count > 0 {
+                    // delete and return
+                    for item in result {
+                        managedContext.deleteObject(item)
+                    }
+                    
+                    return .Success
+                } else {
+                    return .Error
+                }
+            } else {
+                print("No stories")
+                return .Warning
+            }
+        } catch {
+            print("Failed deleting story")
+            return .Error
+        }
+    }
+    
     /* ==========================================
     *
     * MARK: Detail Methods
@@ -330,5 +457,20 @@ class CoreDataModels {
             // Green
             return UIColor(red: 29/255, green: 146/255, blue: 69/255, alpha: 0.5)
         }
+    }
+    
+    func subtaskCompletion(story: Int) -> Double {
+        var totalCount = 0
+        var completedSubtasks = 0.0
+        
+        for task in allSubtasks! {
+            totalCount = totalCount + 1
+            
+            if task.completed == true {
+                completedSubtasks = completedSubtasks + 1.0
+            }
+        }
+        
+        return 1.0 / completedSubtasks
     }
 }

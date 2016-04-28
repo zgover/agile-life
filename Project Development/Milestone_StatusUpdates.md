@@ -1,3 +1,29 @@
+**04-27-2016:**
+--------------------------------
+- **What features were worked on?**
+	- Create Story
+	- Edit Story
+	- Edit Subtask
+	- Story Detail
+- **How far along is each feature?**
+	- **Uncategorized**
+		- Added delete functionality
+	- **Create Story**
+		- Defaulted pre-selected stage to the currently selected tab index.
+	- **Edit Story**
+		- Defaulted pre-selected stage to the stories corresponding stage.
+	- **Edit Subtask**
+		- Completed design.
+		- Implemented functionality to update/complete the subtask
+	- **Story Detail**
+		- Added subtask completion icon to tableview when subtask has been completed.
+- **Where is the developer struggling?**
+	- Preselecting the corresponding stage in the pickerview for the current story, when editing (completed).
+- **Were any change requests submitted?**
+	- No change request were submitted.
+- **Is the milestone still on pace to be completed on time?**
+	- Yes milestone is still on track to be completed.
+
 **04-23-2016:**
 --------------------------------
 - **What features were worked on?**

@@ -34,6 +34,7 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     var CoreModels:CoreDataModels!
     var selectedStory:Int!
     var currentStory:Stories!
+    var currentStage:Int!
     
     /* ==========================================
     *
@@ -110,6 +111,12 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
             cell.progressBar.hidden = true
             cell.priorityBg.hidden = true
             
+            if CoreModels.allSubtasks![indexPath.row].completed == true {
+                cell.totalCompletion.hidden = true
+                cell.completedIcon.hidden = false
+                
+            }
+            
             return cell
         }
         
@@ -141,12 +148,9 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     * =========================================== */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? StoryDetailViewController {
+        if let destination = segue.destinationViewController as? EditStoryViewController {
             destination.CoreModels = self.CoreModels
-            destination.selectedStory = selectedStory
-        } else if let destination = segue.destinationViewController as? EditStoryViewController {
-            destination.CoreModels = self.CoreModels
-        }else if let destination = segue.destinationViewController as? CreateSubtaskViewController {
+        } else if let destination = segue.destinationViewController as? CreateSubtaskViewController {
             destination.CoreModels = self.CoreModels
         } else if let destination = segue.destinationViewController as? SubtaskDetailViewController {
             destination.CoreModels = self.CoreModels

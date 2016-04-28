@@ -3,12 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Story List Table View Cell" customClass="StoryListTableViewCell" customModule="AgileLife" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="Story List Table View Cell" customClass="StoryListTableViewCell" customModule="Agile_Life" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="600" height="50"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -48,16 +49,33 @@
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="completed-subtask" translatesAutoresizingMaskIntoConstraints="NO" id="oTA-dI-7Vb">
+                                    <rect key="frame" x="155" y="14" width="22" height="22"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" secondItem="oTA-dI-7Vb" secondAttribute="height" multiplier="1:1" id="xtg-H1-2zg"/>
+                                    </constraints>
+                                </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="oTA-dI-7Vb" secondAttribute="trailing" id="CiR-EB-ehG"/>
                                 <constraint firstAttribute="trailing" secondItem="vpd-vg-iDL" secondAttribute="trailing" id="D7I-Ed-cwT"/>
                                 <constraint firstItem="vpd-vg-iDL" firstAttribute="centerY" secondItem="M4V-DW-EWA" secondAttribute="centerY" constant="-10" id="Dl5-tW-B6G"/>
                                 <constraint firstItem="Uck-th-yJh" firstAttribute="leading" secondItem="M4V-DW-EWA" secondAttribute="leading" id="Eg7-6R-37c"/>
+                                <constraint firstAttribute="trailing" secondItem="oTA-dI-7Vb" secondAttribute="trailing" constant="3" id="JYg-ja-1fY"/>
+                                <constraint firstItem="oTA-dI-7Vb" firstAttribute="width" secondItem="M4V-DW-EWA" secondAttribute="width" multiplier="0.5" id="M25-fQ-ZcC"/>
+                                <constraint firstItem="oTA-dI-7Vb" firstAttribute="top" secondItem="M4V-DW-EWA" secondAttribute="top" constant="14" id="RIg-Ib-cHY"/>
+                                <constraint firstAttribute="bottom" secondItem="oTA-dI-7Vb" secondAttribute="bottom" constant="14" id="X2d-0d-DrW"/>
                                 <constraint firstAttribute="trailing" secondItem="Uck-th-yJh" secondAttribute="trailing" id="dVR-n0-Q7F"/>
                                 <constraint firstItem="vpd-vg-iDL" firstAttribute="leading" secondItem="M4V-DW-EWA" secondAttribute="leading" id="iUH-Yd-XLx"/>
                                 <constraint firstItem="Uck-th-yJh" firstAttribute="top" secondItem="vpd-vg-iDL" secondAttribute="bottom" constant="5" id="lU3-vG-4yx"/>
                             </constraints>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="CiR-EB-ehG"/>
+                                    <exclude reference="M25-fQ-ZcC"/>
+                                </mask>
+                            </variation>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6r6-2e-QOu">
                             <rect key="frame" x="8" y="49" width="592" height="1"/>
@@ -98,6 +116,7 @@
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="completedIcon" destination="oTA-dI-7Vb" id="n2U-7O-QON"/>
                 <outlet property="priorityBg" destination="jg1-b7-YxN" id="GY9-a8-VKq"/>
                 <outlet property="progressBar" destination="vpd-vg-iDL" id="dWz-2G-EpQ"/>
                 <outlet property="storyName" destination="cnO-YG-GDB" id="Yip-Uf-EBc"/>
@@ -106,4 +125,7 @@
             </connections>
         </view>
     </objects>
+    <resources>
+        <image name="completed-subtask" width="33" height="33"/>
+    </resources>
 </document>

@@ -172,7 +172,7 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate {
         default:
             
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Error", message: "An error has occurred! please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
             self.presentViewController(alertController, animated: true, completion: nil)
@@ -185,28 +185,7 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate {
         let alertController = UIAlertController(title: "Warning", message: "You're about to delete this board, please confirm.", preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: { (UIAlertAction) -> Void in
-            // Create the board
-//            let creationResult = CoreModels.createBoard(
-//                boardNameInput.text!, stage_one_icon: "hourglass", stage_one_name: stage1Input.text!,
-//                stage_two: stage2Switch.on, stage_two_icon: "edit-square", stage_two_name: stage2Input.text,
-//                stage_three: stage3Switch.on, stage_three_icon: "users", stage_three_name: stage3Input.text
-//            )
-//            
-//            // Dismiss view controller or notify the user based in the returned result of creating a board.
-//            switch creationResult {
-//            case .Success:
-//                
-//                self.navigationController?.popViewControllerAnimated(true)
-//                
-//            default:
-//                
-//                // Alert the user if this fails
-//                let alertController = UIAlertController(title: "Error", message: "An error has occurred! please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
-//                alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-//                
-//                self.presentViewController(alertController, animated: true, completion: nil)
-//                
-//            }
+            self.CoreModels.deleteBoard()
         }))
         
         self.presentViewController(alertController, animated: true, completion: nil)

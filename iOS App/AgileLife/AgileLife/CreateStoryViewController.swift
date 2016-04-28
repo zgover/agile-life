@@ -30,6 +30,7 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     var CoreModels:CoreDataModels!
     var selectedStage:String!
     var stageTotalCount:Int!
+    var currentStage:Int!
     
     /* ==========================================
     *
@@ -89,6 +90,11 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let stageName = CoreModels.stageName(row, stageTotalCount: stageTotalCount)
         selectedStage = stageName
+        
+        if row == currentStage {
+            stage.selectRow(row, inComponent: 0, animated: true)
+        }
+        
         return stageName
     }
     
@@ -137,7 +143,7 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
         default:
             
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Error", message: "An error has occurred! please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
             self.presentViewController(alertController, animated: true, completion: nil)

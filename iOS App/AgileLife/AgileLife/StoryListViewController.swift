@@ -90,6 +90,7 @@ class StoryListViewController: UITabBarController {
             destination.CoreModels = self.CoreModels
         } else if let destination = segue.destinationViewController as? CreateStoryViewController {
             destination.CoreModels = self.CoreModels
+            destination.currentStage = self.selectedIndex
         }
     }
     

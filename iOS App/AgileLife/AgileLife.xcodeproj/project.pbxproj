@@ -21,6 +21,7 @@
 		B6268ADD1CCA584100486ECF /* CreateSubtaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268ADC1CCA584100486ECF /* CreateSubtaskViewController.swift */; };
 		B6268ADF1CCA6E1F00486ECF /* SubtaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268ADE1CCA6E1F00486ECF /* SubtaskDetailViewController.swift */; };
 		B6268AE11CCBFB6800486ECF /* EditStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AE01CCBFB6800486ECF /* EditStoryViewController.swift */; };
+		B6268AE31CCF8B2100486ECF /* EditSubtaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AE21CCF8B2100486ECF /* EditSubtaskViewController.swift */; };
 		B6C986BC1CC6A11100B60D54 /* StoryListNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */; };
 		B6E614491CBC5381003FB446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E614481CBC5381003FB446 /* AppDelegate.swift */; };
 		B6E6144B1CBC5381003FB446 /* HomeScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E6144A1CBC5381003FB446 /* HomeScreenViewController.swift */; };
@@ -78,6 +79,7 @@
 		B6268ADC1CCA584100486ECF /* CreateSubtaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateSubtaskViewController.swift; sourceTree = "<group>"; };
 		B6268ADE1CCA6E1F00486ECF /* SubtaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtaskDetailViewController.swift; sourceTree = "<group>"; };
 		B6268AE01CCBFB6800486ECF /* EditStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryViewController.swift; sourceTree = "<group>"; };
+		B6268AE21CCF8B2100486ECF /* EditSubtaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSubtaskViewController.swift; sourceTree = "<group>"; };
 		B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListNavigationViewController.swift; sourceTree = "<group>"; };
 		B6E614451CBC5381003FB446 /* Agile Life.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile Life.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6E614481CBC5381003FB446 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -141,12 +143,12 @@
 				B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */,
 				B6F9AC111CC3060F006CF314 /* StoryListViewController.swift */,
 				B6268ACF1CC862ED00486ECF /* CreateStoryViewController.swift */,
+				B6268AE01CCBFB6800486ECF /* EditStoryViewController.swift */,
+				B6268AD91CC9B7F700486ECF /* StoryDetailViewController.swift */,
 				B6268AC11CC70C8700486ECF /* StageOneViewController.swift */,
 				B6268AC31CC70C9100486ECF /* StageTwoViewController.swift */,
 				B6268AC51CC70C9B00486ECF /* StageThreeViewController.swift */,
 				B6268AC71CC70CA400486ECF /* StageFourViewController.swift */,
-				B6268AD91CC9B7F700486ECF /* StoryDetailViewController.swift */,
-				B6268AE01CCBFB6800486ECF /* EditStoryViewController.swift */,
 			);
 			name = Stories;
 			sourceTree = "<group>";
@@ -186,6 +188,7 @@
 			children = (
 				B6268ADC1CCA584100486ECF /* CreateSubtaskViewController.swift */,
 				B6268ADE1CCA6E1F00486ECF /* SubtaskDetailViewController.swift */,
+				B6268AE21CCF8B2100486ECF /* EditSubtaskViewController.swift */,
 			);
 			name = Subtasks;
 			sourceTree = "<group>";
@@ -443,6 +446,7 @@
 				B6E614801CC01B1D003FB446 /* BLSideMenuTableFooter.swift in Sources */,
 				B6E614491CBC5381003FB446 /* AppDelegate.swift in Sources */,
 				B6E614691CBC71A8003FB446 /* ViewControllerExtensions.swift in Sources */,
+				B6268AE31CCF8B2100486ECF /* EditSubtaskViewController.swift in Sources */,
 				B6F9AC391CC4F1AD006CF314 /* CoreDataModels.swift in Sources */,
 				B6E6146F1CBD6156003FB446 /* AgileLifeTableViewCell.swift in Sources */,
 				B6F9AC1A1CC3066D006CF314 /* LegalViewController.swift in Sources */,

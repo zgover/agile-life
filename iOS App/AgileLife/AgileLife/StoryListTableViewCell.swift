@@ -21,6 +21,7 @@ class StoryListTableViewCell: UITableViewCell {
     @IBOutlet weak var subtasks: UILabel!
     @IBOutlet weak var progressBar: UIProgressView!
     @IBOutlet weak var totalCompletion: UILabel!
+    @IBOutlet weak var completedIcon: UIImageView!
     
     /* ==========================================
     *

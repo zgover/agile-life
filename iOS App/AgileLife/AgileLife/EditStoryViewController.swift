@@ -42,13 +42,11 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     override func viewDidLoad() {
         super.viewDidLoad()
         super.setDefualtNav(nil, statusBg: true, bg: true)
-        stage.selectRow(0, inComponent: 0, animated: false)
         // Do any additional setup after loading the view.
         
         name.text = CoreModels.currentStory!.name
         notes.text = CoreModels.currentStory!.notes
-        stage.selectRow(currentStage, inComponent: 0, animated: false)
-        priority.selectedSegmentIndex = Int(CoreModels.currentStory!.priority!)
+        priority.selectedSegmentIndex = Int(CoreModels.currentStory!.priority!) - 1
     }
     
     override func didReceiveMemoryWarning() {
@@ -99,10 +97,9 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
         
         // Grab index so we may select it on load
         if selectedStage == CoreModels.currentStory!.stage {
-            currentStage = stageCount
+            stage.selectRow(row, inComponent: 0, animated: true)
         }
         
-        stageCount = stageCount + 1
         return stageName
     }
     
@@ -153,7 +150,7 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
         default:
             
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Error", message: "An error has occurred! please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
             self.presentViewController(alertController, animated: true, completion: nil)
@@ -161,4 +158,14 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
         }
     }
 
+    @IBAction func deleteBoard(sender: UIButton) {
+        let alertController = UIAlertController(title: "Warning", message: "You're about to delete this story, please confirm.", preferredStyle: UIAlertControllerStyle.Alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: { (UIAlertAction) -> Void in
+            self.CoreModels.deleteStory(false)
+            self.navigationController?.popViewControllerAnimated(true)
+        }))
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
+    }
 }
