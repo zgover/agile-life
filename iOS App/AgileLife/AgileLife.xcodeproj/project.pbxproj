@@ -306,8 +306,6 @@
 			children = (
 				B6E6147F1CC01B1D003FB446 /* BLSideMenuTableFooter.swift */,
 				B6E614811CC01B30003FB446 /* BLSideMenuTableFooter.xib */,
-				B6F9AC1D1CC307DC006CF314 /* HomeScreenTableViewFooter.swift */,
-				B6F9AC1B1CC307AB006CF314 /* HomeScreenTableViewFooter.xib */,
 			);
 			name = "Table Footers";
 			sourceTree = "<group>";
@@ -321,6 +319,8 @@
 				B6F9AC091CC29D45006CF314 /* HomeScreenTableViewCell.swift */,
 				B6268AC91CC797EA00486ECF /* StoryListTableViewCell.swift */,
 				B6268ACB1CC7980000486ECF /* StoryListTableViewCell.xib */,
+				B6F9AC1D1CC307DC006CF314 /* HomeScreenTableViewFooter.swift */,
+				B6F9AC1B1CC307AB006CF314 /* HomeScreenTableViewFooter.xib */,
 			);
 			name = "Table Cells";
 			sourceTree = "<group>";

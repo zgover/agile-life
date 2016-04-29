@@ -61,7 +61,7 @@ class StageThreeViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewWillAppear(animated: Bool) {
         CoreModels.fetchAll()
-        CoreModels.fetchStories((CoreModels.currentBoard?.stage_three_name)!)
+        CoreModels.fetchStories((CoreModels.currentBoard?.stage_three_name)!, _board: CoreModels!.currentBoard)
         tableView.reloadData()
     }
     
@@ -94,11 +94,12 @@ class StageThreeViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(StoryListCellIdentifier) as? StoryListTableViewCell {
+            let totalComplete = CoreModels.subtaskCompletion(indexPath.row)
             let subtaskCount = CoreModels.allStories![indexPath.row].sub_tasks?.count
             cell.storyName.text = CoreModels.allStories![indexPath.row].name
-            cell.subtasks.text = CoreModels.allStories![indexPath.row].name
-            cell.totalCompletion.text = "\(subtaskCount == nil ? 0 : subtaskCount!) Sub-tasks"
-            cell.progressBar.setProgress(0.32, animated: true)
+            cell.subtasks.text = "\(subtaskCount == nil ? 0 : subtaskCount!) Sub-tasks"
+            cell.totalCompletion.text = "\(Int(totalComplete * 100))% Complete"
+            cell.progressBar.setProgress(totalComplete, animated: true)
             cell.priorityBg.backgroundColor = CoreModels.setPriorityBG(Int(CoreModels.allStories![indexPath.row].priority!))
             return cell
         }

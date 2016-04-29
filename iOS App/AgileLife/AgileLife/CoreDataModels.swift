@@ -51,7 +51,7 @@ class CoreDataModels {
     
     func fetchAll() {
         fetchBoards()
-        fetchStories(nil)
+        fetchStories(nil, _board: nil)
         fetchSubtasks(nil)
     }
     
@@ -77,21 +77,32 @@ class CoreDataModels {
         }
     }
     
-    func fetchStories(stageName: String?) -> ReturnStatus {
+    func fetchStories(stageName: String?, _board: Boards?) -> ReturnStatus {
         // Set default values for CoreData properties
         let fetchRequest = NSFetchRequest(entityName: "Stories")
         let descriptor = NSSortDescriptor(key: "date_created", ascending: false)
+        var stagePredicate:NSPredicate? = nil
+        var boardPredicate:NSPredicate? = nil
         
         fetchRequest.sortDescriptors = [descriptor]
         
         if let stage = stageName {
             // Fetch by stage and board
-            let stagePredicate = NSPredicate(format: "stage = %@", stage)
-            let boardPredicate = NSPredicate(format: "board = %@ ", currentBoard!)
-            
+            stagePredicate = NSPredicate(format: "stage = %@", stage)
+        }
+        
+        if let board = _board {
+            boardPredicate = NSPredicate(format: "board = %@ ", board)
+        }
+        
+        if let stagePred = stagePredicate, let boardPred = boardPredicate {
             fetchRequest.predicate = NSCompoundPredicate.init(
-                andPredicateWithSubpredicates: [stagePredicate, boardPredicate]
+                andPredicateWithSubpredicates: [stagePred, boardPred]
             )
+        } else if let stagePred = stagePredicate {
+            fetchRequest.predicate = stagePred
+        } else if let boardPred = boardPredicate {
+            fetchRequest.predicate = boardPred
         }
         
         do {
@@ -459,18 +470,40 @@ class CoreDataModels {
         }
     }
     
-    func subtaskCompletion(story: Int) -> Double {
-        var totalCount = 0
+    func subtaskCompletion(storyIndex: Int) -> Float {
+        var totalCount = 0.0
         var completedSubtasks = 0.0
         
-        for task in allSubtasks! {
-            totalCount = totalCount + 1
-            
-            if task.completed == true {
-                completedSubtasks = completedSubtasks + 1.0
+        // Set default values for CoreData properties
+        let fetchRequest = NSFetchRequest(entityName: "Subtasks")
+        fetchRequest.predicate = NSPredicate(format: "story = %@", self.allStories![storyIndex])
+        
+        do {
+            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
+                for task in result {
+                    totalCount = totalCount + 1.0
+                    
+                    if task.completed == true {
+                        completedSubtasks = completedSubtasks + 1.0
+                    }
+                }
+            } else {
+                print("No subtasks")
+                return 0.0
             }
+        } catch {
+            print("Failed loading the subtasks")
+            return 0.0
         }
         
-        return 1.0 / completedSubtasks
+        if totalCount == completedSubtasks && completedSubtasks != 0.0 {
+            return 1.0
+        } else if completedSubtasks == 0.0 {
+            return 0.0
+        }
+        
+        let totalComplete = Float((totalCount - completedSubtasks) / totalCount * 1.0)
+        
+        return totalComplete
     }
 }

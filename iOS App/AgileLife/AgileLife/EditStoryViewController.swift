@@ -31,7 +31,6 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     var selectedStage:String!
     var stageTotalCount:Int!
     var stageCount:Int = 0
-    var currentStage:Int!
     
     /* ==========================================
     *

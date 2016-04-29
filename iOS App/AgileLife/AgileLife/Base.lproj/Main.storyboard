@@ -342,6 +342,8 @@
                         <outlet property="menuBtn" destination="db6-TM-2gh" id="1ku-XD-RQ8"/>
                         <outlet property="tableView" destination="acr-mS-zsT" id="TI0-Lj-9x6"/>
                         <segue destination="mXr-wh-7JS" kind="show" identifier="createBoardSegue" id="P27-8n-d3Z"/>
+                        <segue destination="mln-bZ-cyF" kind="show" identifier="storyDetailSegue" id="TQg-UK-qab"/>
+                        <segue destination="u4d-xn-tby" kind="show" identifier="boardDetailSegue" id="OJ7-J5-cR0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CRe-6o-3sN" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2581,7 +2583,8 @@
         <image name="users" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="TQg-UK-qab"/>
         <segue reference="ahl-jb-78N"/>
-        <segue reference="HZL-qr-g6Q"/>
+        <segue reference="OJ7-J5-cR0"/>
     </inferredMetricsTieBreakers>
 </document>

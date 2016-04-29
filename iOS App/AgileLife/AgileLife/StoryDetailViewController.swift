@@ -105,16 +105,21 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(SubtaskListCellIdentifier) as? StoryListTableViewCell {
+            let formatter = NSDateFormatter()
+            formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+            formatter.timeStyle = .ShortStyle
+            
+            let taskDate = formatter.stringFromDate(CoreModels.allSubtasks![indexPath.row].deadline!)
+            
             cell.storyName.text = CoreModels.allSubtasks![indexPath.row].name
             cell.subtasks.text = CoreModels.allSubtasks![indexPath.row].task_description
-            cell.totalCompletion.text = "\(CoreModels.allSubtasks![indexPath.row].deadline!)"
+            cell.totalCompletion.text = "\(taskDate)"
             cell.progressBar.hidden = true
             cell.priorityBg.hidden = true
             
             if CoreModels.allSubtasks![indexPath.row].completed == true {
                 cell.totalCompletion.hidden = true
                 cell.completedIcon.hidden = false
-                
             }
             
             return cell

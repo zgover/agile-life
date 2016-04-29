@@ -62,7 +62,7 @@ class StoryListViewController: UITabBarController {
         
         if let stage1 = self.viewControllers?.first as? StageOneViewController {
             stage1.CoreModels.fetchAll()
-            stage1.CoreModels.fetchStories((CoreModels.currentBoard?.stage_one_name)!)
+            stage1.CoreModels.fetchStories((CoreModels.currentBoard?.stage_one_name)!, _board: CoreModels!.currentBoard)
             stage1.tableView.reloadData()
         }
         

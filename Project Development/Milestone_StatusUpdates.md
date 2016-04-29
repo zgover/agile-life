@@ -1,3 +1,22 @@
+**04-28-2016:**
+--------------------------------
+- **What features were worked on?**
+	- Story List
+	- Home Screen Story List
+- **How far along is each feature?**
+	- **Story List**
+		- Completed total completion percentage.
+	- **Home Screen Story List**
+		- Completed functionality of fetching stories and their corresponding details for each board preview.
+		- Linked each story to the detail view.
+		- Linked table footer to the board detail view
+- **Where is the developer struggling?**
+	- Calculating total completion from the total amount of subtasks and the total amount of completed subtasks (completed).
+- **Were any change requests submitted?**
+	- No change request were submitted.
+- **Is the milestone still on pace to be completed on time?**
+	- Yes milestone is still on track to be completed.
+
 **04-27-2016:**
 --------------------------------
 - **What features were worked on?**

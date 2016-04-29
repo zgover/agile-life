@@ -31,6 +31,8 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var directToCreateBoard = false
     var CoreModels = CoreDataModels()
+    var selectedStory:Int!
+    var storyCount:[Int] = []
     
     /* ==========================================
     *
@@ -60,7 +62,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         // Register footer identifier
         tableView.registerNib(
             UINib(nibName: HomeScreenFooterIdentifier, bundle: nil),
-            forHeaderFooterViewReuseIdentifier: HomeScreenFooterIdentifier
+            forCellReuseIdentifier: HomeScreenFooterIdentifier
         )
         
         //CoreModels.createBoard("School Board", stage_one_icon: "hourglass", stage_one_name: "Backlog", stage_two: nil, stage_two_icon: nil, stage_two_name: nil, stage_three: nil, stage_three_icon: nil, stage_three_name: nil)
@@ -97,7 +99,20 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        if let boards = CoreModels.allBoards {
+            let storyCount = boards[section].story_lists!.count
+            
+            if storyCount <= 0 {
+                return 1
+            }
+            
+            let returnCount = storyCount > 3 ? 4 : storyCount + 1
+            self.storyCount.append(returnCount - 1)
+            
+            return returnCount
+        }
+        
+        return 1
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -113,11 +128,20 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier(HomeScreenCellIdentfier) as? HomeScreenTableViewCell {
-            cell.storyName.text = "Algebra 1"
-            cell.subtaskCount.text = "23 Sub-tasks"
-            cell.percentageComplete.text = "32% Complete"
-            cell.progressBar.setProgress(0.32, animated: true)
+        if let cell = tableView.dequeueReusableCellWithIdentifier(HomeScreenCellIdentfier) as? HomeScreenTableViewCell where storyCount[indexPath.section] != indexPath.row {
+            
+            CoreModels.fetchStories(nil, _board: CoreModels.allBoards![indexPath.section])
+            let subtaskCount = CoreModels.allStories![indexPath.row].sub_tasks?.count
+            let totalComplete = CoreModels.subtaskCompletion(indexPath.row)
+            
+            cell.storyName.text = CoreModels.allStories![indexPath.row].name
+            cell.subtaskCount.text = "\(subtaskCount == nil ? 0 : subtaskCount!) Sub-tasks"
+            cell.percentageComplete.text = "\(Int(totalComplete * 100))% Complete"
+            cell.progressBar.setProgress(totalComplete, animated: true)
+            
+            return cell
+            
+        } else if let cell = tableView.dequeueReusableCellWithIdentifier(HomeScreenFooterIdentifier) as? HomeScreenTableViewFooter where storyCount[indexPath.section] == indexPath.row {
             return cell
         }
         
@@ -130,9 +154,21 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
         return header
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = tableView.dequeueReusableHeaderFooterViewWithIdentifier(HomeScreenFooterIdentifier) as! HomeScreenTableViewFooter
-        return footer
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if storyCount[indexPath.section] != indexPath.row {
+            
+            CoreModels.currentBoard = CoreModels.allBoards![indexPath.section]
+            CoreModels.fetchStories(nil, _board: CoreModels.currentBoard)
+            CoreModels.currentStory = CoreModels.allStories![indexPath.row]
+            selectedStory = indexPath.row
+            self.performSegueWithIdentifier("storyDetailSegue", sender: nil)
+            
+        } else if storyCount[indexPath.section] == indexPath.row {
+            if let currentBoard = CoreModels.allBoards?[indexPath.section] {
+                CoreModels.currentBoard = currentBoard
+                self.performSegueWithIdentifier("boardDetailSegue", sender: nil)
+            }
+        }
     }
     
     /* ==========================================
@@ -142,9 +178,12 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     * =========================================== */
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        //if let destination = segue.destinationViewController as? CreateBoardViewController {
-            //destination.delegate = self
-        //}
+        if let destination = segue.destinationViewController as? StoryDetailViewController {
+            destination.selectedStory = self.selectedStory
+            destination.CoreModels = self.CoreModels
+        } else if let destination = segue.destinationViewController as? StoryListViewController {
+            destination.CoreModels = self.CoreModels
+        }
     }
 
     /* ==========================================
@@ -155,6 +194,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     
     @IBAction func addBoard(sender: UIBarButtonItem) {
         self.performSegueWithIdentifier("createBoardSegue", sender: sender)
+    }
+    
+    func viewAllStories() {
+        
     }
 
     
