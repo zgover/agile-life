@@ -60,7 +60,6 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-        print("hello")
         CoreModels.fetchAll()
         CoreModels.fetchStories((CoreModels.currentBoard?.stage_two_name)!, _board: CoreModels!.currentBoard)
         tableView.reloadData()
