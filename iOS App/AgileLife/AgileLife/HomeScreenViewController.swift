@@ -125,7 +125,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(HomeScreenCellIdentfier) as? HomeScreenTableViewCell where indexPath.row != 3 && CoreModels.allBoards![indexPath.section].story_lists!.count > 0 {
             
-            //CoreModels.fetchStories(nil, _board: CoreModels.allBoards![indexPath.section])
+            CoreModels.fetchStories(nil, _board: CoreModels.allBoards![indexPath.section])
             
             let subtaskCount = CoreModels.allStories?[indexPath.row].sub_tasks?.count
             let totalComplete = CoreModels.subtaskCompletion(indexPath.row)

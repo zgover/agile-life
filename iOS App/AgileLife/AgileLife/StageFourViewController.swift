@@ -60,8 +60,9 @@ class StageFourViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     override func viewWillAppear(animated: Bool) {
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         CoreModels.fetchAll()
-        CoreModels.fetchStories("Completed", _board: CoreModels!.currentBoard)
+        CoreModels.fetchStories((CoreModels.currentBoard?.stage_one_name)!, _board: CoreModels!.currentBoard)
         tableView.reloadData()
     }
     
