@@ -60,9 +60,9 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     override func viewWillAppear(animated: Bool) {
-        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
+        print("hello")
         CoreModels.fetchAll()
-        CoreModels.fetchStories((CoreModels.currentBoard?.stage_one_name)!, _board: CoreModels!.currentBoard)
+        CoreModels.fetchStories((CoreModels.currentBoard?.stage_two_name)!, _board: CoreModels!.currentBoard)
         tableView.reloadData()
     }
     
@@ -145,6 +145,6 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
     * =========================================== */
     
     func addStory() {
-        tabBarController!.performSegueWithIdentifier("createStorySegue", sender: nil)
+        self.performSegueWithIdentifier("createStorySegue", sender: nil)
     }
 }
