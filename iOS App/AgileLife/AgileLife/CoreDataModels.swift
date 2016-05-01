@@ -80,7 +80,7 @@ class CoreDataModels {
     func fetchStories(stageName: String?, _board: Boards?) -> ReturnStatus {
         // Set default values for CoreData properties
         let fetchRequest = NSFetchRequest(entityName: "Stories")
-        let descriptor = NSSortDescriptor(key: "date_created", ascending: false)
+        let descriptor = NSSortDescriptor(key: "priority", ascending: false)
         var stagePredicate:NSPredicate? = nil
         var boardPredicate:NSPredicate? = nil
         
@@ -246,6 +246,13 @@ class CoreDataModels {
                 //print("Saved Board")
                 
                 if result.count > 0 {
+//                    if currentBoard?.stage_one_name != result[0].stage_one_name ||
+//                        currentBoard?.stage_two_name != result[0].stage_three_name ||
+//                        currentBoard?.stage_three_name != result[0].stage_three_name
+//                    {
+//                        updateStoryStages()
+//                    }
+                    
                     // Save and return
                     try managedContext.save()
                     return .Success
@@ -496,6 +503,29 @@ class CoreDataModels {
             return 0.0
         }
         
+        return self.calculateCompletionPercentage(totalCount, completedSubtasks: completedSubtasks)
+    }
+    
+    func storyCompletion() -> Float {
+        var totalCount = 0.0
+        var completedSubtasks = 0.0
+        
+        for story in self.allStories! {
+            let tasks = story.sub_tasks as! NSMutableSet
+            
+            for task in tasks {
+                totalCount = totalCount + 1.0
+                
+                if String(task.valueForKey("completed")!) == "1" {
+                    completedSubtasks = completedSubtasks + 1.0
+                }
+            }
+        }
+        
+        return self.calculateCompletionPercentage(totalCount, completedSubtasks: completedSubtasks)
+    }
+    
+    private func calculateCompletionPercentage(totalCount: Double, completedSubtasks: Double) -> Float {
         if totalCount == completedSubtasks && completedSubtasks != 0.0 {
             return 1.0
         } else if completedSubtasks == 0.0 {

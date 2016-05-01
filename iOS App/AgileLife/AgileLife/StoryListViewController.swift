@@ -61,9 +61,13 @@ class StoryListViewController: UITabBarController {
         setStages()
         
         if let stage1 = self.viewControllers?.first as? StageOneViewController {
+            stage1.CoreModels = self.CoreModels
             stage1.CoreModels.fetchAll()
             stage1.CoreModels.fetchStories((CoreModels.currentBoard?.stage_one_name)!, _board: CoreModels!.currentBoard)
-            stage1.tableView.reloadData()
+            
+            if stage1.tableView != nil {
+                stage1.tableView.reloadData()
+            }
         }
         
         //super.setDefualtNav(menuBtn, statusBg: true, bg: true)

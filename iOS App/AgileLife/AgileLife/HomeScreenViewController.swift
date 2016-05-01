@@ -43,7 +43,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     override func viewDidLoad() {
         super.viewDidLoad()
         super.setDefualtNav(menuBtn, statusBg: true, bg: true)
-        CoreModels.fetchBoards()
+        CoreModels.fetchAll()
         
         // Set default values
         
@@ -101,15 +101,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let boards = CoreModels.allBoards {
             let storyCount = boards[section].story_lists!.count
+            let returnCount = storyCount > 3 ? 3 : storyCount
+            self.storyCount.append(returnCount)
             
-            if storyCount <= 0 {
-                return 1
-            }
-            
-            let returnCount = storyCount > 3 ? 4 : storyCount + 1
-            self.storyCount.append(returnCount - 1)
-            
-            return returnCount
+            return returnCount <= 0 ? 1 : returnCount + 1
         }
         
         return 1
@@ -128,10 +123,11 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier(HomeScreenCellIdentfier) as? HomeScreenTableViewCell where storyCount[indexPath.section] != indexPath.row {
+        if let cell = tableView.dequeueReusableCellWithIdentifier(HomeScreenCellIdentfier) as? HomeScreenTableViewCell where indexPath.row != 3 && CoreModels.allBoards![indexPath.section].story_lists!.count > 0 {
             
-            CoreModels.fetchStories(nil, _board: CoreModels.allBoards![indexPath.section])
-            let subtaskCount = CoreModels.allStories![indexPath.row].sub_tasks?.count
+            //CoreModels.fetchStories(nil, _board: CoreModels.allBoards![indexPath.section])
+            
+            let subtaskCount = CoreModels.allStories?[indexPath.row].sub_tasks?.count
             let totalComplete = CoreModels.subtaskCompletion(indexPath.row)
             
             cell.storyName.text = CoreModels.allStories![indexPath.row].name
@@ -141,7 +137,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             
             return cell
             
-        } else if let cell = tableView.dequeueReusableCellWithIdentifier(HomeScreenFooterIdentifier) as? HomeScreenTableViewFooter where storyCount[indexPath.section] == indexPath.row {
+        } else if let cell = tableView.dequeueReusableCellWithIdentifier(HomeScreenFooterIdentifier) as? HomeScreenTableViewFooter where indexPath.row <= 3 {
             return cell
         }
         
@@ -155,15 +151,15 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if storyCount[indexPath.section] != indexPath.row {
+        if indexPath.row != 3 && CoreModels.allBoards![indexPath.section].story_lists!.count > 0 {
             
             CoreModels.currentBoard = CoreModels.allBoards![indexPath.section]
             CoreModels.fetchStories(nil, _board: CoreModels.currentBoard)
-            CoreModels.currentStory = CoreModels.allStories![indexPath.row]
+            CoreModels.currentStory = CoreModels.allStories?[indexPath.row]
             selectedStory = indexPath.row
             self.performSegueWithIdentifier("storyDetailSegue", sender: nil)
             
-        } else if storyCount[indexPath.section] == indexPath.row {
+        } else if indexPath.row <= 3 {
             if let currentBoard = CoreModels.allBoards?[indexPath.section] {
                 CoreModels.currentBoard = currentBoard
                 self.performSegueWithIdentifier("boardDetailSegue", sender: nil)

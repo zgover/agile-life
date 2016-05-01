@@ -885,7 +885,7 @@
         <!--Donate View-->
         <scene sceneID="Axt-iF-b16">
             <objects>
-                <viewController id="46u-xr-97C" userLabel="Donate View" customClass="DonateViewController" customModule="Agile_Life" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="46u-xr-97C" userLabel="Donate View" customClass="DonateViewController" customModule="Agile_Life" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zBm-1Z-F1Y"/>
                         <viewControllerLayoutGuide type="bottom" id="aZK-P0-QeD"/>
@@ -896,7 +896,18 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXQ-ug-GiV">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <subviews>
+                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xru-G1-2d9">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+                                    </webView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Xru-G1-2d9" secondAttribute="bottom" id="K2p-A2-xLl"/>
+                                    <constraint firstItem="Xru-G1-2d9" firstAttribute="top" secondItem="DXQ-ug-GiV" secondAttribute="top" id="RXA-Gr-Y14"/>
+                                    <constraint firstAttribute="trailing" secondItem="Xru-G1-2d9" secondAttribute="trailing" id="ZS8-Q9-0ZP"/>
+                                    <constraint firstItem="Xru-G1-2d9" firstAttribute="leading" secondItem="DXQ-ug-GiV" secondAttribute="leading" id="yfR-W8-ovB"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -916,6 +927,7 @@
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
                         <outlet property="menuBtn" destination="Zkh-u1-VBT" id="Ucl-Ji-qBZ"/>
+                        <outlet property="webView" destination="Xru-G1-2d9" id="5NU-3H-p4u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Prp-xp-b5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -941,7 +953,7 @@
         <!--About View-->
         <scene sceneID="uSe-Db-fWL">
             <objects>
-                <viewController id="m2H-Y8-c8L" userLabel="About View" customClass="AboutViewController" customModule="Agile_Life" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="m2H-Y8-c8L" userLabel="About View" customClass="AboutViewController" customModule="Agile_Life" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jDt-OQ-fRb"/>
                         <viewControllerLayoutGuide type="bottom" id="XjI-7i-YV1"/>
@@ -952,7 +964,21 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xLw-oO-elI">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XKd-Q6-YVr">
+                                        <rect key="frame" x="8" y="0.0" width="584" height="536"/>
+                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="XKd-Q6-YVr" firstAttribute="leading" secondItem="xLw-oO-elI" secondAttribute="leading" constant="8" id="MwU-kv-45J"/>
+                                    <constraint firstItem="XKd-Q6-YVr" firstAttribute="top" secondItem="xLw-oO-elI" secondAttribute="top" id="knL-OF-NXi"/>
+                                    <constraint firstAttribute="bottom" secondItem="XKd-Q6-YVr" secondAttribute="bottom" id="lde-m3-hWp"/>
+                                    <constraint firstAttribute="trailing" secondItem="XKd-Q6-YVr" secondAttribute="trailing" constant="8" id="q3D-N8-zvo"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1009,6 +1035,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WqL-XD-ViO">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" red="0.0" green="0.2156862745" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -1066,13 +1093,23 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                             </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="PLw-NH-eOr">
+                                <rect key="frame" x="8" y="64" width="584" height="536"/>
+                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="PLw-NH-eOr" firstAttribute="leading" secondItem="zbG-n2-Lox" secondAttribute="leading" constant="8" id="7YE-vz-Xwv"/>
                             <constraint firstItem="uRP-0g-Zfk" firstAttribute="leading" secondItem="zbG-n2-Lox" secondAttribute="leading" id="F7n-VE-oU0"/>
                             <constraint firstItem="uRP-0g-Zfk" firstAttribute="top" secondItem="nbT-b6-Fja" secondAttribute="bottom" id="J5n-dx-pV2"/>
+                            <constraint firstAttribute="trailing" secondItem="PLw-NH-eOr" secondAttribute="trailing" constant="8" id="SkV-i0-vka"/>
                             <constraint firstAttribute="trailing" secondItem="uRP-0g-Zfk" secondAttribute="trailing" id="TOw-z1-7FN"/>
+                            <constraint firstAttribute="bottom" secondItem="PLw-NH-eOr" secondAttribute="bottom" id="UNG-g3-Egv"/>
                             <constraint firstItem="bfF-Fg-ctL" firstAttribute="top" secondItem="uRP-0g-Zfk" secondAttribute="bottom" id="bPW-X8-0MK"/>
+                            <constraint firstItem="PLw-NH-eOr" firstAttribute="top" secondItem="nbT-b6-Fja" secondAttribute="bottom" id="th0-p8-2kU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Legal" id="V2O-RG-5C9">

@@ -1,3 +1,34 @@
+**04-30-2016:**
+--------------------------------
+- **What features were worked on?**
+	- Story List
+	- Edit Board
+	- Home Screen
+	- Side Menu
+	- Static Pages
+- **How far along is each feature?**
+	- **Story List**
+		- Fixed bug that was not updating tableview after editing a board.
+	- **Edit Board**
+		- Fixed bug that was not updating stories when the user would change a stages name.
+	- **Home Screen**
+		- Fixed bug that were displaying rows that were not within their current board.
+		- Finished implementing the fetching of board/story details.
+	- **Side Menu**
+		- Implemented functionality to pull boards total completion level.
+	- **Legal and About**
+		- Design has been completed.
+	- **Support**
+		- Mail functionality has been implemented.
+	- **Donate View**
+		- Compeleted Design and implemented donation functionality.
+- **Where is the developer struggling?**
+	- The developer did not struggle anywhere in specific.
+- **Were any change requests submitted?**
+	- No change request were submitted.
+- **Is the milestone still on pace to be completed on time?**
+	- Yes milestone is still on track to be completed.
+
 **04-28-2016:**
 --------------------------------
 - **What features were worked on?**

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DonateViewController: UIViewController {
+class DonateViewController: UIViewController, UIWebViewDelegate {
     
     /* ==========================================
     *
@@ -17,6 +17,7 @@ class DonateViewController: UIViewController {
     * =========================================== */
     
     @IBOutlet weak var menuBtn: UIBarButtonItem!
+    @IBOutlet weak var webView: UIWebView!
     
     /* ==========================================
     *
@@ -28,7 +29,12 @@ class DonateViewController: UIViewController {
         super.viewDidLoad()
         super.setDefualtNav(menuBtn, statusBg: true, bg: true)
 
-        // Do any additional setup after loading the view.
+        // Set the default URL for the webview
+        if let url = NSURL(string: "http://zgover.netau.net/donate.html") {
+            webView.loadRequest(NSURLRequest(URL: url))
+        }
+        
+        webView.delegate = self
     }
 
     override func didReceiveMemoryWarning() {

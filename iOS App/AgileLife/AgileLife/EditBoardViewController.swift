@@ -157,10 +157,36 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
+        let stories = CoreModels.currentBoard?.story_lists as! NSMutableOrderedSet
+        
+        for story in stories {
+            let currentStage = String(story.valueForKey("stage")!)
+            let stage1 = String(CoreModels.currentBoard!.stage_one_name!)
+            let stage2 = String(CoreModels.currentBoard!.stage_two_name!)
+            let stage3 = String(CoreModels.currentBoard!.stage_three_name!)
+
+            // Update each story under this board, with the updated stages.
+            switch currentStage {
+            case stage1:
+                story.setValue(String(UTF8String: stage1Input.text!)! as AnyObject!, forKey: "stage")
+                print(stage1)
+            case stage2:
+                story.setValue(String(UTF8String: stage2Input.text!)! as AnyObject!, forKey: "stage")
+                print(stage2)
+            case stage3:
+                story.setValue(String(UTF8String: stage3Input.text!)! as AnyObject!, forKey: "stage")
+                print(stage3)
+            default:
+                print("error")
+                break
+            }
+        }
+        
         CoreModels.currentBoard?.name = boardNameInput.text
         CoreModels.currentBoard?.stage_one_name = stage1Input.text
         CoreModels.currentBoard?.stage_two_name = stage2Input.text
         CoreModels.currentBoard?.stage_three_name = stage3Input.text
+        CoreModels.currentBoard?.story_lists = stories
         
         let creationResult = CoreModels.editBoard()
         

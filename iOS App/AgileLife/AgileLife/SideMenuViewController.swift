@@ -147,11 +147,14 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
             // Build the board item cell
             if let cell = tableView.dequeueReusableCellWithIdentifier(boardCellIdentifier, forIndexPath: indexPath) as? BLSideMenuCell {
                 if let board = CoreModels.allBoards?[indexPath.row] {
+                    CoreModels.fetchStories(nil, _board: CoreModels.allBoards![indexPath.row])
                     let storyCount                  = board.story_lists?.count
+                    let totalComplete               = CoreModels.storyCompletion()
+                    
                     cell.boardName.text             = board.name
                     cell.storyCount.text            = "\(storyCount == nil ? 0 : storyCount!) Stories"
-                    cell.percentageComplete.text    = "32% Complete"
-                    cell.progressView.setProgress(0.32, animated: true)
+                    cell.percentageComplete.text    = "\(Int(totalComplete * 100))% Complete"
+                    cell.progressView.setProgress(totalComplete, animated: true)
                     
                     return cell
                 }
