@@ -341,11 +341,12 @@ class CoreDataModels {
                 let selectedEntity = result.first
             {
                 //print(result)
-                //print("Saved Board")
+                print("Deleted Board")
                 
                 if result.count > 0 {                    
                     // delete and return
                     managedContext.deleteObject(selectedEntity)
+                    try managedContext.save()
                     return .Success
                 } else {
                     return .Error

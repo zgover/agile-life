@@ -212,6 +212,9 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate {
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: { (UIAlertAction) -> Void in
             self.CoreModels.deleteBoard()
+            self.navigationItem.hidesBackButton = true
+            self.view.userInteractionEnabled = false
+            self.revealViewController().revealToggleAnimated(true)
         }))
         
         self.presentViewController(alertController, animated: true, completion: nil)
