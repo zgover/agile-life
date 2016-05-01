@@ -17,10 +17,90 @@
 	- Story Details
 	- Create Sub-task
 	- Subtask Details
+	- About
+	- Legal
+	- Support
+	- Donate
 
 ### Change log: ###
 
-**04-23-2016:**
+###04-30-2016:###
+--------------------------------
+- **What features were worked on?**
+	- Story List
+	- Edit Board
+	- Home Screen
+	- Side Menu
+	- Static Pages
+- **How far along is each feature?**
+	- **Story List**
+		- Fixed bug that was not updating tableview after editing a board.
+	- **Edit Board**
+		- Fixed bug that was not updating stories when the user would change a stages name.
+	- **Home Screen**
+		- Fixed bug that were displaying rows that were not within their current board.
+		- Finished implementing the fetching of board/story details.
+	- **Side Menu**
+		- Implemented functionality to pull boards total completion level.
+	- **Legal and About**
+		- Design has been completed.
+	- **Support**
+		- Mail functionality has been implemented.
+	- **Donate View**
+		- Compeleted Design and implemented donation functionality.
+- **Where is the developer struggling?**
+	- The developer did not struggle anywhere in specific.
+- **Were any change requests submitted?**
+	- No change request were submitted.
+- **Is the milestone still on pace to be completed on time?**
+	- Yes milestone is still on track to be completed.
+
+###04-28-2016:###
+--------------------------------
+- **What features were worked on?**
+	- Story List
+	- Home Screen Story List
+- **How far along is each feature?**
+	- **Story List**
+		- Completed total completion percentage.
+	- **Home Screen Story List**
+		- Completed functionality of fetching stories and their corresponding details for each board preview.
+		- Linked each story to the detail view.
+		- Linked table footer to the board detail view
+- **Where is the developer struggling?**
+	- Calculating total completion from the total amount of subtasks and the total amount of completed subtasks (completed).
+- **Were any change requests submitted?**
+	- No change request were submitted.
+- **Is the milestone still on pace to be completed on time?**
+	- Yes milestone is still on track to be completed.
+
+###04-27-2016:###
+--------------------------------
+- **What features were worked on?**
+	- Create Story
+	- Edit Story
+	- Edit Subtask
+	- Story Detail
+- **How far along is each feature?**
+	- **Uncategorized**
+		- Added delete functionality
+	- **Create Story**
+		- Defaulted pre-selected stage to the currently selected tab index.
+	- **Edit Story**
+		- Defaulted pre-selected stage to the stories corresponding stage.
+	- **Edit Subtask**
+		- Completed design.
+		- Implemented functionality to update/complete the subtask
+	- **Story Detail**
+		- Added subtask completion icon to tableview when subtask has been completed.
+- **Where is the developer struggling?**
+	- Preselecting the corresponding stage in the pickerview for the current story, when editing (completed).
+- **Were any change requests submitted?**
+	- No change request were submitted.
+- **Is the milestone still on pace to be completed on time?**
+	- Yes milestone is still on track to be completed.
+
+###04-23-2016:###
 --------------------------------
 - **What features were worked on?**
 	- Edit Board
