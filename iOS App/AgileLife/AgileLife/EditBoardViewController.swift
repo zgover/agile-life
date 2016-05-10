@@ -169,13 +169,10 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate {
             switch currentStage {
             case stage1:
                 story.setValue(String(UTF8String: stage1Input.text!)! as AnyObject!, forKey: "stage")
-                print(stage1)
             case stage2:
                 story.setValue(String(UTF8String: stage2Input.text!)! as AnyObject!, forKey: "stage")
-                print(stage2)
             case stage3:
                 story.setValue(String(UTF8String: stage3Input.text!)! as AnyObject!, forKey: "stage")
-                print(stage3)
             default:
                 print("error")
                 break

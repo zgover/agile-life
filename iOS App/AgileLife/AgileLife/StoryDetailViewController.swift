@@ -73,7 +73,7 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     override func viewWillAppear(animated: Bool) {
-        CoreModels.fetchSubtasks(currentStory)
+        CoreModels.fetchSubtasks(CoreModels.currentStory)
         name.text = currentStory.name
         stage.text = currentStory.stage
         priority.text = "\(currentStory.priority!)"
@@ -117,9 +117,12 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
             cell.progressBar.hidden = true
             cell.priorityBg.hidden = true
             
-            if CoreModels.allSubtasks![indexPath.row].completed == true {
+            if CoreModels.allSubtasks![indexPath.row].completed == 1 {
                 cell.totalCompletion.hidden = true
                 cell.completedIcon.hidden = false
+            } else {
+                cell.totalCompletion.hidden = false
+                cell.completedIcon.hidden = true
             }
             
             return cell

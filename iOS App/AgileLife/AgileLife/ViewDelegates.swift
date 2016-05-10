@@ -9,5 +9,5 @@
 import Foundation
 
 @objc protocol ViewDelegates {
-    //optional func updateData()
+    optional func didDeleteSubtask(didDelete: Bool)
 }

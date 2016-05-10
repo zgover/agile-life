@@ -28,16 +28,12 @@ class SupportViewController: UIViewController, MFMailComposeViewControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         super.setDefualtNav(menuBtn, statusBg: true, bg: true)
+        openMail()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    override func viewWillAppear(animated: Bool) {
-        // Open a new email
-        openMail()
     }
     
     /* ==========================================
@@ -54,14 +50,15 @@ class SupportViewController: UIViewController, MFMailComposeViewControllerDelega
             
             alert.addAction(dismissBtn)
             presentViewController(alert, animated: true, completion: nil)
-            print(error)
+            print("Mail Error: \(error)")
+        } else {
+            dismissViewControllerAnimated(true, completion: nil)
+            self.revealViewController().revealToggleAnimated(true)
         }
-        
-        dismissViewControllerAnimated(true, completion: nil)
-        self.revealViewController().revealToggleAnimated(true)
     }
     
     func openMail() {
+        // If the user has their email setup allow them to open the mail controller.
         if MFMailComposeViewController.canSendMail() {
             dismissViewControllerAnimated(true, completion: nil)
             let sendEmail = MFMailComposeViewController()
@@ -74,7 +71,7 @@ class SupportViewController: UIViewController, MFMailComposeViewControllerDelega
             self.navigationController?.presentViewController(sendEmail, animated: true, completion: nil)
         } else {
             // Notify the user they need to configure their email
-            let alert = UIAlertController(title: "Error", message: "Please Configure Your Email first, before submitting a support request.", preferredStyle: UIAlertControllerStyle.Alert)
+            let alert = UIAlertController(title: "Warning", message: "Please Configure Your Email first, before submitting a support request.", preferredStyle: UIAlertControllerStyle.Alert)
             let dismissBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
             
             alert.addAction(dismissBtn)

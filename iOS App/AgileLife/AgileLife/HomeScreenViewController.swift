@@ -101,10 +101,10 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let boards = CoreModels.allBoards {
             let storyCount = boards[section].story_lists!.count
-            let returnCount = storyCount > 3 ? 3 : storyCount
+            var returnCount = storyCount > 3 ? 3 : storyCount
             self.storyCount.append(returnCount)
-            
-            return returnCount <= 0 ? 1 : returnCount + 1
+            returnCount = returnCount <= 0 ? 1 : returnCount + 1
+            return returnCount
         }
         
         return 1
@@ -123,7 +123,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier(HomeScreenCellIdentfier) as? HomeScreenTableViewCell where indexPath.row != 3 && CoreModels.allBoards![indexPath.section].story_lists!.count > 0 {
+        if let cell = tableView.dequeueReusableCellWithIdentifier(HomeScreenCellIdentfier) as? HomeScreenTableViewCell where indexPath.row != 3 && indexPath.row < CoreModels.allBoards![indexPath.section].story_lists!.count && CoreModels.allBoards![indexPath.section].story_lists!.count > 0 {
             
             CoreModels.fetchStories(nil, _board: CoreModels.allBoards![indexPath.section])
             
@@ -151,7 +151,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.row != 3 && CoreModels.allBoards![indexPath.section].story_lists!.count > 0 {
+        if indexPath.row != 3 && indexPath.row < CoreModels.allBoards![indexPath.section].story_lists!.count && CoreModels.allBoards![indexPath.section].story_lists!.count > 0 {
             
             CoreModels.currentBoard = CoreModels.allBoards![indexPath.section]
             CoreModels.fetchStories(nil, _board: CoreModels.currentBoard)

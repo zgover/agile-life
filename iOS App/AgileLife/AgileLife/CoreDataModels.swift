@@ -479,8 +479,8 @@ class CoreDataModels {
     }
     
     func subtaskCompletion(storyIndex: Int) -> Float {
-        var totalCount = 0.0
-        var completedSubtasks = 0.0
+        var totalCount:Float = 0.0
+        var completedSubtasks:Float = 0.0
         
         // Set default values for CoreData properties
         let fetchRequest = NSFetchRequest(entityName: "Subtasks")
@@ -508,8 +508,8 @@ class CoreDataModels {
     }
     
     func storyCompletion() -> Float {
-        var totalCount = 0.0
-        var completedSubtasks = 0.0
+        var totalCount:Float = 0.0
+        var completedSubtasks:Float = 0.0
         
         for story in self.allStories! {
             let tasks = story.sub_tasks as! NSMutableSet
@@ -526,14 +526,14 @@ class CoreDataModels {
         return self.calculateCompletionPercentage(totalCount, completedSubtasks: completedSubtasks)
     }
     
-    private func calculateCompletionPercentage(totalCount: Double, completedSubtasks: Double) -> Float {
+    private func calculateCompletionPercentage(totalCount: Float, completedSubtasks: Float) -> Float {
         if totalCount == completedSubtasks && completedSubtasks != 0.0 {
             return 1.0
         } else if completedSubtasks == 0.0 {
             return 0.0
         }
         
-        let totalComplete = Float((totalCount - completedSubtasks) / totalCount * 1.0)
+        let totalComplete:Float = (1.0 / totalCount) * completedSubtasks
         
         return totalComplete
     }

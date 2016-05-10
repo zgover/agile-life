@@ -115,6 +115,37 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate {
             self.presentViewController(alertController, animated: true, completion: nil)
             
             return
+        } else {
+            // Loop through all of the fields and make sure they're no duplicate names,
+            // because there are dependencies on their name
+            let allFields:[(text: String, on: Bool)] = [
+                (boardNameInput.text!, true),
+                (stage1Input.text!, true),
+                (stage2Input.text!, stage2Switch.on),
+                (stage3Input.text!, stage3Switch.on)
+            ]
+            
+            for (currentText, on) in allFields {
+                if on {
+                    var dupCount = 0
+                    
+                    for (searchText, on) in allFields {
+                        if on && currentText == searchText {
+                            dupCount++
+                        }
+                    }
+                    
+                    if dupCount > 1 {
+                        // Alert the user this is a duplicate
+                        let alertController = UIAlertController(title: "Warning", message: "Please make sure they're no duplicate names.", preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+                        
+                        self.presentViewController(alertController, animated: true, completion: nil)
+                        
+                        return
+                    }
+                }
+            }
         }
         
         // Create the board

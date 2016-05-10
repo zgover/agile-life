@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SubtaskDetailViewController: UIViewController {
+class SubtaskDetailViewController: UIViewController, ViewDelegates {
 
     /* ==========================================
     *
@@ -65,7 +65,20 @@ class SubtaskDetailViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destination = segue.destinationViewController as? EditSubtaskViewController {
             destination.CoreModels = self.CoreModels
+            destination.delegate = self
         }
     }
 
+    
+    /* ==========================================
+    *
+    * MARK: View Delegates
+    *
+    * =========================================== */
+    
+    func didDeleteSubtask(didDelete: Bool) {
+        if didDelete == true {
+            self.navigationController?.popViewControllerAnimated(true)
+        }
+    }
 }

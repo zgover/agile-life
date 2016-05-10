@@ -29,6 +29,7 @@ class EditSubtaskViewController: UIViewController {
     * =========================================== */
     
     var CoreModels:CoreDataModels!
+    var delegate:ViewDelegates!
     
     /* ==========================================
     *
@@ -115,6 +116,7 @@ class EditSubtaskViewController: UIViewController {
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: { (UIAlertAction) -> Void in
             self.CoreModels.deleteSubtask(false)
+            self.delegate.didDeleteSubtask!(true)
             self.navigationController?.popViewControllerAnimated(true)
         }))
         
