@@ -174,7 +174,7 @@ class CoreDataModels {
         newBoard.stage_three_icon = stage_three_icon
         newBoard.stage_three_name = stage_three_name
         
-        // Default stage 4 as we will be utilizing it for structure
+        // Default stage 4 as we will be utilizing it for the app
         newBoard.stage_four_icon = "check-square"
         newBoard.stage_four_name = "Completed"
         

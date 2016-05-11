@@ -10,4 +10,5 @@ import Foundation
 
 @objc protocol ViewDelegates {
     optional func didDeleteSubtask(didDelete: Bool)
+    optional func selectedIcon(icon: String)
 }

@@ -63,6 +63,8 @@
 		B6F9AC511CC50638006CF314 /* Subtasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9AC4B1CC50638006CF314 /* Subtasks.swift */; };
 		B6F9AC551CC646DB006CF314 /* GlobalEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9AC541CC646DB006CF314 /* GlobalEnums.swift */; };
 		B6F9AC571CC64948006CF314 /* ViewDelegates.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9AC561CC64948006CF314 /* ViewDelegates.swift */; };
+		B6FA74561CE29E5700FB1B48 /* IconPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FA74551CE29E5700FB1B48 /* IconPickerViewController.swift */; };
+		B6FA74581CE2C39300FB1B48 /* IconCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6FA74571CE2C39300FB1B48 /* IconCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -126,6 +128,8 @@
 		B6F9AC4B1CC50638006CF314 /* Subtasks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Subtasks.swift; path = AgileLife/Subtasks.swift; sourceTree = "<group>"; };
 		B6F9AC541CC646DB006CF314 /* GlobalEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalEnums.swift; sourceTree = "<group>"; };
 		B6F9AC561CC64948006CF314 /* ViewDelegates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewDelegates.swift; sourceTree = "<group>"; };
+		B6FA74551CE29E5700FB1B48 /* IconPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconPickerViewController.swift; sourceTree = "<group>"; };
+		B6FA74571CE2C39300FB1B48 /* IconCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IconCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +165,8 @@
 			children = (
 				B6E614851CC06611003FB446 /* CreateBoardViewController.swift */,
 				B6268ACD1CC79E1200486ECF /* EditBoardViewController.swift */,
+				B6FA74551CE29E5700FB1B48 /* IconPickerViewController.swift */,
+				B6FA74571CE2C39300FB1B48 /* IconCollectionViewCell.swift */,
 			);
 			name = Boards;
 			sourceTree = "<group>";
@@ -434,6 +440,7 @@
 				B6E6147E1CC01930003FB446 /* ALSideMenuTableHeader.swift in Sources */,
 				B6F9AC4F1CC50638006CF314 /* Stories.swift in Sources */,
 				B6268AE11CCBFB6800486ECF /* EditStoryViewController.swift in Sources */,
+				B6FA74581CE2C39300FB1B48 /* IconCollectionViewCell.swift in Sources */,
 				B6F9AC141CC3064B006CF314 /* DonateViewController.swift in Sources */,
 				B6F9AC571CC64948006CF314 /* ViewDelegates.swift in Sources */,
 				B6F9AC4D1CC50638006CF314 /* Boards.swift in Sources */,
@@ -455,6 +462,7 @@
 				B6F9AC551CC646DB006CF314 /* GlobalEnums.swift in Sources */,
 				B6E614781CBF2FC4003FB446 /* BLSideMenuTableHeader.swift in Sources */,
 				B6268ACA1CC797EA00486ECF /* StoryListTableViewCell.swift in Sources */,
+				B6FA74561CE29E5700FB1B48 /* IconPickerViewController.swift in Sources */,
 				B6268ADA1CC9B7F700486ECF /* StoryDetailViewController.swift in Sources */,
 				B6E614801CC01B1D003FB446 /* BLSideMenuTableFooter.swift in Sources */,
 				B6E614491CBC5381003FB446 /* AppDelegate.swift in Sources */,

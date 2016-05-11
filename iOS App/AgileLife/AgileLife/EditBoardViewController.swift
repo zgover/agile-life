@@ -8,7 +8,9 @@
 
 import UIKit
 
-class EditBoardViewController: UIViewController, UITextFieldDelegate {
+private let iconPickerSegueIdentifier = "iconPickerSegue"
+
+class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelegates {
 
     /* ==========================================
     *
@@ -34,6 +36,10 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate {
     * =========================================== */
     
     var CoreModels = CoreDataModels()
+    var selectedIcon:String!
+    var stage1IconName = ""
+    var stage2IconName = ""
+    var stage3IconName = ""
     
     /* ==========================================
     *
@@ -55,6 +61,7 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate {
         {
             stage1Input.text = stageOneName
             stage1Icon.image = UIImage(named: stageOneImage)
+            stage1IconName = stageOneImage
         }
         
         // Set stage 2 elements; if not enabled remove second stage
@@ -66,6 +73,7 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate {
             stage2Icon.image = UIImage(named: stageTwoImage)
             stage2Switch.on = true
             stage2Switch.enabled = false
+            stage2IconName = stageTwoImage
         } else {
             stage2Input.enabled = false
             stage2Switch.on = false
@@ -81,6 +89,7 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate {
             stage3Icon.image = UIImage(named: stageThreeImage)
             stage3Switch.on = true
             stage3Switch.enabled = false
+            stage3IconName = stageThreeImage
         } else {
             stage3Input.enabled = false
             stage3Switch.on = false
@@ -106,20 +115,66 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate {
     
     /* ==========================================
     *
-    * MARK: Custom Methods
+    * MARK: Segue Methods
     *
     * =========================================== */
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destination = segue.destinationViewController as? IconPickerViewController {
+            destination.selectedIcon = selectedIcon
+            destination.delegate = self
+        }
+    }
+    
+    
+    /* ==========================================
+    *
+    * MARK: View Delegates
+    *
+    * =========================================== */
+    
+    func selectedIcon(icon: String) {
+        switch self.selectedIcon {
+        case "stage1":
+            stage1IconName = icon
+            stage1Icon.image = UIImage(named: icon)
+        case "stage2":
+            stage2IconName = icon
+            stage2Icon.image = UIImage(named: icon)
+        case "stage3":
+            stage3IconName = icon
+            stage3Icon.image = UIImage(named: icon)
+        default:
+            break
+        }
+    }
+    
+    /* ==========================================
+    *
+    * MARK: Edit Icon Methods
+    *
+    * =========================================== */
+    
     @IBAction func stage1EditIcon(sender: UIButton) {
-        
+        selectedIcon = "stage1"
+        performSegueWithIdentifier(iconPickerSegueIdentifier, sender: sender)
     }
     
     @IBAction func stage2EditIcon(sender: UIButton) {
-        
+        selectedIcon = "stage2"
+        performSegueWithIdentifier(iconPickerSegueIdentifier, sender: sender)
     }
     
     @IBAction func stage3EditIcon(sender: UIButton) {
-        
+        selectedIcon = "stage3"
+        performSegueWithIdentifier(iconPickerSegueIdentifier, sender: sender)
     }
+    
+    
+    /* ==========================================
+    *
+    * MARK: Board Actions
+    *
+    * =========================================== */
     
     @IBAction func saveBoard(sender: UIButton) {
         // Notify the user if there is anything wrong with the required fields.
@@ -181,8 +236,11 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate {
         
         CoreModels.currentBoard?.name = boardNameInput.text
         CoreModels.currentBoard?.stage_one_name = stage1Input.text
+        CoreModels.currentBoard?.stage_one_icon = stage1IconName
         CoreModels.currentBoard?.stage_two_name = stage2Input.text
+        CoreModels.currentBoard?.stage_two_icon = stage2IconName
         CoreModels.currentBoard?.stage_three_name = stage3Input.text
+        CoreModels.currentBoard?.stage_three_icon = stage3IconName
         CoreModels.currentBoard?.story_lists = stories
         
         let creationResult = CoreModels.editBoard()

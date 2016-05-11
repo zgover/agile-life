@@ -63,6 +63,9 @@ class StageThreeViewController: UIViewController, UITableViewDataSource, UITable
         CoreModels.fetchAll()
         CoreModels.fetchStories((CoreModels.currentBoard?.stage_three_name)!, _board: CoreModels!.currentBoard)
         tableView.reloadData()
+        
+        // Make sure to update the tabbar icon if they have recently edited the board icons
+        //self.tabBarItem.image = UIImage(named: CoreModels.currentBoard!.stage_three_icon!)
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,6 +137,9 @@ class StageThreeViewController: UIViewController, UITableViewDataSource, UITable
         if let destination = segue.destinationViewController as? StoryDetailViewController {
             destination.CoreModels = self.CoreModels
             destination.selectedStory = selectedStory
+        } else if let destination = segue.destinationViewController as? CreateStoryViewController {
+            destination.CoreModels = self.CoreModels
+            destination.currentStage = self.tabBarController?.selectedIndex
         }
     }
     
@@ -144,6 +150,6 @@ class StageThreeViewController: UIViewController, UITableViewDataSource, UITable
     * =========================================== */
     
     func addStory() {
-        tabBarController!.performSegueWithIdentifier("createStorySegue", sender: nil)
+        self.performSegueWithIdentifier("createStorySegue", sender: nil)
     }
 }

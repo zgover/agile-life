@@ -730,7 +730,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Stage 2" image="edit-square" id="MfH-fL-Nhp"/>
+                    <tabBarItem key="tabBarItem" title="Stage 2" id="MfH-fL-Nhp"/>
                     <navigationItem key="navigationItem" title="School Board" id="4SO-Bu-ych">
                         <barButtonItem key="leftBarButtonItem" image="HamburgerIcon" id="z3Y-H9-3AX">
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -740,11 +740,82 @@
                         <outlet property="menuBtn" destination="z3Y-H9-3AX" id="j9C-dx-Lu6"/>
                         <outlet property="tableView" destination="9gn-pS-8Cq" id="LHj-77-VNA"/>
                         <segue destination="mln-bZ-cyF" kind="show" identifier="storyDetailSegue" id="nlW-Kb-uAu"/>
+                        <segue destination="nmr-Rc-9kF" kind="show" identifier="createStorySegue" id="ici-eQ-jTC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hRS-Ds-hFM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3735" y="947"/>
+        </scene>
+        <!--Icon Picker View Controller-->
+        <scene sceneID="Tz7-Fh-u7X">
+            <objects>
+                <viewController id="CMf-bb-tTE" customClass="IconPickerViewController" customModule="Agile_Life" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="xs8-8S-fvZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wzw-cM-cY3"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="hu8-Wr-3K3">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2Uf-0C-vvg">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Zqs-tA-8a8">
+                                    <size key="itemSize" width="65" height="65"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" reuseIdentifier="iconCell" id="GTx-ry-s6Z" customClass="IconCollectionViewCell" customModule="Agile_Life" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="64" width="65" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="check-square" translatesAutoresizingMaskIntoConstraints="NO" id="1Zb-3X-OeI">
+                                                    <rect key="frame" x="15" y="15" width="35" height="35"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="1Zb-3X-OeI" secondAttribute="bottom" constant="15" id="0tW-fX-hXO"/>
+                                            <constraint firstItem="1Zb-3X-OeI" firstAttribute="top" secondItem="GTx-ry-s6Z" secondAttribute="top" constant="15" id="RVu-jE-zZm"/>
+                                            <constraint firstItem="1Zb-3X-OeI" firstAttribute="leading" secondItem="GTx-ry-s6Z" secondAttribute="leading" constant="15" id="fOf-vi-yfm"/>
+                                            <constraint firstAttribute="trailing" secondItem="1Zb-3X-OeI" secondAttribute="trailing" constant="15" id="kCX-Bt-3Qo"/>
+                                        </constraints>
+                                        <connections>
+                                            <outlet property="imageView" destination="1Zb-3X-OeI" id="zR0-uo-pOa"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="CMf-bb-tTE" id="d4g-T0-NVe"/>
+                                    <outlet property="delegate" destination="CMf-bb-tTE" id="EsU-EO-Ty6"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2Uf-0C-vvg" firstAttribute="top" secondItem="xs8-8S-fvZ" secondAttribute="bottom" id="V2y-hv-GYc"/>
+                            <constraint firstAttribute="trailing" secondItem="2Uf-0C-vvg" secondAttribute="trailing" id="hkf-Dq-Dv2"/>
+                            <constraint firstItem="2Uf-0C-vvg" firstAttribute="leading" secondItem="hu8-Wr-3K3" secondAttribute="leading" id="mEE-Nr-0cK"/>
+                            <constraint firstItem="wzw-cM-cY3" firstAttribute="top" secondItem="2Uf-0C-vvg" secondAttribute="bottom" id="rnN-kl-lOw"/>
+                        </constraints>
+                    </view>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="iconCellectionView" destination="2Uf-0C-vvg" id="9Xh-dd-FGJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2gr-E1-fSY" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3735" y="1706"/>
         </scene>
         <!--Stage 1 Stories-->
         <scene sceneID="gyB-Zo-uwN">
@@ -792,7 +863,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Stage 1" image="hourglass" id="zbG-0t-0IS"/>
+                    <tabBarItem key="tabBarItem" title="Stage 1" id="zbG-0t-0IS"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="School Board" id="yBe-93-0V8">
                         <barButtonItem key="leftBarButtonItem" image="HamburgerIcon" id="mbL-Gx-ttc">
@@ -803,6 +874,7 @@
                         <outlet property="menuBtn" destination="mbL-Gx-ttc" id="3LJ-yx-krl"/>
                         <outlet property="tableView" destination="xnq-Pd-puT" id="jVq-dv-iVi"/>
                         <segue destination="mln-bZ-cyF" kind="show" identifier="storyDetailSegue" id="DHs-mo-1TW"/>
+                        <segue destination="nmr-Rc-9kF" kind="show" identifier="createStorySegue" id="f4O-0P-kX4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TRz-ov-239" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -831,6 +903,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="0.0" green="0.2156862745" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -1174,7 +1247,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Stage 3" image="users" id="BZt-t3-Y7Z"/>
+                    <tabBarItem key="tabBarItem" title="Stage 3" id="BZt-t3-Y7Z"/>
                     <navigationItem key="navigationItem" title="School Board" id="x5V-ma-Lgj">
                         <barButtonItem key="leftBarButtonItem" image="HamburgerIcon" id="2ay-6G-Sxc">
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1184,6 +1257,7 @@
                         <outlet property="menuBtn" destination="2ay-6G-Sxc" id="KAw-Ku-YSA"/>
                         <outlet property="tableView" destination="G0L-gW-EZH" id="tAH-PI-ALl"/>
                         <segue destination="mln-bZ-cyF" kind="show" identifier="storyDetailSegue" id="HZL-qr-g6Q"/>
+                        <segue destination="nmr-Rc-9kF" kind="show" identifier="createStorySegue" id="kZA-GM-Bag"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="paM-tx-iES" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1525,7 +1599,7 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Stage 4" image="check-square" id="GiW-bs-W82"/>
+                    <tabBarItem key="tabBarItem" title="Stage 4" id="GiW-bs-W82"/>
                     <navigationItem key="navigationItem" title="School Board" id="ZB1-42-Dw8">
                         <barButtonItem key="leftBarButtonItem" image="HamburgerIcon" id="TVe-HM-bbo">
                             <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -1535,6 +1609,7 @@
                         <outlet property="menuBtn" destination="TVe-HM-bbo" id="VLw-i7-ZnN"/>
                         <outlet property="tableView" destination="P0J-Pa-Lar" id="qj2-PZ-ySe"/>
                         <segue destination="mln-bZ-cyF" kind="show" identifier="storyDetailSegue" id="vyn-8j-i4j"/>
+                        <segue destination="nmr-Rc-9kF" kind="show" identifier="createStorySegue" id="K6I-G3-Sqm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQU-ZC-xEV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1893,6 +1968,7 @@
                         <outlet property="stage3Icon" destination="oQj-yv-TrV" id="wQF-Sp-X9J"/>
                         <outlet property="stage3Input" destination="S2z-T8-UOY" id="MeK-P5-mxy"/>
                         <outlet property="stage3Switch" destination="SmD-sl-9y5" id="rjE-qc-eYm"/>
+                        <segue destination="CMf-bb-tTE" kind="show" identifier="iconPickerSegue" id="o6J-WP-616"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h8W-dW-YpI" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2620,8 +2696,9 @@
         <image name="users" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="nlW-Kb-uAu"/>
-        <segue reference="OJ7-J5-cR0"/>
         <segue reference="ahl-jb-78N"/>
+        <segue reference="OJ7-J5-cR0"/>
+        <segue reference="DHs-mo-1TW"/>
+        <segue reference="kZA-GM-Bag"/>
     </inferredMetricsTieBreakers>
 </document>

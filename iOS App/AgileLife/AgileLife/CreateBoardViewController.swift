@@ -8,7 +8,9 @@
 
 import UIKit
 
-class CreateBoardViewController: UIViewController, UITextFieldDelegate {
+private let iconPickerSegueIdentifier = "iconPickerSegue"
+
+class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDelegates {
 
     /* ==========================================
     *
@@ -34,6 +36,10 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate {
     * =========================================== */
     
     var CoreModels = CoreDataModels()
+    var selectedIcon:String!
+    var stage1IconName:String = "hourglass"
+    var stage2IconName:String = "edit-square"
+    var stage3IconName:String = "users"
     
     /* ==========================================
     *
@@ -46,6 +52,9 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate {
         super.setDefualtNav(nil, statusBg: true, bg: true)
 
         // Set default values
+        stage1Icon.image = UIImage(named: stage1IconName)
+        stage2Icon.image = UIImage(named: stage2IconName)
+        stage3Icon.image = UIImage(named: stage3IconName)
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,23 +72,64 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    /* ==========================================
+    *
+    * MARK: Segue Methods
+    *
+    * =========================================== */
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let destination = segue.destinationViewController as? IconPickerViewController {
+            destination.selectedIcon = selectedIcon
+            destination.delegate = self
+        }
+    }
+    
+    /* ==========================================
+    *
+    * MARK: View Delegates
+    *
+    * =========================================== */
+    
+    func selectedIcon(icon: String) {
+        switch self.selectedIcon {
+        case "stage1":
+            stage1Icon.image = UIImage(named: icon)
+        case "stage2":
+            stage2Icon.image = UIImage(named: icon)
+        case "stage3":
+            stage3Icon.image = UIImage(named: icon)
+        default:
+            break
+        }
+    }
 
     /* ==========================================
     *
-    * MARK: Custom Methods
+    * MARK: Edit Icon Methods
     *
     * =========================================== */
     @IBAction func stage1EditIcon(sender: UIButton) {
-        
+        selectedIcon = "stage1"
+        performSegueWithIdentifier(iconPickerSegueIdentifier, sender: sender)
     }
     
     @IBAction func stage2EditIcon(sender: UIButton) {
-        
+        selectedIcon = "stage2"
+        performSegueWithIdentifier(iconPickerSegueIdentifier, sender: sender)
     }
     
     @IBAction func stage3EditIcon(sender: UIButton) {
-        
+        selectedIcon = "stage3"
+        performSegueWithIdentifier(iconPickerSegueIdentifier, sender: sender)
     }
+    
+    /* ==========================================
+    *
+    * MARK: Board Actions
+    *
+    * =========================================== */
     
     @IBAction func createBoard(sender: UIButton) {
         // Notify the user if there is anything wrong with the required fields.
@@ -150,9 +200,9 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate {
         
         // Create the board
         let creationResult = CoreModels.createBoard(
-            boardNameInput.text!, stage_one_icon: "hourglass", stage_one_name: stage1Input.text!,
-            stage_two: stage2Switch.on, stage_two_icon: "edit-square", stage_two_name: stage2Input.text,
-            stage_three: stage3Switch.on, stage_three_icon: "users", stage_three_name: stage3Input.text
+            boardNameInput.text!, stage_one_icon: stage1IconName, stage_one_name: stage1Input.text!,
+            stage_two: stage2Switch.on, stage_two_icon: stage2IconName, stage_two_name: stage2Input.text,
+            stage_three: stage3Switch.on, stage_three_icon: stage3IconName, stage_three_name: stage3Input.text
         )
         
         // Dismiss view controller or notify the user based in the returned result of creating a board.

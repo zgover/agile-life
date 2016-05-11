@@ -63,6 +63,9 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
         CoreModels.fetchAll()
         CoreModels.fetchStories((CoreModels.currentBoard?.stage_two_name)!, _board: CoreModels!.currentBoard)
         tableView.reloadData()
+        
+        // Make sure to update the tabbar icon if they have recently edited the board icons
+        //self.tabBarItem.image = UIImage(named: CoreModels.currentBoard!.stage_two_icon!)
     }
     
     override func didReceiveMemoryWarning() {
@@ -134,6 +137,9 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
         if let destination = segue.destinationViewController as? StoryDetailViewController {
             destination.CoreModels = self.CoreModels
             destination.selectedStory = selectedStory
+        } else if let destination = segue.destinationViewController as? CreateStoryViewController {
+            destination.CoreModels = self.CoreModels
+            destination.currentStage = self.tabBarController?.selectedIndex
         }
     }
     
