@@ -65,7 +65,7 @@ class StageThreeViewController: UIViewController, UITableViewDataSource, UITable
         tableView.reloadData()
         
         // Make sure to update the tabbar icon if they have recently edited the board icons
-        //self.tabBarItem.image = UIImage(named: CoreModels.currentBoard!.stage_three_icon!)
+        self.tabBarItem.image = UIImage(named: CoreModels.currentBoard!.stage_three_icon!)
     }
     
     override func didReceiveMemoryWarning() {

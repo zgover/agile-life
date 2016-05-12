@@ -901,9 +901,8 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="w28-HO-1bF">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="barTintColor" red="0.95294117647058818" green="0.95294117647058818" blue="0.95294117647058818" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="selectedImageTintColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
                                 <color key="value" red="0.0" green="0.2156862745" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -2697,8 +2696,8 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ahl-jb-78N"/>
-        <segue reference="OJ7-J5-cR0"/>
-        <segue reference="DHs-mo-1TW"/>
-        <segue reference="kZA-GM-Bag"/>
+        <segue reference="9Ej-dJ-voO"/>
+        <segue reference="ut7-Qo-Ji7"/>
+        <segue reference="nlW-Kb-uAu"/>
     </inferredMetricsTieBreakers>
 </document>

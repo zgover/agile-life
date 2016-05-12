@@ -482,29 +482,33 @@ class CoreDataModels {
         var totalCount:Float = 0.0
         var completedSubtasks:Float = 0.0
         
-        // Set default values for CoreData properties
-        let fetchRequest = NSFetchRequest(entityName: "Subtasks")
-        fetchRequest.predicate = NSPredicate(format: "story = %@", self.allStories![storyIndex])
-        
-        do {
-            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
-                for task in result {
-                    totalCount = totalCount + 1.0
-                    
-                    if task.completed == true {
-                        completedSubtasks = completedSubtasks + 1.0
+        if let story = self.allStories?[storyIndex] {
+            // Set default values for CoreData properties
+            let fetchRequest = NSFetchRequest(entityName: "Subtasks")
+            fetchRequest.predicate = NSPredicate(format: "story = %@", story)
+            
+            do {
+                if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
+                    for task in result {
+                        totalCount = totalCount + 1.0
+                        
+                        if task.completed == true {
+                            completedSubtasks = completedSubtasks + 1.0
+                        }
                     }
+                } else {
+                    print("No subtasks")
+                    return 0.0
                 }
-            } else {
-                print("No subtasks")
+            } catch {
+                print("Failed loading the subtasks")
                 return 0.0
             }
-        } catch {
-            print("Failed loading the subtasks")
-            return 0.0
+            
+            return self.calculateCompletionPercentage(totalCount, completedSubtasks: completedSubtasks)
         }
         
-        return self.calculateCompletionPercentage(totalCount, completedSubtasks: completedSubtasks)
+        return 0.0
     }
     
     func storyCompletion() -> Float {
