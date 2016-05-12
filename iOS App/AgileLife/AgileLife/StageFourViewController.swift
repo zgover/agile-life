@@ -63,6 +63,9 @@ class StageFourViewController: UIViewController, UITableViewDataSource, UITableV
         CoreModels.fetchAll()
         CoreModels.fetchStories((CoreModels.currentBoard?.stage_four_name)!, _board: CoreModels!.currentBoard)
         tableView.reloadData()
+        
+        // Make sure to update the tabbar icon if they have recently edited the board icons
+        self.tabBarItem.image = UIImage(named: CoreModels.currentBoard!.stage_four_icon!)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
     }
     
     override func didReceiveMemoryWarning() {

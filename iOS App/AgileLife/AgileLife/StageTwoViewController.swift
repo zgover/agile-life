@@ -65,7 +65,7 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.reloadData()
         
         // Make sure to update the tabbar icon if they have recently edited the board icons
-        self.tabBarItem.image = UIImage(named: CoreModels.currentBoard!.stage_two_icon!)
+        self.tabBarItem.image = UIImage(named: CoreModels.currentBoard!.stage_two_icon!)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
     }
     
     override func didReceiveMemoryWarning() {
