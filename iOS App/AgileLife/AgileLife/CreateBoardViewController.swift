@@ -95,10 +95,13 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
     func selectedIcon(icon: String) {
         switch self.selectedIcon {
         case "stage1":
+            stage1IconName = icon
             stage1Icon.image = UIImage(named: icon)
         case "stage2":
+            stage2IconName = icon
             stage2Icon.image = UIImage(named: icon)
         case "stage3":
+            stage3IconName = icon
             stage3Icon.image = UIImage(named: icon)
         default:
             break
