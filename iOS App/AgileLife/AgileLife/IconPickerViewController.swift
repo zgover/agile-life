@@ -42,7 +42,10 @@ class IconPickerViewController: UIViewController, UICollectionViewDataSource, UI
         self.title = "Choose Icon"
         
         allImages = [
-            "check-square", "edit-square", "hourglass", "users"
+            "check-square", "edit-square", "hourglass", "users", "asterik",
+            "bar-graph", "briefcase", "calendar", "cart", "flag", "folder",
+            "folder-open", "heart", "house", "media", "music-note", "plus",
+            "road", "user"
         ]
     }
     

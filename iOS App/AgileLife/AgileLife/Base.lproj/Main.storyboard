@@ -59,7 +59,7 @@
                                         <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3T-gg-9xj" userLabel="View All">
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3T-gg-9xj" userLabel="View All">
                                         <rect key="frame" x="255" y="122" width="234.5" height="30"/>
                                         <accessibility key="accessibilityConfiguration">
                                             <accessibilityTraits key="traits" button="YES" image="YES"/>
@@ -131,28 +131,28 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="School Board" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6id-Xt-5fD">
-                                                    <rect key="frame" x="8" y="9.5" width="324.5" height="18"/>
+                                                    <rect key="frame" x="8" y="9.5" width="275" height="18"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 Stories" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="QbK-Y9-x5Q">
-                                                    <rect key="frame" x="8" y="29" width="324.5" height="18"/>
+                                                    <rect key="frame" x="8" y="29" width="275" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P0h-Vx-12T">
-                                                    <rect key="frame" x="340" y="0.0" width="149.5" height="57.5"/>
+                                                    <rect key="frame" x="290.5" y="0.0" width="199" height="57.5"/>
                                                     <subviews>
                                                         <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Afk-sG-iQp">
-                                                            <rect key="frame" x="0.0" y="23" width="149.5" height="2"/>
+                                                            <rect key="frame" x="0.0" y="23" width="199" height="2"/>
                                                             <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="progressTintColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="trackTintColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                                         </progressView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="36% Complete" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hFH-PN-z1w">
-                                                            <rect key="frame" x="0.0" y="28" width="149.5" height="14.5"/>
+                                                            <rect key="frame" x="0.0" y="28" width="199" height="14.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                             <color key="textColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -171,12 +171,14 @@
                                             <color key="backgroundColor" red="0.0" green="0.2156862745" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstItem="QbK-Y9-x5Q" firstAttribute="width" secondItem="6id-Xt-5fD" secondAttribute="width" id="J34-EW-gEp"/>
-                                                <constraint firstAttribute="trailing" secondItem="P0h-Vx-12T" secondAttribute="trailing" constant="8" id="JT9-He-bVe"/>
+                                                <constraint firstAttribute="trailing" secondItem="P0h-Vx-12T" secondAttribute="trailing" constant="8" id="JT9-He-bVe">
+                                                    <variation key="heightClass=regular-widthClass=regular" constant="12"/>
+                                                </constraint>
                                                 <constraint firstItem="P0h-Vx-12T" firstAttribute="leading" secondItem="6id-Xt-5fD" secondAttribute="trailing" constant="8" id="QnB-AT-5t5"/>
                                                 <constraint firstItem="P0h-Vx-12T" firstAttribute="top" secondItem="oNA-oK-EXC" secondAttribute="top" id="UeN-Io-6LF"/>
                                                 <constraint firstAttribute="bottom" secondItem="P0h-Vx-12T" secondAttribute="bottom" id="fef-bD-4hX"/>
                                                 <constraint firstItem="QbK-Y9-x5Q" firstAttribute="top" secondItem="6id-Xt-5fD" secondAttribute="bottom" constant="2" id="fgm-d6-KBY"/>
-                                                <constraint firstItem="P0h-Vx-12T" firstAttribute="width" secondItem="oNA-oK-EXC" secondAttribute="width" multiplier="0.3" id="hSv-lE-zGB"/>
+                                                <constraint firstItem="P0h-Vx-12T" firstAttribute="width" secondItem="oNA-oK-EXC" secondAttribute="width" multiplier="0.4" id="hSv-lE-zGB"/>
                                                 <constraint firstItem="6id-Xt-5fD" firstAttribute="leading" secondItem="oNA-oK-EXC" secondAttribute="leading" constant="8" id="nMy-Z4-PZu"/>
                                                 <constraint firstItem="6id-Xt-5fD" firstAttribute="centerY" secondItem="oNA-oK-EXC" secondAttribute="centerY" constant="-10" id="sDm-p8-zlb"/>
                                                 <constraint firstItem="QbK-Y9-x5Q" firstAttribute="leading" secondItem="oNA-oK-EXC" secondAttribute="leading" constant="8" id="vXx-Kc-az3"/>
@@ -216,7 +218,9 @@
                                             </subviews>
                                             <color key="backgroundColor" red="0.0" green="0.2156862745" blue="0.20784313730000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="vOY-kI-MhU" secondAttribute="trailing" constant="8" id="Ftx-jm-ySp"/>
+                                                <constraint firstAttribute="trailing" secondItem="vOY-kI-MhU" secondAttribute="trailing" constant="8" id="Ftx-jm-ySp">
+                                                    <variation key="heightClass=regular-widthClass=regular" constant="12"/>
+                                                </constraint>
                                                 <constraint firstItem="pON-bg-pU4" firstAttribute="leading" secondItem="Bbo-DF-3A0" secondAttribute="leading" constant="8" id="Hn6-Jk-q1m"/>
                                                 <constraint firstItem="vOY-kI-MhU" firstAttribute="leading" secondItem="pON-bg-pU4" secondAttribute="trailing" constant="8" id="Pyc-kR-qXt"/>
                                                 <constraint firstItem="pON-bg-pU4" firstAttribute="centerY" secondItem="Bbo-DF-3A0" secondAttribute="centerY" id="hLl-GA-kcJ"/>
@@ -238,6 +242,7 @@
                         <color key="backgroundColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="71G-qV-8qc" firstAttribute="top" secondItem="48h-TA-l2m" secondAttribute="topMargin" id="3Oj-zI-JD3"/>
+                            <constraint firstItem="71G-qV-8qc" firstAttribute="width" secondItem="48h-TA-l2m" secondAttribute="width" multiplier="0.05" id="OJj-kT-f6L"/>
                             <constraint firstAttribute="trailing" secondItem="71G-qV-8qc" secondAttribute="trailing" id="Qhg-Lz-aaJ"/>
                             <constraint firstItem="y13-Rs-mvF" firstAttribute="top" secondItem="YwN-NE-BTV" secondAttribute="bottom" id="Sl1-ew-e9k"/>
                             <constraint firstItem="71G-qV-8qc" firstAttribute="width" secondItem="48h-TA-l2m" secondAttribute="width" multiplier="0.17" id="V90-Sg-X6G"/>
@@ -253,6 +258,17 @@
                             <constraint firstItem="BbG-Ou-31C" firstAttribute="height" secondItem="48h-TA-l2m" secondAttribute="height" multiplier="0.28" id="ypg-Cd-Gcj"/>
                             <constraint firstItem="YwN-NE-BTV" firstAttribute="top" secondItem="BbG-Ou-31C" secondAttribute="bottom" id="yw6-Uo-TcW"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="OJj-kT-f6L"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="OJj-kT-f6L"/>
+                                <exclude reference="V90-Sg-X6G"/>
+                            </mask>
+                        </variation>
                     </view>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <connections>
@@ -381,7 +397,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="School Board" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gJz-bS-az3">
                                         <rect key="frame" x="12" y="41" width="576" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stage 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="exz-za-ces">
                                         <rect key="frame" x="12" y="96" width="386" height="19.5"/>
@@ -422,17 +438,17 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Backlog" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fgu-s9-EYW">
                                         <rect key="frame" x="12" y="120.5" width="386" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="In Progress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ed6-GJ-RgA">
                                         <rect key="frame" x="71" y="195.5" width="325" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="In Review" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ypn-Ii-eRr">
                                         <rect key="frame" x="71" y="271.5" width="327" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Rpb-hn-MaF" userLabel="Create Board Btn BG">
                                         <rect key="frame" x="12" y="412.5" width="576" height="30"/>
@@ -1490,7 +1506,6 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="createStory:" destination="nmr-Rc-9kF" eventType="touchUpInside" id="0hH-c4-PqN"/>
                                             <action selector="createSubtask:" destination="D26-F9-9ms" eventType="touchUpInside" id="mKS-PF-v4r"/>
                                         </connections>
                                     </button>
@@ -1647,7 +1662,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="School Board" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bac-lJ-0kT">
                                         <rect key="frame" x="12" y="41" width="576" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stage 1:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1k-VG-B8H">
                                         <rect key="frame" x="12" y="96" width="386" height="19.5"/>
@@ -1688,17 +1703,17 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Backlog" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fA9-sz-7wG">
                                         <rect key="frame" x="12" y="120" width="386" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="In Progress" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dNY-Bo-O5N">
                                         <rect key="frame" x="71" y="195" width="325" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="In Review" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S2z-T8-UOY">
                                         <rect key="frame" x="71" y="271" width="327" height="40"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="l2Q-IZ-jcw" userLabel="Save Board Btn BG">
                                         <rect key="frame" x="12" y="372" width="576" height="30"/>
@@ -2037,16 +2052,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xq6-px-9Ht">
-                                <rect key="frame" x="15" y="486" width="570" height="30"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Create Story">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="createStory:" destination="nmr-Rc-9kF" eventType="touchUpInside" id="Gva-Js-8kR"/>
-                                </connections>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6N-MF-ogZ">
                                 <rect key="frame" x="15" y="84" width="570" height="19.5"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
@@ -2091,6 +2096,16 @@
                                     <constraint firstAttribute="height" constant="1" id="dPY-7k-hdh"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xq6-px-9Ht">
+                                <rect key="frame" x="15" y="486" width="570" height="30"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Create Story">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="createStory:" destination="nmr-Rc-9kF" eventType="touchUpInside" id="Gva-Js-8kR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -2367,7 +2382,6 @@
                                 </state>
                                 <connections>
                                     <action selector="deleteBoard:" destination="wmg-lu-tcI" eventType="touchUpInside" id="MqM-ZZ-paK"/>
-                                    <action selector="editStory:" destination="wmg-lu-tcI" eventType="touchUpInside" id="VNQ-NQ-iJN"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O82-5B-mum">
@@ -2507,7 +2521,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Weekly Exam" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="K8y-iY-VU5">
                                         <rect key="frame" x="15" y="44" width="570" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Deadline:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y8P-QZ-vFH">
                                         <rect key="frame" x="15" y="84" width="570" height="19.5"/>
@@ -2518,7 +2532,7 @@
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="2016-01-14 19:02:00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BiZ-Mb-uHL">
                                         <rect key="frame" x="15" y="109" width="570" height="30"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BA4-l5-09C">
                                         <rect key="frame" x="15" y="149" width="570" height="19.5"/>
@@ -2700,6 +2714,6 @@
         <segue reference="9Ej-dJ-voO"/>
         <segue reference="ahl-jb-78N"/>
         <segue reference="w8E-FX-6ED"/>
-        <segue reference="ici-eQ-jTC"/>
+        <segue reference="ut7-Qo-Ji7"/>
     </inferredMetricsTieBreakers>
 </document>

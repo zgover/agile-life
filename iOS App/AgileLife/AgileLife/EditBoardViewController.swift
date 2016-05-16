@@ -50,6 +50,10 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         super.setDefualtNav(nil, statusBg: true, bg: true)
+        stage1Input.delegate = self
+        stage2Input.delegate = self
+        stage3Input.delegate = self
+        boardNameInput.delegate = self
         
         // Set default values
         boardNameInput.text = CoreModels.currentBoard?.name
@@ -95,6 +99,15 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelega
             stage3Switch.on = false
             stage3Switch.enabled = false
         }
+    
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -110,7 +123,8 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelega
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true
+        view.endEditing(true)
+        return false
     }
     
     /* ==========================================
@@ -183,7 +197,7 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelega
             let alertController = UIAlertController(title: "Warning", message: "Please specify a board name.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         } else if stage1Input.text == "" {
@@ -191,7 +205,7 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelega
             let alertController = UIAlertController(title: "Warning", message: "Please specify the first stage", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         } else if stage2Switch.on && stage2Input.text == "" {
@@ -199,7 +213,7 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelega
             let alertController = UIAlertController(title: "Warning", message: "Please specify the second stage", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         } else if stage3Switch.on && stage3Input.text == "" {
@@ -207,7 +221,7 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelega
             let alertController = UIAlertController(title: "Warning", message: "Please specify the third stage.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         }
@@ -256,7 +270,7 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelega
             let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
         }
     }
@@ -272,6 +286,6 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelega
             self.revealViewController().revealToggleAnimated(true)
         }))
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 }

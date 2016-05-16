@@ -116,7 +116,11 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 45
+        if let count = CoreModels.allBoards?.count where count < 1 {
+            return 45
+        }
+        
+        return 0
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -136,7 +140,12 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 0 {
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(blSideMenuFooterIdentifier) as! BLSideMenuTableFooter
-            return header
+            
+            if let count = CoreModels.allBoards?.count where count < 1 {
+                header.viewHistoryBtn.setTitle("Please create a story", forState: .Normal)
+                
+                return header
+            }
         }
         
         return nil

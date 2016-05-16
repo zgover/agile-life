@@ -11,7 +11,7 @@ import UIKit
 private var SubtaskListCellIdentifier = "StoryListTableViewCell"
 private var SubtaskListHeaderIdentifier = "StoryListTableHeader"
 
-class StoryDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class StoryDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, ViewDelegates {
 
     /* ==========================================
     *
@@ -65,6 +65,7 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
             forHeaderFooterViewReuseIdentifier: SubtaskListHeaderIdentifier
         )
         
+        didDeleteSubtask(false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,12 +74,7 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     override func viewWillAppear(animated: Bool) {
-        CoreModels.fetchSubtasks(CoreModels.currentStory)
-        name.text = currentStory.name
-        stage.text = currentStory.stage
-        priority.text = "\(currentStory.priority!)"
-        notes.text = currentStory.notes
-        tableView.reloadData()
+        
     }
     
     /* ==========================================
@@ -157,6 +153,7 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let destination = segue.destinationViewController as? EditStoryViewController {
+            destination.delegate = self
             destination.CoreModels = self.CoreModels
         } else if let destination = segue.destinationViewController as? CreateSubtaskViewController {
             destination.CoreModels = self.CoreModels
@@ -175,4 +172,23 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
         performSegueWithIdentifier("createSubtaskSegue", sender: nil)
     }
 
+    
+    /* ==========================================
+    *
+    * MARK: View Delegates
+    *
+    * =========================================== */
+    
+    func didDeleteSubtask(didDelete: Bool) {
+        if didDelete {
+            self.navigationController?.popViewControllerAnimated(true)
+        } else {
+            CoreModels.fetchSubtasks(CoreModels.currentStory)
+            name.text = currentStory.name
+            stage.text = currentStory.stage
+            priority.text = "\(currentStory.priority!)"
+            notes.text = currentStory.notes
+            tableView.reloadData()
+        }
+    }
 }

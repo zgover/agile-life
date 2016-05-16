@@ -42,7 +42,17 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
         super.viewDidLoad()
         super.setDefualtNav(nil, statusBg: true, bg: true)
         stage.selectRow(0, inComponent: 0, animated: false)
+        name.delegate = self
         // Do any additional setup after loading the view.
+    
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -58,7 +68,8 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true
+        view.endEditing(true)
+        return false
     }
     
     /* ==========================================
@@ -115,7 +126,7 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
             let alertController = UIAlertController(title: "Warning", message: "Please specify a story name.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         } else if selectedStage == nil {
@@ -123,7 +134,7 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
             let alertController = UIAlertController(title: "Warning", message: "Please specify the stage.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         }
@@ -146,7 +157,7 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
             let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
         }
     }

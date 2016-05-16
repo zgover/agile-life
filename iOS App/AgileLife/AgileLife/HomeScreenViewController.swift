@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Crashlytics
 
 private let HomeScreenCellIdentfier = "HomeScreenTableViewCell"
 private let HomeScreenHeaderIdentifier = "HomeScreenTableViewHeader"
@@ -64,7 +65,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
             UINib(nibName: HomeScreenFooterIdentifier, bundle: nil),
             forCellReuseIdentifier: HomeScreenFooterIdentifier
         )
-        
+            
         //CoreModels.createBoard("School Board", stage_one_icon: "hourglass", stage_one_name: "Backlog", stage_two: nil, stage_two_icon: nil, stage_two_name: nil, stage_three: nil, stage_three_icon: nil, stage_three_name: nil)
     }
 
@@ -119,7 +120,7 @@ class HomeScreenViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 52
+        return 0
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

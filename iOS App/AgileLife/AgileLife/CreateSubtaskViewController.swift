@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CreateSubtaskViewController: UIViewController {
+class CreateSubtaskViewController: UIViewController, UITextFieldDelegate {
 
     /* ==========================================
     *
@@ -40,6 +40,7 @@ class CreateSubtaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         super.setDefualtNav(nil, statusBg: true, bg: true)
+        name.delegate = self
         
         let formatter = NSDateFormatter()
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
@@ -47,11 +48,33 @@ class CreateSubtaskViewController: UIViewController {
         deadline.text! = String(date!)
 
         // Do any additional setup after loading the view.
+    
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    
+    /* ==========================================
+    *
+    * MARK: TextField Delegates
+    *
+    * =========================================== */
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        view.endEditing(true)
+        return false
     }
     
     /* ==========================================
@@ -72,7 +95,7 @@ class CreateSubtaskViewController: UIViewController {
             let alertController = UIAlertController(title: "Warning", message: "Please specify a subtask name.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         } else if date == nil  {
@@ -80,7 +103,7 @@ class CreateSubtaskViewController: UIViewController {
             let alertController = UIAlertController(title: "Warning", message: "Please correct the date to the specified format MM/DD/YYYY HH:mm:ss.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         }
@@ -102,7 +125,7 @@ class CreateSubtaskViewController: UIViewController {
             let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
         }
     }

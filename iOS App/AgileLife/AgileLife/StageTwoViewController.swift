@@ -80,6 +80,9 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
     * =========================================== */
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        CoreModels.fetchAll()
+        CoreModels.fetchStories((CoreModels.currentBoard?.stage_two_name)!, _board: CoreModels!.currentBoard)
+        
         if let count = CoreModels.allStories?.count {
             return count
         }
@@ -97,6 +100,9 @@ class StageTwoViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(StoryListCellIdentifier) as? StoryListTableViewCell {
+            CoreModels.fetchAll()
+            CoreModels.fetchStories((CoreModels.currentBoard?.stage_two_name)!, _board: CoreModels!.currentBoard)
+            
             let totalComplete = CoreModels.subtaskCompletion(indexPath.row)
             let subtaskCount = CoreModels.allStories![indexPath.row].sub_tasks?.count
             cell.storyName.text = CoreModels.allStories![indexPath.row].name

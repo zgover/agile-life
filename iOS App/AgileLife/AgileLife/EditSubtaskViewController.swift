@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EditSubtaskViewController: UIViewController {
+class EditSubtaskViewController: UIViewController, UITextFieldDelegate {
     
     /* ==========================================
     *
@@ -39,6 +39,8 @@ class EditSubtaskViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        name.delegate = self
+        deadline.delegate = self
 
         // Do any additional setup after loading the view.
         name.text = CoreModels.currentSubtask!.name
@@ -49,11 +51,32 @@ class EditSubtaskViewController: UIViewController {
             completeBtn.hidden = true
             completeBtnBG.hidden = true
         }
+    
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    /* ==========================================
+    *
+    * MARK: TextField Delegates
+    *
+    * =========================================== */
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        view.endEditing(true)
+        return false
     }
     
     /* ==========================================
@@ -74,7 +97,7 @@ class EditSubtaskViewController: UIViewController {
             let alertController = UIAlertController(title: "Warning", message: "Please specify a subtask name.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         } else if date == nil  {
@@ -82,7 +105,7 @@ class EditSubtaskViewController: UIViewController {
             let alertController = UIAlertController(title: "Warning", message: "Please correct the date to the specified format MM/DD/YYYY HH:mm:ss.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         }
@@ -106,7 +129,7 @@ class EditSubtaskViewController: UIViewController {
             let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
         }
     }
@@ -120,7 +143,7 @@ class EditSubtaskViewController: UIViewController {
             self.navigationController?.popViewControllerAnimated(true)
         }))
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
     @IBAction func completeSubtask(sender: UIButton) {
@@ -131,6 +154,6 @@ class EditSubtaskViewController: UIViewController {
             self.EditSubtask(sender)
         }))
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 }

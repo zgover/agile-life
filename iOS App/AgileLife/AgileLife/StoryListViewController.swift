@@ -98,7 +98,6 @@ class StoryListViewController: UITabBarController {
         }
     }
     
-    
     /* ==========================================
     *
     * MARK: Custom Methods
@@ -108,7 +107,8 @@ class StoryListViewController: UITabBarController {
     func setStages() {
         var tabItems = self.tabBar.items! as [UITabBarItem]
         tabItems[tabItems.count - 1].title = "Complete"
-        tabItems[tabItems.count - 1].image = UIImage(named: "check-square")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        tabItems[tabItems.count - 1].image = UIImage(named: "finished-flag")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        tabItems[tabItems.count - 1].selectedImage = UIImage(named: "finished-flag")
 
         
         // Set stage 1 tabbar elemented
@@ -117,6 +117,7 @@ class StoryListViewController: UITabBarController {
         {
             tabItems[0].title = stageOneName
             tabItems[0].image = UIImage(named: stageOneImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            tabItems[0].selectedImage = UIImage(named: stageOneImage)
         }
         
         // Set stage 2 tabbar elements; if not enabled remove second stage
@@ -126,6 +127,7 @@ class StoryListViewController: UITabBarController {
         {
             tabItems[1].title = stageTwoName
             tabItems[1].image = UIImage(named: stageTwoImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            tabItems[1].selectedImage = UIImage(named: stageTwoImage)
         } else if !tabItemsSet {
             self.viewControllers?.removeAtIndex(1)
         }
@@ -137,6 +139,7 @@ class StoryListViewController: UITabBarController {
         {
             tabItems[2].title = stageThreeName
             tabItems[2].image = UIImage(named: stageThreeImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            tabItems[2].selectedImage = UIImage(named: stageThreeImage)
         } else if !tabItemsSet {
             self.viewControllers?.removeAtIndex(2)
         }

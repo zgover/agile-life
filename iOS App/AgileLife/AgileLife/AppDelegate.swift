@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,7 +36,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Status bar text color
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
+
+        if readPlist("Settings", key: "firstTimeOpening") as! NSObject == true {
+            let CoreModels = CoreDataModels()
+            
+            CoreModels.createBoard("Sample Board", stage_one_icon: "hourglass", stage_one_name: "Staging", stage_two: true, stage_two_icon: "edit-square", stage_two_name: "In Progress", stage_three: true, stage_three_icon: "users", stage_three_name: "In Review")
+            
+            CoreModels.createStory("Sample Story 1", notes: "These are sample notes...", stage: "Staging", priority: 1)
+            CoreModels.createSubtask("Sample Sub-task 1", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            CoreModels.createSubtask("Sample Sub-task 2", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            CoreModels.createSubtask("Sample Sub-task 3", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            CoreModels.createSubtask("Sample Sub-task 4", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            
+            CoreModels.createStory("Sample Story 2", notes: "These are sample notes...", stage: "Staging", priority: 2)
+            CoreModels.createSubtask("Sample Sub-task 1", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            CoreModels.createSubtask("Sample Sub-task 2", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            CoreModels.createSubtask("Sample Sub-task 3", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            CoreModels.createSubtask("Sample Sub-task 4", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = false
+            
+            CoreModels.createStory("Sample Story 3", notes: "These are sample notes...", stage: "Staging", priority: 3)
+            CoreModels.createSubtask("Sample Sub-task 1", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            CoreModels.createSubtask("Sample Sub-task 2", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            CoreModels.createSubtask("Sample Sub-task 3", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = false
+            CoreModels.createSubtask("Sample Sub-task 4", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = false
+            
+            CoreModels.createStory("Sample Story 4", notes: "These are sample notes...", stage: "Staging", priority: 4)
+            CoreModels.createSubtask("Sample Sub-task 1", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            CoreModels.createSubtask("Sample Sub-task 2", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = false
+            CoreModels.createSubtask("Sample Sub-task 3", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = false
+            CoreModels.createSubtask("Sample Sub-task 4", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = false
+            
+            writePlist("Settings", key: "firstTimeOpening", data: false)
+        }
         
+        Fabric.with([Crashlytics.self])
         return true
     }
 
@@ -120,10 +171,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // abort() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
                 let nserror = error as NSError
                 NSLog("Unresolved error \(nserror), \(nserror.userInfo)")
-                abort()
+                //abort()
             }
         }
     }
-
+    
+    func readPlist(namePlist: String, key: String) -> AnyObject{
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
+        let documentsDirectory = paths.objectAtIndex(0) as! NSString
+        let path = documentsDirectory.stringByAppendingPathComponent(namePlist + ".plist")
+        
+        var output:AnyObject = false
+        
+        if let dict = NSMutableDictionary(contentsOfFile: path) {
+            output = dict.objectForKey(key)!
+        } else {
+            if let privPath = NSBundle.mainBundle().pathForResource(namePlist, ofType: "plist") {
+                if let dict = NSMutableDictionary(contentsOfFile: privPath){
+                    output = dict.objectForKey(key)!
+                } else {
+                    output = false
+                    print("error_read")
+                }
+            } else {
+                output = false
+                print("error_read")
+            }
+        }
+        return output
+    }
+    
+    func writePlist(namePlist: String, key: String, data: AnyObject) {
+        let paths = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true) as NSArray
+        let documentsDirectory = paths.objectAtIndex(0) as! NSString
+        let path = documentsDirectory.stringByAppendingPathComponent(namePlist + ".plist")
+        
+        if let dict = NSMutableDictionary(contentsOfFile: path) {
+            dict.setObject(data, forKey: key)
+            if dict.writeToFile(path, atomically: true){
+                print("plist_write")
+            } else {
+                print("plist_write_error")
+            }
+        } else {
+            if let privPath = NSBundle.mainBundle().pathForResource(namePlist, ofType: "plist") {
+                if let dict = NSMutableDictionary(contentsOfFile: privPath){
+                    dict.setObject(data, forKey: key)
+                    if dict.writeToFile(path, atomically: true) {
+                        print("plist_write")
+                    } else {
+                        print("plist_write_error")
+                    }
+                } else {
+                    print("plist_write")
+                }
+            } else {
+                print("error_find_plist")
+            }
+        }
+    }
 }
 

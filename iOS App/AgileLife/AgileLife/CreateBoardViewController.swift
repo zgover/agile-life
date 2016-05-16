@@ -50,11 +50,24 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         super.setDefualtNav(nil, statusBg: true, bg: true)
+        stage1Input.delegate = self
+        stage2Input.delegate = self
+        stage3Input.delegate = self
+        boardNameInput.delegate = self
 
         // Set default values
         stage1Icon.image = UIImage(named: stage1IconName)
         stage2Icon.image = UIImage(named: stage2IconName)
         stage3Icon.image = UIImage(named: stage3IconName)
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,7 +83,8 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true
+        view.endEditing(true)
+        return false
     }
     
     /* ==========================================
@@ -141,7 +155,7 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
             let alertController = UIAlertController(title: "Warning", message: "Please specify a board name.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         } else if stage1Input.text == "" {
@@ -149,7 +163,7 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
             let alertController = UIAlertController(title: "Warning", message: "Please specify the first stage", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         } else if stage2Switch.on && stage2Input.text == "" {
@@ -157,7 +171,7 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
             let alertController = UIAlertController(title: "Warning", message: "Please specify the second stage, or disable it.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         } else if stage3Switch.on && stage3Input.text == "" {
@@ -165,7 +179,7 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
             let alertController = UIAlertController(title: "Warning", message: "Please specify the third stage, or disable it.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         } else {
@@ -193,7 +207,7 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
                         let alertController = UIAlertController(title: "Warning", message: "Please make sure they're no duplicate names.", preferredStyle: UIAlertControllerStyle.Alert)
                         alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
                         
-                        self.presentViewController(alertController, animated: true, completion: nil)
+                        presentViewController(alertController, animated: true, completion: nil)
                         
                         return
                     }
@@ -220,7 +234,7 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
             let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
         }
     }

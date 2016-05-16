@@ -175,11 +175,12 @@ class CoreDataModels {
         newBoard.stage_three_name = stage_three_name
         
         // Default stage 4 as we will be utilizing it for the app
-        newBoard.stage_four_icon = "check-square"
+        newBoard.stage_four_icon = "finished-flag"
         newBoard.stage_four_name = "Completed"
         
         do {
             try managedContext.save()
+            self.currentBoard = newBoard
             return .Success
         } catch {
             print("Error creating new board")
@@ -201,6 +202,7 @@ class CoreDataModels {
         
         do {
             try managedContext.save()
+            self.currentStory = newStory
             return .Success
         } catch {
             print("Error creating new story")
@@ -221,6 +223,7 @@ class CoreDataModels {
         
         do {
             try managedContext.save()
+            self.currentSubtask = newSubtask
             return .Success
         } catch {
             print("Error creating new subtask")
@@ -337,16 +340,23 @@ class CoreDataModels {
         fetchRequest.predicate = NSPredicate(format: "id = %@", currentBoard!.id!)
         
         do {
-            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Boards],
-                let selectedEntity = result.first
-            {
-                //print(result)
-                print("Deleted Board")
-                
-                if result.count > 0 {                    
+            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Boards] {
+                if result.count > 0 {
+                    for board in result {
+                        self.currentBoard = board
+                        
+                        for story in self.allStories! {
+                            self.fetchSubtasks(story)
+                            self.currentStory = story
+                            deleteSubtask(true)
+                            deleteStory(true)
+                        }
+                        
+                        managedContext.deleteObject(board)
+                    }
                     // delete and return
-                    managedContext.deleteObject(selectedEntity)
                     try managedContext.save()
+                    print("Deleted Board")
                     return .Success
                 } else {
                     return .Error
@@ -377,8 +387,13 @@ class CoreDataModels {
                 if result.count > 0 {
                     // delete and return
                     for item in result {
+                        self.fetchSubtasks(item)
+                        self.currentStory = item
+                        self.deleteSubtask(true)
                         managedContext.deleteObject(item)
                     }
+                    
+                    try managedContext.save()
                     
                     return .Success
                 } else {
@@ -412,6 +427,8 @@ class CoreDataModels {
                     for item in result {
                         managedContext.deleteObject(item)
                     }
+                    
+                    try managedContext.save()
                     
                     return .Success
                 } else {
@@ -482,32 +499,33 @@ class CoreDataModels {
         var totalCount:Float = 0.0
         var completedSubtasks:Float = 0.0
         
-        if let story = self.allStories?[storyIndex] {
-            // Set default values for CoreData properties
-            let fetchRequest = NSFetchRequest(entityName: "Subtasks")
-            fetchRequest.predicate = NSPredicate(format: "story = %@", story)
-            
-            do {
-                if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
-                    for task in result {
-                        totalCount = totalCount + 1.0
-                        
-                        if task.completed == true {
-                            completedSubtasks = completedSubtasks + 1.0
+        if storyIndex < self.allStories?.count {
+            if let story = self.allStories?[storyIndex] {
+                // Set default values for CoreData properties
+                let fetchRequest = NSFetchRequest(entityName: "Subtasks")
+                fetchRequest.predicate = NSPredicate(format: "story = %@", story)
+                
+                do {
+                    if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
+                        for task in result {
+                            totalCount = totalCount + 1.0
+                            
+                            if task.completed == true {
+                                completedSubtasks = completedSubtasks + 1.0
+                            }
                         }
+                    } else {
+                        print("No subtasks")
+                        return 0.0
                     }
-                } else {
-                    print("No subtasks")
+                } catch {
+                    print("Failed loading the subtasks")
                     return 0.0
                 }
-            } catch {
-                print("Failed loading the subtasks")
-                return 0.0
+                
+                return self.calculateCompletionPercentage(totalCount, completedSubtasks: completedSubtasks)
             }
-            
-            return self.calculateCompletionPercentage(totalCount, completedSubtasks: completedSubtasks)
         }
-        
         return 0.0
     }
     

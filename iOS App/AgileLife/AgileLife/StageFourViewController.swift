@@ -65,7 +65,7 @@ class StageFourViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.reloadData()
         
         // Make sure to update the tabbar icon if they have recently edited the board icons
-        self.tabBarItem.image = UIImage(named: CoreModels.currentBoard!.stage_four_icon!)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.tabBarItem.image = UIImage(named: "finished-flag")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,6 +80,9 @@ class StageFourViewController: UIViewController, UITableViewDataSource, UITableV
     * =========================================== */
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        CoreModels.fetchAll()
+        CoreModels.fetchStories((CoreModels.currentBoard?.stage_four_name)!, _board: CoreModels!.currentBoard)
+        
         if let count = CoreModels.allStories?.count {
             return count
         }
@@ -97,6 +100,9 @@ class StageFourViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(StoryListCellIdentifier) as? StoryListTableViewCell {
+            CoreModels.fetchAll()
+            CoreModels.fetchStories((CoreModels.currentBoard?.stage_four_name)!, _board: CoreModels!.currentBoard)
+            
             let totalComplete = CoreModels.subtaskCompletion(indexPath.row)
             let subtaskCount = CoreModels.allStories![indexPath.row].sub_tasks?.count
             cell.storyName.text = CoreModels.allStories![indexPath.row].name

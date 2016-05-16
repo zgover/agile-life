@@ -22,6 +22,9 @@
 		B6268ADF1CCA6E1F00486ECF /* SubtaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268ADE1CCA6E1F00486ECF /* SubtaskDetailViewController.swift */; };
 		B6268AE11CCBFB6800486ECF /* EditStoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AE01CCBFB6800486ECF /* EditStoryViewController.swift */; };
 		B6268AE31CCF8B2100486ECF /* EditSubtaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6268AE21CCF8B2100486ECF /* EditSubtaskViewController.swift */; };
+		B6AA72321CE92BA200551F67 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6AA72311CE92BA200551F67 /* Settings.plist */; };
+		B6AA72361CE9453E00551F67 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6AA72341CE9453E00551F67 /* Fabric.framework */; };
+		B6AA72371CE9453E00551F67 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6AA72351CE9453E00551F67 /* Crashlytics.framework */; };
 		B6C986BC1CC6A11100B60D54 /* StoryListNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */; };
 		B6E1F6B01CD578C700C45E06 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E1F6AF1CD578C700C45E06 /* MessageUI.framework */; };
 		B6E614491CBC5381003FB446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E614481CBC5381003FB446 /* AppDelegate.swift */; };
@@ -83,6 +86,9 @@
 		B6268ADE1CCA6E1F00486ECF /* SubtaskDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubtaskDetailViewController.swift; sourceTree = "<group>"; };
 		B6268AE01CCBFB6800486ECF /* EditStoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditStoryViewController.swift; sourceTree = "<group>"; };
 		B6268AE21CCF8B2100486ECF /* EditSubtaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSubtaskViewController.swift; sourceTree = "<group>"; };
+		B6AA72311CE92BA200551F67 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
+		B6AA72341CE9453E00551F67 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../Fabric.framework; sourceTree = "<group>"; };
+		B6AA72351CE9453E00551F67 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../Crashlytics.framework; sourceTree = "<group>"; };
 		B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListNavigationViewController.swift; sourceTree = "<group>"; };
 		B6E1F6AF1CD578C700C45E06 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B6E614451CBC5381003FB446 /* Agile Life.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile Life.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +144,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				B6E1F6B01CD578C700C45E06 /* MessageUI.framework in Frameworks */,
+				B6AA72371CE9453E00551F67 /* Crashlytics.framework in Frameworks */,
+				B6AA72361CE9453E00551F67 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,6 +213,8 @@
 		B6E1F6AC1CD5787A00C45E06 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B6AA72341CE9453E00551F67 /* Fabric.framework */,
+				B6AA72351CE9453E00551F67 /* Crashlytics.framework */,
 				B6E1F6AF1CD578C700C45E06 /* MessageUI.framework */,
 			);
 			name = Frameworks;
@@ -241,6 +251,7 @@
 				B6E614481CBC5381003FB446 /* AppDelegate.swift */,
 				B6E614541CBC5381003FB446 /* LaunchScreen.storyboard */,
 				B6E614571CBC5381003FB446 /* Info.plist */,
+				B6AA72311CE92BA200551F67 /* Settings.plist */,
 				B6E6144F1CBC5381003FB446 /* AgileLife.xcdatamodeld */,
 			);
 			path = AgileLife;
@@ -368,6 +379,7 @@
 				B6E614411CBC5381003FB446 /* Sources */,
 				B6E614421CBC5381003FB446 /* Frameworks */,
 				B6E614431CBC5381003FB446 /* Resources */,
+				B6AA72331CE9450800551F67 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -421,6 +433,7 @@
 				B6268ACC1CC7980000486ECF /* StoryListTableViewCell.xib in Resources */,
 				B6F9AC1C1CC307AB006CF314 /* HomeScreenTableViewFooter.xib in Resources */,
 				B6E614561CBC5381003FB446 /* LaunchScreen.storyboard in Resources */,
+				B6AA72321CE92BA200551F67 /* Settings.plist in Resources */,
 				B6E6147A1CC01586003FB446 /* ALSideMenuTableHeader.xib in Resources */,
 				B6E614531CBC5381003FB446 /* Assets.xcassets in Resources */,
 				B6E614821CC01B30003FB446 /* BLSideMenuTableFooter.xib in Resources */,
@@ -431,6 +444,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B6AA72331CE9450800551F67 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run c0505a318b4cf4686fd4723e454b2a5867909ca0 088db17e2600dce903838005bf66725bc14f7666c40fe0b885f6fd7855ff607c";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		B6E614411CBC5381003FB446 /* Sources */ = {
@@ -527,7 +556,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -597,6 +626,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = AgileLife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.goverzachary.agilelife;
@@ -612,6 +645,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = AgileLife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.goverzachary.agilelife;

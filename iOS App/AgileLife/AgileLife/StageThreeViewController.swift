@@ -65,7 +65,9 @@ class StageThreeViewController: UIViewController, UITableViewDataSource, UITable
         tableView.reloadData()
         
         // Make sure to update the tabbar icon if they have recently edited the board icons
-        self.tabBarItem.image = UIImage(named: CoreModels.currentBoard!.stage_three_icon!)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        //print(CoreModels.currentBoard!.stage_three_icon!)
+        //self.tabBarItem.image = UIImage(named: CoreModels.currentBoard!.stage_three_icon!)
+        //self.tabBarItem.title = "hello"
     }
     
     override func didReceiveMemoryWarning() {
@@ -80,6 +82,9 @@ class StageThreeViewController: UIViewController, UITableViewDataSource, UITable
     * =========================================== */
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        CoreModels.fetchAll()
+        CoreModels.fetchStories((CoreModels.currentBoard?.stage_three_name)!, _board: CoreModels!.currentBoard)
+        
         if let count = CoreModels.allStories?.count {
             return count
         }
@@ -97,6 +102,9 @@ class StageThreeViewController: UIViewController, UITableViewDataSource, UITable
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(StoryListCellIdentifier) as? StoryListTableViewCell {
+            CoreModels.fetchAll()
+            CoreModels.fetchStories((CoreModels.currentBoard?.stage_three_name)!, _board: CoreModels!.currentBoard)
+            
             let totalComplete = CoreModels.subtaskCompletion(indexPath.row)
             let subtaskCount = CoreModels.allStories![indexPath.row].sub_tasks?.count
             cell.storyName.text = CoreModels.allStories![indexPath.row].name

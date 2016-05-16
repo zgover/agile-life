@@ -31,6 +31,7 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     var selectedStage:String!
     var stageTotalCount:Int!
     var stageCount:Int = 0
+    var delegate:ViewDelegates!
     
     /* ==========================================
     *
@@ -41,11 +42,21 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     override func viewDidLoad() {
         super.viewDidLoad()
         super.setDefualtNav(nil, statusBg: true, bg: true)
+        name.delegate = self
         // Do any additional setup after loading the view.
         
         name.text = CoreModels.currentStory!.name
         notes.text = CoreModels.currentStory!.notes
         priority.selectedSegmentIndex = Int(CoreModels.currentStory!.priority!) - 1
+    
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tap)
+    }
+    
+    //Calls this function when the tap is recognized.
+    func dismissKeyboard() {
+        //Causes the view (or one of its embedded text fields) to resign the first responder status.
+        view.endEditing(true)
     }
     
     override func didReceiveMemoryWarning() {
@@ -61,7 +72,8 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        return true
+        view.endEditing(true)
+        return false
     }
     
     /* ==========================================
@@ -119,7 +131,7 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
             let alertController = UIAlertController(title: "Warning", message: "Please specify a story name.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         } else if selectedStage == nil {
@@ -127,7 +139,7 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
             let alertController = UIAlertController(title: "Warning", message: "Please specify the stage.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
             return
         }
@@ -152,7 +164,7 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
             let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
             alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
             
-            self.presentViewController(alertController, animated: true, completion: nil)
+            presentViewController(alertController, animated: true, completion: nil)
             
         }
     }
@@ -162,9 +174,10 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: { (UIAlertAction) -> Void in
             self.CoreModels.deleteStory(false)
+            self.delegate.didDeleteSubtask!(true)
             self.navigationController?.popViewControllerAnimated(true)
         }))
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        presentViewController(alertController, animated: true, completion: nil)
     }
 }
