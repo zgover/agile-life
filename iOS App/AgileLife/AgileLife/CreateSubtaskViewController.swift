@@ -17,7 +17,7 @@ class CreateSubtaskViewController: UIViewController, UITextFieldDelegate {
     * =========================================== */
     
     @IBOutlet weak var name: UITextField!
-    @IBOutlet weak var deadline: UITextField!
+    @IBOutlet weak var deadline: UIDatePicker!
     @IBOutlet weak var subtaskDescription: UITextView!
     
     /* ==========================================
@@ -42,10 +42,7 @@ class CreateSubtaskViewController: UIViewController, UITextFieldDelegate {
         super.setDefualtNav(nil, statusBg: true, bg: true)
         name.delegate = self
         
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-        let date = formatter.dateFromString("2015-07-27 19:29:50 +0000") // Returns "Jul 27, 2015, 12:29 PM" PST
-        deadline.text! = String(date!)
+        deadline.date = NSDate()
 
         // Do any additional setup after loading the view.
     
@@ -85,11 +82,6 @@ class CreateSubtaskViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func createSubtask(sender: UIButton) {
         // Notify the user if there is anything wrong with the required fields.
-        //let strTime = "2015-07-27 19:29:50"
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-        let date = formatter.dateFromString(deadline.text!)
-        
         if name.text == "" {
             // Alert the user if this fails
             let alertController = UIAlertController(title: "Warning", message: "Please specify a subtask name.", preferredStyle: UIAlertControllerStyle.Alert)
@@ -98,19 +90,21 @@ class CreateSubtaskViewController: UIViewController, UITextFieldDelegate {
             presentViewController(alertController, animated: true, completion: nil)
             
             return
-        } else if date == nil  {
-            // Alert the user if this is true
-            let alertController = UIAlertController(title: "Warning", message: "Please correct the date to the specified format MM/DD/YYYY HH:mm:ss.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-            
-            presentViewController(alertController, animated: true, completion: nil)
-            
-            return
         }
+        
+//        else if deadline.date == nil  {
+//            // Alert the user if this is true
+//            let alertController = UIAlertController(title: "Warning", message: "Please correct the date to the specified format MM/DD/YYYY HH:mm:ss.", preferredStyle: UIAlertControllerStyle.Alert)
+//            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+//            
+//            presentViewController(alertController, animated: true, completion: nil)
+//            
+//            return
+//        }
         
         // Create the board
         let creationResult = CoreModels.createSubtask(
-            name.text!, deadline: date!, description: subtaskDescription.text
+            name.text!, deadline: deadline.date, description: subtaskDescription.text
         )
         
         // Dismiss view controller or notify the user based in the returned result of creating a board.
