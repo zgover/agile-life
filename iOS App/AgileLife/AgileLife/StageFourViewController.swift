@@ -128,7 +128,7 @@ class StageFourViewController: UIViewController, UITableViewDataSource, UITableV
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(StoryListHeaderIdentifier) as! StoryListTableHeader
-        header.createStory.addTarget(self, action: Selector("addStory"), forControlEvents: .TouchUpInside)
+        header.createStory.addTarget(self, action: #selector(StageFourViewController.addStory), forControlEvents: .TouchUpInside)
         
         return header
     }

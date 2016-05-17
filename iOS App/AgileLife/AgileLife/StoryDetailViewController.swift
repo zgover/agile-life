@@ -74,7 +74,12 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     }
     
     override func viewWillAppear(animated: Bool) {
-        
+        CoreModels.fetchSubtasks(CoreModels.currentStory)
+        name.text = currentStory.name
+        stage.text = currentStory.stage
+        priority.text = "\(currentStory.priority!)"
+        notes.text = currentStory.notes
+        tableView.reloadData()
     }
     
     /* ==========================================
@@ -139,7 +144,7 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SubtaskListHeaderIdentifier) as! StoryListTableHeader
-        header.createStory.addTarget(self, action: Selector("addSubtask"), forControlEvents: .TouchUpInside)
+        header.createStory.addTarget(self, action: #selector(StoryDetailViewController.addSubtask), forControlEvents: .TouchUpInside)
         header.header.text = "Sub-tasks"
         
         return header

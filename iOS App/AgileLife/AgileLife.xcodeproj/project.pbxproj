@@ -402,7 +402,7 @@
 				TargetAttributes = {
 					B6E614441CBC5381003FB446 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 9QBC7ZE37G;
+						DevelopmentTeam = 4W3G866J7C;
 					};
 				};
 			};
@@ -633,7 +633,7 @@
 				);
 				INFOPLIST_FILE = AgileLife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.goverzachary.agilelife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.goverzachary.agilel;
 				PRODUCT_NAME = "Agile Life";
 				SWIFT_OBJC_BRIDGING_HEADER = "AgileLife/AgileLife-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -652,7 +652,7 @@
 				);
 				INFOPLIST_FILE = AgileLife/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.goverzachary.agilelife;
+				PRODUCT_BUNDLE_IDENTIFIER = com.goverzachary.agilel;
 				PRODUCT_NAME = "Agile Life";
 				SWIFT_OBJC_BRIDGING_HEADER = "AgileLife/AgileLife-Bridging-Header.h";
 			};

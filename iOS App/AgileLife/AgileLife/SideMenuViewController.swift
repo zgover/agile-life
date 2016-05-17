@@ -23,7 +23,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     * =========================================== */
     
     @IBOutlet weak var tableView: UITableView!
-    
+    @IBOutlet weak var percentComplete: UILabel!
     
     /* ==========================================
     *
@@ -66,6 +66,9 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
             UINib(nibName: alSideMenuHeaderIdentifier, bundle: nil),
             forHeaderFooterViewReuseIdentifier: alSideMenuHeaderIdentifier
         )
+        
+        let totalComplete       = CoreModels.boardCompletion()
+        percentComplete.text    = "\(Int(totalComplete * 100))%"
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -126,7 +129,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
             let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(blSideMenuHeaderIdentifier) as! BLSideMenuTableHeader
-            header.addBoardBtn.addTarget(self, action: Selector("addBoard"), forControlEvents: .TouchUpInside)
+            header.addBoardBtn.addTarget(self, action: #selector(SideMenuViewController.addBoard), forControlEvents: .TouchUpInside)
             header.headerLabel.text = "Boards"
             return header
         } else if section == 1 {

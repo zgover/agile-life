@@ -49,7 +49,7 @@ class CreateSubtaskViewController: UIViewController, UITextFieldDelegate {
 
         // Do any additional setup after loading the view.
     
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateSubtaskViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     

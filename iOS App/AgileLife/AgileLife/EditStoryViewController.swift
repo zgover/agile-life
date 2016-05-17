@@ -49,7 +49,7 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
         notes.text = CoreModels.currentStory!.notes
         priority.selectedSegmentIndex = Int(CoreModels.currentStory!.priority!) - 1
     
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditStoryViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     

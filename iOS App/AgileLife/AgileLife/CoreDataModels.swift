@@ -548,6 +548,31 @@ class CoreDataModels {
         return self.calculateCompletionPercentage(totalCount, completedSubtasks: completedSubtasks)
     }
     
+    func boardCompletion() -> Float {
+        var totalCount:Float = 0.0
+        var completedSubtasks:Float = 0.0
+        
+        if self.allBoards?.count > 0 {
+            for board in self.allBoards! {
+                fetchStories(nil, _board: board)
+                
+                for story in self.allStories! {
+                    let tasks = story.sub_tasks as! NSMutableSet
+                    
+                    for task in tasks {
+                        totalCount += 1.0
+                        
+                        if String(task.valueForKey("completed")!) == "1" {
+                            completedSubtasks += 1.0
+                        }
+                    }
+                }
+            }
+        }
+        
+        return self.calculateCompletionPercentage(totalCount, completedSubtasks: completedSubtasks)
+    }
+    
     private func calculateCompletionPercentage(totalCount: Float, completedSubtasks: Float) -> Float {
         if totalCount == completedSubtasks && completedSubtasks != 0.0 {
             return 1.0

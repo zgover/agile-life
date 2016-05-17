@@ -52,7 +52,7 @@ class EditSubtaskViewController: UIViewController, UITextFieldDelegate {
             completeBtnBG.hidden = true
         }
     
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditSubtaskViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     

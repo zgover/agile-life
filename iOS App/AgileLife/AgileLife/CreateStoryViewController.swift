@@ -45,7 +45,7 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
         name.delegate = self
         // Do any additional setup after loading the view.
     
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateStoryViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     

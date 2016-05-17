@@ -40,46 +40,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if readPlist("Settings", key: "firstTimeOpening") as! NSObject == true {
             let CoreModels = CoreDataModels()
             
-            CoreModels.createBoard("Sample Board", stage_one_icon: "hourglass", stage_one_name: "Staging", stage_two: true, stage_two_icon: "edit-square", stage_two_name: "In Progress", stage_three: true, stage_three_icon: "users", stage_three_name: "In Review")
+            CoreModels.createBoard("Recipes", stage_one_icon: "folder", stage_one_name: "All Recipes", stage_two: true, stage_two_icon: "folder-open", stage_two_name: "Grocery List", stage_three: true, stage_three_icon: "cart", stage_three_name: "In Cart")
             
-            CoreModels.createStory("Sample Story 1", notes: "These are sample notes...", stage: "Staging", priority: 1)
-            CoreModels.createSubtask("Sample Sub-task 1", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.createStory("Recipe 1", notes: "These are sample notes...", stage: "All Recipes", priority: 1)
+            CoreModels.createSubtask("Ingredient 1", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = true
-            CoreModels.createSubtask("Sample Sub-task 2", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.createSubtask("Ingredient 2", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = true
-            CoreModels.createSubtask("Sample Sub-task 3", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.createSubtask("Ingredient 3", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = true
-            CoreModels.createSubtask("Sample Sub-task 4", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.createSubtask("Ingredient 4", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = true
             
-            CoreModels.createStory("Sample Story 2", notes: "These are sample notes...", stage: "Staging", priority: 2)
-            CoreModels.createSubtask("Sample Sub-task 1", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.createStory("Recipe 2", notes: "These are sample notes...", stage: "All Recipes", priority: 2)
+            CoreModels.createSubtask("Ingredient 1", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = true
-            CoreModels.createSubtask("Sample Sub-task 2", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.createSubtask("Ingredient 2", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = true
-            CoreModels.createSubtask("Sample Sub-task 3", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.createSubtask("Ingredient 3", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = true
-            CoreModels.createSubtask("Sample Sub-task 4", deadline: NSDate(), description: "This is a sample description...")
-            CoreModels.currentSubtask?.completed = false
-            
-            CoreModels.createStory("Sample Story 3", notes: "These are sample notes...", stage: "Staging", priority: 3)
-            CoreModels.createSubtask("Sample Sub-task 1", deadline: NSDate(), description: "This is a sample description...")
-            CoreModels.currentSubtask?.completed = true
-            CoreModels.createSubtask("Sample Sub-task 2", deadline: NSDate(), description: "This is a sample description...")
-            CoreModels.currentSubtask?.completed = true
-            CoreModels.createSubtask("Sample Sub-task 3", deadline: NSDate(), description: "This is a sample description...")
-            CoreModels.currentSubtask?.completed = false
-            CoreModels.createSubtask("Sample Sub-task 4", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.createSubtask("Ingredient 4", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = false
             
-            CoreModels.createStory("Sample Story 4", notes: "These are sample notes...", stage: "Staging", priority: 4)
-            CoreModels.createSubtask("Sample Sub-task 1", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.createStory("Recipe 3", notes: "These are sample notes...", stage: "All Recipes", priority: 3)
+            CoreModels.createSubtask("Ingredient 1", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = true
-            CoreModels.createSubtask("Sample Sub-task 2", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.createSubtask("Ingredient 2", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            CoreModels.createSubtask("Ingredient 3", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = false
-            CoreModels.createSubtask("Sample Sub-task 3", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.createSubtask("Ingredient 4", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = false
-            CoreModels.createSubtask("Sample Sub-task 4", deadline: NSDate(), description: "This is a sample description...")
+            
+            CoreModels.createStory("Recipe 4", notes: "These are sample notes...", stage: "All Recipes", priority: 4)
+            CoreModels.createSubtask("Ingredient 1", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = true
+            CoreModels.createSubtask("Ingredient 2", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = false
+            CoreModels.createSubtask("Ingredient 3", deadline: NSDate(), description: "This is a sample description...")
+            CoreModels.currentSubtask?.completed = false
+            CoreModels.createSubtask("Ingredient 4", deadline: NSDate(), description: "This is a sample description...")
             CoreModels.currentSubtask?.completed = false
             
             writePlist("Settings", key: "firstTimeOpening", data: false)

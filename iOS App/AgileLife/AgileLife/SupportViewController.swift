@@ -53,6 +53,9 @@ class SupportViewController: UIViewController, MFMailComposeViewControllerDelega
             print("Mail Error: \(error)")
         } else {
             dismissViewControllerAnimated(true, completion: nil)
+            self.navigationItem.hidesBackButton = true
+            self.view.userInteractionEnabled = false
+            self.menuBtn.enabled = false
             self.revealViewController().revealToggleAnimated(true)
         }
     }

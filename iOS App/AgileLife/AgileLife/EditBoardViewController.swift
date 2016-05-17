@@ -100,7 +100,7 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelega
             stage3Switch.enabled = false
         }
     
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditBoardViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     
@@ -243,7 +243,6 @@ class EditBoardViewController: UIViewController, UITextFieldDelegate, ViewDelega
             case stage3:
                 story.setValue(String(UTF8String: stage3Input.text!)! as AnyObject!, forKey: "stage")
             default:
-                print("error")
                 break
             }
         }

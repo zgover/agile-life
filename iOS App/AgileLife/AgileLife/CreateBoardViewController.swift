@@ -60,7 +60,7 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
         stage2Icon.image = UIImage(named: stage2IconName)
         stage3Icon.image = UIImage(named: stage3IconName)
         
-        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(CreateBoardViewController.dismissKeyboard))
         view.addGestureRecognizer(tap)
     }
     
@@ -198,7 +198,7 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
                     
                     for (searchText, on) in allFields {
                         if on && currentText == searchText {
-                            dupCount++
+                            dupCount += 1
                         }
                     }
                     
