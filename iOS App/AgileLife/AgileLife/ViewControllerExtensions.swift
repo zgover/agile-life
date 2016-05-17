@@ -37,7 +37,7 @@ extension UIViewController {
         if let btn = menuBtn where revealViewController() != nil {
             let deviceWidth = UIScreen.mainScreen().bounds.size.width
             let sideMenuWidth = deviceWidth * 0.8
-            print(revealViewController().rearViewRevealOverdraw)
+            
             revealViewController().rearViewRevealWidth = sideMenuWidth
             revealViewController().rearViewRevealOverdraw = 0
             
