@@ -208,7 +208,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="47.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pON-bg-pU4">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Support" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pON-bg-pU4">
                                                     <rect key="frame" x="8" y="14" width="566" height="19.5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="19.5" id="V0y-Kh-Cr6"/>
@@ -290,7 +290,6 @@
                         <outlet property="percentComplete" destination="Csh-TC-KBq" id="bw2-vG-o5k"/>
                         <outlet property="tableView" destination="YwN-NE-BTV" id="Z7T-Hh-mv4"/>
                         <segue destination="H26-Cg-HyB" kind="custom" identifier="boardDetailSegue" customClass="SWRevealViewControllerSeguePushController" id="gZF-3l-C5Z"/>
-                        <segue destination="Xh2-Kd-e7I" kind="custom" identifier="donateSegue" customClass="SWRevealViewControllerSeguePushController" id="5Uf-4g-Jlb"/>
                         <segue destination="zgp-hr-ptX" kind="custom" identifier="aboutSegue" customClass="SWRevealViewControllerSeguePushController" id="xbK-m8-bFz"/>
                         <segue destination="5UP-GN-DZN" kind="custom" identifier="supportSegue" customClass="SWRevealViewControllerSeguePushController" id="Ayo-8p-ZUK"/>
                         <segue destination="But-G2-0iR" kind="custom" identifier="legalSegue" customClass="SWRevealViewControllerSeguePushController" id="A9k-bQ-o5E"/>
@@ -970,74 +969,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cXs-wB-85U" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1400" y="619"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="4Nx-4T-LAs">
-            <objects>
-                <navigationController id="Xh2-Kd-e7I" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wE8-lX-vUi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="46u-xr-97C" kind="relationship" relationship="rootViewController" id="ta8-tT-DJH"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="CKW-gx-Kvc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1400" y="1351"/>
-        </scene>
-        <!--Donate View-->
-        <scene sceneID="Axt-iF-b16">
-            <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="46u-xr-97C" userLabel="Donate View" customClass="DonateViewController" customModule="Agile_Life" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="zBm-1Z-F1Y"/>
-                        <viewControllerLayoutGuide type="bottom" id="aZK-P0-QeD"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Fpu-1u-7vS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXQ-ug-GiV">
-                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
-                                <subviews>
-                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xru-G1-2d9">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
-                                    </webView>
-                                </subviews>
-                                <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="Xru-G1-2d9" secondAttribute="bottom" id="K2p-A2-xLl"/>
-                                    <constraint firstItem="Xru-G1-2d9" firstAttribute="top" secondItem="DXQ-ug-GiV" secondAttribute="top" id="RXA-Gr-Y14"/>
-                                    <constraint firstAttribute="trailing" secondItem="Xru-G1-2d9" secondAttribute="trailing" id="ZS8-Q9-0ZP"/>
-                                    <constraint firstItem="Xru-G1-2d9" firstAttribute="leading" secondItem="DXQ-ug-GiV" secondAttribute="leading" id="yfR-W8-ovB"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" red="0.14117647059999999" green="0.4039215686" blue="0.39607843139999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="DXQ-ug-GiV" firstAttribute="leading" secondItem="Fpu-1u-7vS" secondAttribute="leading" id="MYC-Wq-Pyg"/>
-                            <constraint firstItem="DXQ-ug-GiV" firstAttribute="top" secondItem="zBm-1Z-F1Y" secondAttribute="bottom" id="bnU-VL-cph"/>
-                            <constraint firstItem="aZK-P0-QeD" firstAttribute="top" secondItem="DXQ-ug-GiV" secondAttribute="bottom" id="qMl-fz-QSX"/>
-                            <constraint firstAttribute="trailing" secondItem="DXQ-ug-GiV" secondAttribute="trailing" id="y5w-ft-qP1"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Donate" id="teg-1S-Bk7">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="dG1-lV-Jaz"/>
-                        <barButtonItem key="leftBarButtonItem" image="HamburgerIcon" id="Zkh-u1-VBT">
-                            <color key="tintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                    </navigationItem>
-                    <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
-                    <connections>
-                        <outlet property="menuBtn" destination="Zkh-u1-VBT" id="Ucl-Ji-qBZ"/>
-                        <outlet property="webView" destination="Xru-G1-2d9" id="5NU-3H-p4u"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Prp-xp-b5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2193" y="1351"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bda-cB-yJn">

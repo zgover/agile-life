@@ -31,7 +31,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     *
     * =========================================== */
     
-    let menuItems:[String] = ["Donate", "About", "Support", "Legal"]
+    let menuItems:[String] = ["About", "Support", "Legal"]
     var directToCreateBoard = Bool()
     var CoreModels = CoreDataModels()
     

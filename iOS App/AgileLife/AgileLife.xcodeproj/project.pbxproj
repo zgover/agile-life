@@ -51,7 +51,6 @@
 		B6F9AC0C1CC2FDAB006CF314 /* HomeScreenTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9AC0B1CC2FDAB006CF314 /* HomeScreenTableViewHeader.swift */; };
 		B6F9AC101CC2FE56006CF314 /* HomeScreenTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = B6F9AC0F1CC2FE56006CF314 /* HomeScreenTableViewHeader.xib */; };
 		B6F9AC121CC3060F006CF314 /* StoryListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9AC111CC3060F006CF314 /* StoryListViewController.swift */; };
-		B6F9AC141CC3064B006CF314 /* DonateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9AC131CC3064B006CF314 /* DonateViewController.swift */; };
 		B6F9AC161CC3065A006CF314 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9AC151CC3065A006CF314 /* AboutViewController.swift */; };
 		B6F9AC181CC30664006CF314 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9AC171CC30664006CF314 /* SupportViewController.swift */; };
 		B6F9AC1A1CC3066D006CF314 /* LegalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6F9AC191CC3066D006CF314 /* LegalViewController.swift */; };
@@ -119,7 +118,6 @@
 		B6F9AC0B1CC2FDAB006CF314 /* HomeScreenTableViewHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeScreenTableViewHeader.swift; sourceTree = "<group>"; };
 		B6F9AC0F1CC2FE56006CF314 /* HomeScreenTableViewHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeScreenTableViewHeader.xib; sourceTree = "<group>"; };
 		B6F9AC111CC3060F006CF314 /* StoryListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListViewController.swift; sourceTree = "<group>"; };
-		B6F9AC131CC3064B006CF314 /* DonateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DonateViewController.swift; sourceTree = "<group>"; };
 		B6F9AC151CC3065A006CF314 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		B6F9AC171CC30664006CF314 /* SupportViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		B6F9AC191CC3066D006CF314 /* LegalViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegalViewController.swift; sourceTree = "<group>"; };
@@ -192,7 +190,6 @@
 		B6268AD41CC984CE00486ECF /* Static Screens */ = {
 			isa = PBXGroup;
 			children = (
-				B6F9AC131CC3064B006CF314 /* DonateViewController.swift */,
 				B6F9AC151CC3065A006CF314 /* AboutViewController.swift */,
 				B6F9AC171CC30664006CF314 /* SupportViewController.swift */,
 				B6F9AC191CC3066D006CF314 /* LegalViewController.swift */,
@@ -471,7 +468,6 @@
 				B6F9AC4F1CC50638006CF314 /* Stories.swift in Sources */,
 				B6268AE11CCBFB6800486ECF /* EditStoryViewController.swift in Sources */,
 				B6FA74581CE2C39300FB1B48 /* IconCollectionViewCell.swift in Sources */,
-				B6F9AC141CC3064B006CF314 /* DonateViewController.swift in Sources */,
 				B6F9AC571CC64948006CF314 /* ViewDelegates.swift in Sources */,
 				B6F9AC4D1CC50638006CF314 /* Boards.swift in Sources */,
 				B6268ADD1CCA584100486ECF /* CreateSubtaskViewController.swift in Sources */,
