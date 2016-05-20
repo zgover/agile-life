@@ -39,6 +39,10 @@ class EditSubtaskViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Do any additional setup after loading the view.
+        name.text = CoreModels.currentSubtask!.name
+        subtaskDescription.text = CoreModels.currentSubtask!.task_description
         name.delegate = self
         deadline.date = CoreModels.currentSubtask!.deadline!
         
