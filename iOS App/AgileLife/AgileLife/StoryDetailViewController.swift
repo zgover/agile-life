@@ -160,6 +160,7 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
         if let destination = segue.destinationViewController as? EditStoryViewController {
             destination.delegate = self
             destination.CoreModels = self.CoreModels
+            destination.currentStage = self.currentStage
         } else if let destination = segue.destinationViewController as? CreateSubtaskViewController {
             destination.CoreModels = self.CoreModels
         } else if let destination = segue.destinationViewController as? SubtaskDetailViewController {

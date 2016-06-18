@@ -30,6 +30,7 @@ class EditSubtaskViewController: UIViewController, UITextFieldDelegate {
     
     var CoreModels:CoreDataModels!
     var delegate:ViewDelegates!
+    var taskCompleted:Bool = false
     
     /* ==========================================
     *
@@ -47,8 +48,8 @@ class EditSubtaskViewController: UIViewController, UITextFieldDelegate {
         deadline.date = CoreModels.currentSubtask!.deadline!
         
         if CoreModels.currentSubtask!.completed == true {
-            completeBtn.hidden = true
-            completeBtnBG.hidden = true
+            taskCompleted = true
+            completeBtn.setTitle("Restart", forState: .Normal)
         }
     
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditSubtaskViewController.dismissKeyboard))
@@ -96,16 +97,6 @@ class EditSubtaskViewController: UIViewController, UITextFieldDelegate {
             return
         }
         
-//        else if date == nil  {
-//            // Alert the user if this is true
-//            let alertController = UIAlertController(title: "Warning", message: "Please correct the date to the specified format MM/DD/YYYY HH:mm:ss.", preferredStyle: UIAlertControllerStyle.Alert)
-//            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-//            
-//            presentViewController(alertController, animated: true, completion: nil)
-//            
-//            return
-//        }
-        
         // Create the board
         CoreModels.currentSubtask?.name = name.text
         CoreModels.currentSubtask?.task_description = subtaskDescription.text
@@ -143,9 +134,15 @@ class EditSubtaskViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func completeSubtask(sender: UIButton) {
-        let alertController = UIAlertController(title: "Warning", message: "Are you sure you would like to complete this subtask?", preferredStyle: UIAlertControllerStyle.Alert)
+        var message = "Are you sure you would like to complete this subtask?"
+        
+        if taskCompleted {
+            message = "Restarting this subtask will make it incomplete, would you like to proceed?"
+        }
+        
+        let alertController = UIAlertController(title: "Warning", message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Complete", style: UIAlertActionStyle.Destructive, handler: { (UIAlertAction) -> Void in
+        alertController.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Destructive, handler: { (UIAlertAction) -> Void in
             self.CoreModels.currentSubtask?.completed = true
             self.EditSubtask(sender)
         }))

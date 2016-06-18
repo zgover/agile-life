@@ -50,9 +50,13 @@ class SubtaskDetailViewController: UIViewController, ViewDelegates {
     }
     
     override func viewWillAppear(animated: Bool) {
+        let formatter = NSDateFormatter()
+        formatter.dateStyle = NSDateFormatterStyle.ShortStyle
+        formatter.timeStyle = .ShortStyle
+        
         CoreModels.fetchSubtasks(CoreModels.currentStory)
         name.text = CoreModels.currentSubtask!.name
-        deadline.text = String(CoreModels.currentSubtask!.deadline!)
+        deadline.text = formatter.stringFromDate((CoreModels.currentSubtask!.deadline!))
         subtaskDescription.text = CoreModels.currentSubtask!.task_description
     }
     

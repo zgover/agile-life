@@ -25,6 +25,7 @@
 		B6AA72321CE92BA200551F67 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = B6AA72311CE92BA200551F67 /* Settings.plist */; };
 		B6AA72361CE9453E00551F67 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6AA72341CE9453E00551F67 /* Fabric.framework */; };
 		B6AA72371CE9453E00551F67 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6AA72351CE9453E00551F67 /* Crashlytics.framework */; };
+		B6AFA55A1D15F7740000F662 /* StageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6AFA5591D15F7740000F662 /* StageViewController.swift */; };
 		B6C986BC1CC6A11100B60D54 /* StoryListNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */; };
 		B6E1F6B01CD578C700C45E06 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6E1F6AF1CD578C700C45E06 /* MessageUI.framework */; };
 		B6E614491CBC5381003FB446 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6E614481CBC5381003FB446 /* AppDelegate.swift */; };
@@ -88,6 +89,7 @@
 		B6AA72311CE92BA200551F67 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		B6AA72341CE9453E00551F67 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = ../Fabric.framework; sourceTree = "<group>"; };
 		B6AA72351CE9453E00551F67 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = ../Crashlytics.framework; sourceTree = "<group>"; };
+		B6AFA5591D15F7740000F662 /* StageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StageViewController.swift; sourceTree = "<group>"; };
 		B6C986BB1CC6A11100B60D54 /* StoryListNavigationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryListNavigationViewController.swift; sourceTree = "<group>"; };
 		B6E1F6AF1CD578C700C45E06 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		B6E614451CBC5381003FB446 /* Agile Life.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Agile Life.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -279,6 +281,7 @@
 				B6F9AC381CC4F1AD006CF314 /* CoreDataModels.swift */,
 				B6F9AC541CC646DB006CF314 /* GlobalEnums.swift */,
 				B6F9AC561CC64948006CF314 /* ViewDelegates.swift */,
+				B6AFA5591D15F7740000F662 /* StageViewController.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				B6F9AC1A1CC3066D006CF314 /* LegalViewController.swift in Sources */,
 				B6F9AC161CC3065A006CF314 /* AboutViewController.swift in Sources */,
 				B6E6146B1CBD5EA2003FB446 /* SideMenuViewController.swift in Sources */,
+				B6AFA55A1D15F7740000F662 /* StageViewController.swift in Sources */,
 				B6268AD81CC99B0600486ECF /* StoryListTableHeader.swift in Sources */,
 				B6E614611CBC54B4003FB446 /* SWRevealViewController.m in Sources */,
 				B6E6146D1CBD6138003FB446 /* BoardListSideMenuTableViewCell.swift in Sources */,

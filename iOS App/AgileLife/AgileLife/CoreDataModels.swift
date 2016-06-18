@@ -124,7 +124,7 @@ class CoreDataModels {
     func fetchSubtasks(story: Stories?) -> ReturnStatus {
         // Set default values for CoreData properties
         let fetchRequest = NSFetchRequest(entityName: "Subtasks")
-        let descriptor = NSSortDescriptor(key: "date_created", ascending: false)
+        let descriptor = NSSortDescriptor(key: "completed", ascending: true)
         fetchRequest.sortDescriptors = [descriptor]
         
         if let stories = story {
@@ -473,6 +473,50 @@ class CoreDataModels {
         default:
             return "ERROR!!!!"
         }
+    }
+    
+    func setStages(items:[UITabBarItem], viewCntrls:[UIViewController]?) -> [UIViewController]? {
+        var vc = viewCntrls
+        var tabItems = items as [UITabBarItem]
+        tabItems[tabItems.count - 1].title = "Complete"
+        tabItems[tabItems.count - 1].image = UIImage(named: "finished-flag")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        tabItems[tabItems.count - 1].selectedImage = UIImage(named: "finished-flag")
+        
+        
+        // Set stage 1 tabbar elemented
+        if let stageOneName = self.currentBoard?.stage_one_name,
+            let stageOneImage = self.currentBoard?.stage_one_icon
+        {
+            tabItems[0].title = stageOneName
+            tabItems[0].image = UIImage(named: stageOneImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            tabItems[0].selectedImage = UIImage(named: stageOneImage)
+        }
+        
+        // Set stage 2 tabbar elements; if not enabled remove second stage
+        if let stageTwoName = self.currentBoard?.stage_two_name,
+            let stageTwoImage = self.currentBoard?.stage_two_icon,
+            let enabled = self.currentBoard?.stage_two where enabled == true
+        {
+            tabItems[1].title = stageTwoName
+            tabItems[1].image = UIImage(named: stageTwoImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            tabItems[1].selectedImage = UIImage(named: stageTwoImage)
+        } else if vc != nil {
+            vc?.removeAtIndex(1)
+        }
+        
+        // Set stage 3 tabbar elements; if not enabled remove second stage
+        if let stageThreeName = self.currentBoard?.stage_three_name,
+            let stageThreeImage = self.currentBoard?.stage_three_icon,
+            let enabled = self.currentBoard?.stage_three where enabled == true
+        {
+            tabItems[2].title = stageThreeName
+            tabItems[2].image = UIImage(named: stageThreeImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            tabItems[2].selectedImage = UIImage(named: stageThreeImage)
+        } else if vc != nil {
+            vc?.removeAtIndex(2)
+        }
+        
+        return vc
     }
     
     func setPriorityBG(priority: Int) -> UIColor {

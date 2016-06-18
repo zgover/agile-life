@@ -29,9 +29,11 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     
     var CoreModels:CoreDataModels!
     var selectedStage:String!
+    var currentStage:Int!
     var stageTotalCount:Int!
     var stageCount:Int = 0
     var delegate:ViewDelegates!
+    var stageSet = false
     
     /* ==========================================
     *
@@ -62,6 +64,10 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        stage.selectRow(currentStage, inComponent: 0, animated: true)
     }
     
     /* ==========================================
@@ -104,12 +110,6 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     
     func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let stageName = CoreModels.stageName(row, stageTotalCount: stageTotalCount)
-        selectedStage = stageName
-        
-        // Grab index so we may select it on load
-        if selectedStage == CoreModels.currentStory!.stage {
-            stage.selectRow(row, inComponent: 0, animated: true)
-        }
         
         return stageName
     }

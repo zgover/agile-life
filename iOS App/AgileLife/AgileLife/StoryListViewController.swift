@@ -25,7 +25,6 @@ class StoryListViewController: UITabBarController {
     * =========================================== */
     
     var CoreModels:CoreDataModels!
-    var tabItemsSet = false
     
     /* ==========================================
     *
@@ -42,8 +41,7 @@ class StoryListViewController: UITabBarController {
         self.title = CoreModels.currentBoard?.name
         
         // Set default values
-        setStages()
-        tabItemsSet = true
+        self.viewControllers = CoreModels.setStages(self.tabBar.items!, viewCntrls: self.viewControllers)
         
         //performSegueWithIdentifier("createStorySegue", sender: nil)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -58,7 +56,7 @@ class StoryListViewController: UITabBarController {
     override func viewWillAppear(animated: Bool) {        
         CoreModels.fetchAll()
         self.title = CoreModels.currentBoard?.name
-        setStages()
+        self.viewControllers = CoreModels.setStages(self.tabBar.items!, viewCntrls: self.viewControllers)
         
         // Loop through each view controller in the tabbar and update them
         if let controllers = viewControllers {
@@ -125,53 +123,6 @@ class StoryListViewController: UITabBarController {
         } else if let destination = segue.destinationViewController as? CreateStoryViewController {
             destination.CoreModels = self.CoreModels
             destination.currentStage = self.selectedIndex
-        }
-    }
-    
-    /* ==========================================
-    *
-    * MARK: Custom Methods
-    *
-    * =========================================== */
-    
-    func setStages() {
-        var tabItems = self.tabBar.items! as [UITabBarItem]
-        tabItems[tabItems.count - 1].title = "Complete"
-        tabItems[tabItems.count - 1].image = UIImage(named: "finished-flag")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-        tabItems[tabItems.count - 1].selectedImage = UIImage(named: "finished-flag")
-
-        
-        // Set stage 1 tabbar elemented
-        if let stageOneName = CoreModels.currentBoard?.stage_one_name,
-            let stageOneImage = CoreModels.currentBoard?.stage_one_icon
-        {
-            tabItems[0].title = stageOneName
-            tabItems[0].image = UIImage(named: stageOneImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-            tabItems[0].selectedImage = UIImage(named: stageOneImage)
-        }
-        
-        // Set stage 2 tabbar elements; if not enabled remove second stage
-        if let stageTwoName = CoreModels.currentBoard?.stage_two_name,
-            let stageTwoImage = CoreModels.currentBoard?.stage_two_icon,
-            let enabled = CoreModels.currentBoard?.stage_two where enabled == true
-        {
-            tabItems[1].title = stageTwoName
-            tabItems[1].image = UIImage(named: stageTwoImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-            tabItems[1].selectedImage = UIImage(named: stageTwoImage)
-        } else if !tabItemsSet {
-            self.viewControllers?.removeAtIndex(1)
-        }
-        
-        // Set stage 3 tabbar elements; if not enabled remove second stage
-        if let stageThreeName = CoreModels.currentBoard?.stage_three_name,
-            let stageThreeImage = CoreModels.currentBoard?.stage_three_icon,
-            let enabled = CoreModels.currentBoard?.stage_three where enabled == true
-        {
-            tabItems[2].title = stageThreeName
-            tabItems[2].image = UIImage(named: stageThreeImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
-            tabItems[2].selectedImage = UIImage(named: stageThreeImage)
-        } else if !tabItemsSet {
-            self.viewControllers?.removeAtIndex(2)
         }
     }
 }
