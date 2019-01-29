@@ -42,28 +42,28 @@ class SupportViewController: UIViewController, MFMailComposeViewControllerDelega
     *
     * =========================================== */
     
-    func mailComposeController(controller: MFMailComposeViewController, didFinishWithResult result: MFMailComposeResult, error: NSError?) {
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
         if let error = error {
             // Inform the user there was an error sending the email
-            let alert = UIAlertController(title: "Error", message: "Sorry, There Was An Error Processing Your Request", preferredStyle: UIAlertControllerStyle.Alert)
-            let dismissBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+            let alert = UIAlertController(title: "Error", message: "Sorry, There Was An Error Processing Your Request", preferredStyle: UIAlertControllerStyle.alert)
+            let dismissBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
             
             alert.addAction(dismissBtn)
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
             print("Mail Error: \(error)")
         } else {
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
             self.navigationItem.hidesBackButton = true
-            self.view.userInteractionEnabled = false
-            self.menuBtn.enabled = false
-            self.revealViewController().revealToggleAnimated(true)
+            self.view.isUserInteractionEnabled = false
+            self.menuBtn.isEnabled = false
+            self.revealViewController().revealToggle(animated: true)
         }
     }
     
     func openMail() {
         // If the user has their email setup allow them to open the mail controller.
         if MFMailComposeViewController.canSendMail() {
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
             let sendEmail = MFMailComposeViewController()
             let email = "zachary1748@gmail.com"
             sendEmail.mailComposeDelegate = self
@@ -71,14 +71,14 @@ class SupportViewController: UIViewController, MFMailComposeViewControllerDelega
             sendEmail.view.tintColor = UIColor(red: 188/255, green: 188/255, blue: 188/255, alpha: 1.0)
             sendEmail.setMessageBody("To whomever it may concern, \n\nI have a few questions I would like to ask: \n\n1. \n2. \n3. \n\nSincerely, \n\n(First Name) (Last Name) \n(123) 456-7890", isHTML: false)
             
-            self.navigationController?.presentViewController(sendEmail, animated: true, completion: nil)
+            self.navigationController?.present(sendEmail, animated: true, completion: nil)
         } else {
             // Notify the user they need to configure their email
-            let alert = UIAlertController(title: "Warning", message: "Please Configure Your Email first, before submitting a support request.", preferredStyle: UIAlertControllerStyle.Alert)
-            let dismissBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil)
+            let alert = UIAlertController(title: "Warning", message: "Please Configure Your Email first, before submitting a support request.", preferredStyle: UIAlertControllerStyle.alert)
+            let dismissBtn = UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil)
             
             alert.addAction(dismissBtn)
-            presentViewController(alert, animated: true, completion: nil)
+            present(alert, animated: true, completion: nil)
         }
     }
 }

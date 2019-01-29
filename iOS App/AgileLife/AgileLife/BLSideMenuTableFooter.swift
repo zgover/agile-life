@@ -12,7 +12,7 @@ class BLSideMenuTableFooter: UITableViewHeaderFooterView {
 
     @IBOutlet weak var viewHistoryBtn: UIButton!
     
-    @IBAction func viewHistory(sender: UIButton) {
+    @IBAction func viewHistory(_ sender: UIButton) {
         
     }
 

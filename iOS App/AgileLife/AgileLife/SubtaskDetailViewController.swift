@@ -40,7 +40,7 @@ class SubtaskDetailViewController: UIViewController, ViewDelegates {
         
         // Do any additional setup after loading the view.
         name.text = CoreModels.currentSubtask!.name
-        deadline.text = String(CoreModels.currentSubtask!.deadline!)
+        deadline.text = String(describing: CoreModels.currentSubtask!.deadline!)
         subtaskDescription.text = CoreModels.currentSubtask!.task_description
     }
 
@@ -49,14 +49,14 @@ class SubtaskDetailViewController: UIViewController, ViewDelegates {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        let formatter = NSDateFormatter()
-        formatter.dateStyle = NSDateFormatterStyle.ShortStyle
-        formatter.timeStyle = .ShortStyle
+    override func viewWillAppear(_ animated: Bool) {
+        let formatter = DateFormatter()
+        formatter.dateStyle = DateFormatter.Style.short
+        formatter.timeStyle = .short
         
         CoreModels.fetchSubtasks(CoreModels.currentStory)
         name.text = CoreModels.currentSubtask!.name
-        deadline.text = formatter.stringFromDate((CoreModels.currentSubtask!.deadline!))
+        deadline.text = formatter.string(from: (CoreModels.currentSubtask!.deadline!) as Date)
         subtaskDescription.text = CoreModels.currentSubtask!.task_description
     }
     
@@ -66,8 +66,8 @@ class SubtaskDetailViewController: UIViewController, ViewDelegates {
     *
     * =========================================== */
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? EditSubtaskViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? EditSubtaskViewController {
             destination.CoreModels = self.CoreModels
             destination.delegate = self
         }
@@ -80,9 +80,9 @@ class SubtaskDetailViewController: UIViewController, ViewDelegates {
     *
     * =========================================== */
     
-    func didDeleteSubtask(didDelete: Bool) {
+    func didDeleteSubtask(_ didDelete: Bool) {
         if didDelete == true {
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }

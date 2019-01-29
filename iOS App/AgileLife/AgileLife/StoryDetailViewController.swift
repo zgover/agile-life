@@ -54,13 +54,13 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
         notes.text = currentStory.notes
         
         // Register story list table view cell
-        tableView.registerNib(
+        tableView.register(
             UINib(nibName: SubtaskListCellIdentifier, bundle: nil),
             forCellReuseIdentifier: SubtaskListCellIdentifier
         )
         
         // Register story list table header identifier
-        tableView.registerNib(
+        tableView.register(
             UINib(nibName: SubtaskListHeaderIdentifier, bundle: nil),
             forHeaderFooterViewReuseIdentifier: SubtaskListHeaderIdentifier
         )
@@ -73,7 +73,7 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         CoreModels.fetchSubtasks(CoreModels.currentStory)
         name.text = currentStory.name
         stage.text = currentStory.stage
@@ -88,7 +88,7 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     *
     * =========================================== */
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if let count = CoreModels.allSubtasks?.count {
             return count
         }
@@ -96,34 +96,34 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
         return 0
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 55
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier(SubtaskListCellIdentifier) as? StoryListTableViewCell {
-            let formatter = NSDateFormatter()
-            formatter.dateStyle = NSDateFormatterStyle.ShortStyle
-            formatter.timeStyle = .ShortStyle
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: SubtaskListCellIdentifier) as? StoryListTableViewCell {
+            let formatter = DateFormatter()
+            formatter.dateStyle = DateFormatter.Style.short
+            formatter.timeStyle = .short
             
-            let taskDate = formatter.stringFromDate(CoreModels.allSubtasks![indexPath.row].deadline!)
+            let taskDate = formatter.string(from: CoreModels.allSubtasks![indexPath.row].deadline! as Date)
             
             cell.storyName.text = CoreModels.allSubtasks![indexPath.row].name
             cell.subtasks.text = CoreModels.allSubtasks![indexPath.row].task_description
             cell.totalCompletion.text = "\(taskDate)"
-            cell.progressBar.hidden = true
-            cell.priorityBg.hidden = true
+            cell.progressBar.isHidden = true
+            cell.priorityBg.isHidden = true
             
             if CoreModels.allSubtasks![indexPath.row].completed == 1 {
-                cell.totalCompletion.hidden = true
-                cell.completedIcon.hidden = false
+                cell.totalCompletion.isHidden = true
+                cell.completedIcon.isHidden = false
             } else {
-                cell.totalCompletion.hidden = false
-                cell.completedIcon.hidden = true
+                cell.totalCompletion.isHidden = false
+                cell.completedIcon.isHidden = true
             }
             
             return cell
@@ -132,19 +132,19 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
         return UITableViewCell()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedStory = indexPath.row
         
         if let currentSubtask = CoreModels.allSubtasks?[indexPath.row] {
             CoreModels.currentSubtask = currentSubtask
             
-            performSegueWithIdentifier("subtaskDetailSegue", sender: nil)
+            performSegue(withIdentifier: "subtaskDetailSegue", sender: nil)
         }
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(SubtaskListHeaderIdentifier) as! StoryListTableHeader
-        header.createStory.addTarget(self, action: #selector(StoryDetailViewController.addSubtask), forControlEvents: .TouchUpInside)
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: SubtaskListHeaderIdentifier) as! StoryListTableHeader
+        header.createStory.addTarget(self, action: #selector(StoryDetailViewController.addSubtask), for: .touchUpInside)
         header.header.text = "Sub-tasks"
         
         return header
@@ -156,14 +156,14 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     *
     * =========================================== */
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? EditStoryViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? EditStoryViewController {
             destination.delegate = self
             destination.CoreModels = self.CoreModels
             destination.currentStage = self.currentStage
-        } else if let destination = segue.destinationViewController as? CreateSubtaskViewController {
+        } else if let destination = segue.destination as? CreateSubtaskViewController {
             destination.CoreModels = self.CoreModels
-        } else if let destination = segue.destinationViewController as? SubtaskDetailViewController {
+        } else if let destination = segue.destination as? SubtaskDetailViewController {
             destination.CoreModels = self.CoreModels
         }
     }
@@ -175,7 +175,7 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     * =========================================== */
     
     func addSubtask() {
-        performSegueWithIdentifier("createSubtaskSegue", sender: nil)
+        performSegue(withIdentifier: "createSubtaskSegue", sender: nil)
     }
 
     
@@ -185,9 +185,9 @@ class StoryDetailViewController: UIViewController, UITableViewDataSource, UITabl
     *
     * =========================================== */
     
-    func didDeleteSubtask(didDelete: Bool) {
+    func didDeleteSubtask(_ didDelete: Bool) {
         if didDelete {
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         } else {
             CoreModels.fetchSubtasks(CoreModels.currentStory)
             name.text = currentStory.name

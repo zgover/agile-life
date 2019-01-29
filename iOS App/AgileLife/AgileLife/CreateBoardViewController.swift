@@ -81,7 +81,7 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
     *
     * =========================================== */
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         view.endEditing(true)
         return false
@@ -93,8 +93,8 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
     *
     * =========================================== */
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? IconPickerViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? IconPickerViewController {
             destination.selectedIcon = selectedIcon
             destination.delegate = self
         }
@@ -106,7 +106,7 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
     *
     * =========================================== */
     
-    func selectedIcon(icon: String) {
+    func selectedIcon(_ icon: String) {
         switch self.selectedIcon {
         case "stage1":
             stage1IconName = icon
@@ -127,19 +127,19 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
     * MARK: Edit Icon Methods
     *
     * =========================================== */
-    @IBAction func stage1EditIcon(sender: UIButton) {
+    @IBAction func stage1EditIcon(_ sender: UIButton) {
         selectedIcon = "stage1"
-        performSegueWithIdentifier(iconPickerSegueIdentifier, sender: sender)
+        performSegue(withIdentifier: iconPickerSegueIdentifier, sender: sender)
     }
     
-    @IBAction func stage2EditIcon(sender: UIButton) {
+    @IBAction func stage2EditIcon(_ sender: UIButton) {
         selectedIcon = "stage2"
-        performSegueWithIdentifier(iconPickerSegueIdentifier, sender: sender)
+        performSegue(withIdentifier: iconPickerSegueIdentifier, sender: sender)
     }
     
-    @IBAction func stage3EditIcon(sender: UIButton) {
+    @IBAction func stage3EditIcon(_ sender: UIButton) {
         selectedIcon = "stage3"
-        performSegueWithIdentifier(iconPickerSegueIdentifier, sender: sender)
+        performSegue(withIdentifier: iconPickerSegueIdentifier, sender: sender)
     }
     
     /* ==========================================
@@ -148,38 +148,38 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
     *
     * =========================================== */
     
-    @IBAction func createBoard(sender: UIButton) {
+    @IBAction func createBoard(_ sender: UIButton) {
         // Notify the user if there is anything wrong with the required fields.
         if boardNameInput.text == "" {
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Warning", message: "Please specify a board name.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Warning", message: "Please specify a board name.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
             return
         } else if stage1Input.text == "" {
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Warning", message: "Please specify the first stage", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Warning", message: "Please specify the first stage", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
-            
-            return
-        } else if stage2Switch.on && stage2Input.text == "" {
-            // Alert the user if this fails
-            let alertController = UIAlertController(title: "Warning", message: "Please specify the second stage, or disable it.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
-            
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
             return
-        } else if stage3Switch.on && stage3Input.text == "" {
+        } else if stage2Switch.isOn && stage2Input.text == "" {
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Warning", message: "Please specify the third stage, or disable it.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Warning", message: "Please specify the second stage, or disable it.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
+            
+            return
+        } else if stage3Switch.isOn && stage3Input.text == "" {
+            // Alert the user if this fails
+            let alertController = UIAlertController(title: "Warning", message: "Please specify the third stage, or disable it.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
+            
+            present(alertController, animated: true, completion: nil)
             
             return
         } else {
@@ -188,8 +188,8 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
             let allFields:[(text: String, on: Bool)] = [
                 (boardNameInput.text!, true),
                 (stage1Input.text!, true),
-                (stage2Input.text!, stage2Switch.on),
-                (stage3Input.text!, stage3Switch.on)
+                (stage2Input.text!, stage2Switch.isOn),
+                (stage3Input.text!, stage3Switch.isOn)
             ]
             
             for (currentText, on) in allFields {
@@ -204,10 +204,10 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
                     
                     if dupCount > 1 {
                         // Alert the user this is a duplicate
-                        let alertController = UIAlertController(title: "Warning", message: "Please make sure they're no duplicate names.", preferredStyle: UIAlertControllerStyle.Alert)
-                        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+                        let alertController = UIAlertController(title: "Warning", message: "Please make sure they're no duplicate names.", preferredStyle: UIAlertControllerStyle.alert)
+                        alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
                         
-                        presentViewController(alertController, animated: true, completion: nil)
+                        present(alertController, animated: true, completion: nil)
                         
                         return
                     }
@@ -218,23 +218,23 @@ class CreateBoardViewController: UIViewController, UITextFieldDelegate, ViewDele
         // Create the board
         let creationResult = CoreModels.createBoard(
             boardNameInput.text!, stage_one_icon: stage1IconName, stage_one_name: stage1Input.text!,
-            stage_two: stage2Switch.on, stage_two_icon: stage2IconName, stage_two_name: stage2Input.text,
-            stage_three: stage3Switch.on, stage_three_icon: stage3IconName, stage_three_name: stage3Input.text
+            stage_two: stage2Switch.isOn, stage_two_icon: stage2IconName, stage_two_name: stage2Input.text,
+            stage_three: stage3Switch.isOn, stage_three_icon: stage3IconName, stage_three_name: stage3Input.text
         )
         
         // Dismiss view controller or notify the user based in the returned result of creating a board.
         switch creationResult {
-        case .Success:
+        case .success:
             
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
             
         default:
             
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
         }
     }

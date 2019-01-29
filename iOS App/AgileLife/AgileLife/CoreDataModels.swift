@@ -8,6 +8,30 @@
 
 import Foundation
 import CoreData
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
+// FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
+// Consider refactoring the code to use the non-optional operators.
+fileprivate func > <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l > r
+  default:
+    return rhs < lhs
+  }
+}
+
 
 class CoreDataModels {
     
@@ -17,10 +41,10 @@ class CoreDataModels {
     *
     * =========================================== */
     
-    private var managedContext:NSManagedObjectContext!
-    private var boardEntityDescription:NSEntityDescription!
-    private var storyEntityDescription:NSEntityDescription!
-    private var subtaskEntityDescription:NSEntityDescription!
+    fileprivate var managedContext:NSManagedObjectContext!
+    fileprivate var boardEntityDescription:NSEntityDescription!
+    fileprivate var storyEntityDescription:NSEntityDescription!
+    fileprivate var subtaskEntityDescription:NSEntityDescription!
     
     /* ==========================================
     *
@@ -37,10 +61,10 @@ class CoreDataModels {
     
     init() {
         // Set default values on initialization
-        managedContext = (UIApplication.sharedApplication().delegate as! AppDelegate).managedObjectContext
-        boardEntityDescription = NSEntityDescription.entityForName("Boards", inManagedObjectContext: managedContext)
-        storyEntityDescription = NSEntityDescription.entityForName("Stories", inManagedObjectContext: managedContext)
-        subtaskEntityDescription = NSEntityDescription.entityForName("Subtasks", inManagedObjectContext: managedContext)
+        managedContext = (UIApplication.shared.delegate as! AppDelegate).managedObjectContext
+        boardEntityDescription = NSEntityDescription.entity(forEntityName: "Boards", in: managedContext)
+        storyEntityDescription = NSEntityDescription.entity(forEntityName: "Stories", in: managedContext)
+        subtaskEntityDescription = NSEntityDescription.entity(forEntityName: "Subtasks", in: managedContext)
     }
     
     /* ==========================================
@@ -57,29 +81,29 @@ class CoreDataModels {
     
     func fetchBoards() -> ReturnStatus {
         // Set default values for CoreData properties
-        let fetchRequest = NSFetchRequest(entityName: "Boards")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Boards")
         let descriptor = NSSortDescriptor(key: "date_created", ascending: false)
         fetchRequest.sortDescriptors = [descriptor]
         
         do {
-            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Boards] {
+            if let result = try managedContext.fetch(fetchRequest) as? [Boards] {
                 self.allBoards = result
                 //print(result)
                 //print("recieved boards")
-                return .Success
+                return .success
             } else {
                 print("No boards")
-                return .Warning
+                return .warning
             }
         } catch {
             print("Failed loading the boards")
-            return .Error
+            return .error
         }
     }
     
-    func fetchStories(stageName: String?, _board: Boards?) -> ReturnStatus {
+    func fetchStories(_ stageName: String?, _board: Boards?) -> ReturnStatus {
         // Set default values for CoreData properties
-        let fetchRequest = NSFetchRequest(entityName: "Stories")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Stories")
         let descriptor = NSSortDescriptor(key: "priority", ascending: false)
         var stagePredicate:NSPredicate? = nil
         var boardPredicate:NSPredicate? = nil
@@ -106,24 +130,24 @@ class CoreDataModels {
         }
         
         do {
-            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Stories] {
+            if let result = try managedContext.fetch(fetchRequest) as? [Stories] {
                 self.allStories = result
                 //print(result)
                 //print("recieved stories")
-                return .Success
+                return .success
             } else {
                 print("No stories")
-                return .Warning
+                return .warning
             }
         } catch {
             print("Failed loading the stories")
-            return .Error
+            return .error
         }
     }
     
-    func fetchSubtasks(story: Stories?) -> ReturnStatus {
+    func fetchSubtasks(_ story: Stories?) -> ReturnStatus {
         // Set default values for CoreData properties
-        let fetchRequest = NSFetchRequest(entityName: "Subtasks")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Subtasks")
         let descriptor = NSSortDescriptor(key: "completed", ascending: true)
         fetchRequest.sortDescriptors = [descriptor]
         
@@ -133,18 +157,18 @@ class CoreDataModels {
         }
         
         do {
-            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
+            if let result = try managedContext.fetch(fetchRequest) as? [Subtasks] {
                 self.allSubtasks = result
                 //print(result)
                 //print("recieved subtasks")
-                return .Success
+                return .success
             } else {
                 print("No subtasks")
-                return .Warning
+                return .warning
             }
         } catch {
             print("Failed loading the subtasks")
-            return .Error
+            return .error
         }
     }
     
@@ -155,22 +179,22 @@ class CoreDataModels {
     * =========================================== */
     
     func createBoard(
-        name: String, stage_one_icon: String, stage_one_name: String,
+        _ name: String, stage_one_icon: String, stage_one_name: String,
         stage_two: Bool?, stage_two_icon: String?, stage_two_name: String?,
         stage_three: Bool?, stage_three_icon: String?, stage_three_name: String?
     ) -> ReturnStatus {
             
         // Add each new property and add it to the users device
-        let newBoard = Boards(entity: boardEntityDescription, insertIntoManagedObjectContext: managedContext)
-        newBoard.id = NSUUID().UUIDString
+        let newBoard = Boards(entity: boardEntityDescription, insertInto: managedContext)
+        newBoard.id = UUID().uuidString
         newBoard.name = name
-        newBoard.date_created = NSDate()
+        newBoard.date_created = Date()
         newBoard.stage_one_icon = stage_one_icon
         newBoard.stage_one_name = stage_one_name
-        newBoard.stage_two = stage_two
+        newBoard.stage_two = stage_two as! NSNumber
         newBoard.stage_two_icon = stage_two_icon
         newBoard.stage_two_name = stage_two_name
-        newBoard.stage_three = stage_three
+        newBoard.stage_three = stage_three as! NSNumber
         newBoard.stage_three_icon = stage_three_icon
         newBoard.stage_three_name = stage_three_name
         
@@ -181,53 +205,53 @@ class CoreDataModels {
         do {
             try managedContext.save()
             self.currentBoard = newBoard
-            return .Success
+            return .success
         } catch {
             print("Error creating new board")
-            return .Error
+            return .error
         }
     }
     
-    func createStory(name: String, notes: String, stage: String, priority: Int) -> ReturnStatus {
+    func createStory(_ name: String, notes: String, stage: String, priority: Int) -> ReturnStatus {
         
         // Add each new property and add it to the users device
-        let newStory = Stories(entity: storyEntityDescription, insertIntoManagedObjectContext: managedContext)
-        newStory.id = NSUUID().UUIDString
+        let newStory = Stories(entity: storyEntityDescription, insertInto: managedContext)
+        newStory.id = UUID().uuidString
         newStory.name = name
         newStory.notes = notes
         newStory.stage = stage
-        newStory.priority = priority
-        newStory.date_created = NSDate()
+        newStory.priority = priority as NSNumber
+        newStory.date_created = Date()
         newStory.board = currentBoard
         
         do {
             try managedContext.save()
             self.currentStory = newStory
-            return .Success
+            return .success
         } catch {
             print("Error creating new story")
-            return .Error
+            return .error
         }
     }
     
-    func createSubtask(name: String, deadline: NSDate, description: String) -> ReturnStatus {
+    func createSubtask(_ name: String, deadline: Date, description: String) -> ReturnStatus {
         // Add each new property and add it to the users device
-        let newSubtask = Subtasks(entity: subtaskEntityDescription, insertIntoManagedObjectContext: managedContext)
-        newSubtask.id = NSUUID().UUIDString
+        let newSubtask = Subtasks(entity: subtaskEntityDescription, insertInto: managedContext)
+        newSubtask.id = UUID().uuidString
         newSubtask.name = name
         newSubtask.deadline = deadline
         newSubtask.task_description = description
         newSubtask.completed = false
-        newSubtask.date_created = NSDate()
+        newSubtask.date_created = Date()
         newSubtask.story = currentStory
         
         do {
             try managedContext.save()
             self.currentSubtask = newSubtask
-            return .Success
+            return .success
         } catch {
             print("Error creating new subtask")
-            return .Error
+            return .error
         }
     }
     
@@ -240,11 +264,11 @@ class CoreDataModels {
     func editBoard() -> ReturnStatus {
         
         // Fetch the current active board
-        let fetchRequest = NSFetchRequest(entityName: "Boards")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Boards")
         fetchRequest.predicate = NSPredicate(format: "id = %@", currentBoard!.id!)
         
         do {
-            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Boards] {
+            if let result = try managedContext.fetch(fetchRequest) as? [Boards] {
                 //print(result)
                 //print("Saved Board")
                 
@@ -258,73 +282,73 @@ class CoreDataModels {
                     
                     // Save and return
                     try managedContext.save()
-                    return .Success
+                    return .success
                 } else {
-                    return .Error
+                    return .error
                 }
             } else {
                 print("No boards")
-                return .Warning
+                return .warning
             }
         } catch {
             print("Failed saving board")
-            return .Error
+            return .error
         }
     }
     
     func editStory() -> ReturnStatus {
         
         // Fetch the current active board
-        let fetchRequest = NSFetchRequest(entityName: "Stories")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Stories")
         fetchRequest.predicate = NSPredicate(format: "id = %@", currentStory!.id!)
         
         do {
-            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Stories] {
+            if let result = try managedContext.fetch(fetchRequest) as? [Stories] {
                 //print(result)
                 //print("Saved Board")
                 
                 if result.count > 0 {
                     // Save and return
                     try managedContext.save()
-                    return .Success
+                    return .success
                 } else {
-                    return .Error
+                    return .error
                 }
             } else {
                 print("No boards")
-                return .Warning
+                return .warning
             }
         } catch {
             print("Failed saving board")
-            return .Error
+            return .error
         }
     }
     
     func editSubtask() -> ReturnStatus {
         
         // Fetch the current active board
-        let fetchRequest = NSFetchRequest(entityName: "Subtasks")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Subtasks")
         fetchRequest.predicate = NSPredicate(format: "id = %@", currentSubtask!.id!)
         
         do {
-            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
+            if let result = try managedContext.fetch(fetchRequest) as? [Subtasks] {
                 //print(result)
                 //print("Saved Board")
                 
                 if result.count > 0 {
                     // Save and return
                     try managedContext.save()
-                    return .Success
+                    return .success
                 } else {
-                    return .Error
+                    return .error
                 }
             } else {
                 print("No boards")
-                return .Warning
+                return .warning
             }
         } catch {
             print("Failed saving board")
-            return .Error
+            return .error
         }
     }
     
@@ -336,11 +360,11 @@ class CoreDataModels {
     
     func deleteBoard() -> ReturnStatus {
         // Fetch the current active board
-        let fetchRequest = NSFetchRequest(entityName: "Boards")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Boards")
         fetchRequest.predicate = NSPredicate(format: "id = %@", currentBoard!.id!)
         
         do {
-            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Boards] {
+            if let result = try managedContext.fetch(fetchRequest) as? [Boards] {
                 if result.count > 0 {
                     for board in result {
                         self.currentBoard = board
@@ -352,28 +376,28 @@ class CoreDataModels {
                             deleteStory(true)
                         }
                         
-                        managedContext.deleteObject(board)
+                        managedContext.delete(board)
                     }
                     // delete and return
                     try managedContext.save()
                     print("Deleted Board")
-                    return .Success
+                    return .success
                 } else {
-                    return .Error
+                    return .error
                 }
             } else {
                 print("No boards")
-                return .Warning
+                return .warning
             }
         } catch {
             print("Failed deleting board")
-            return .Error
+            return .error
         }
     }
     
-    func deleteStory(board: Bool) -> ReturnStatus {
+    func deleteStory(_ board: Bool) -> ReturnStatus {
         // Fetch the current active board
-        let fetchRequest = NSFetchRequest(entityName: "Stories")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Stories")
         
         if board {
             fetchRequest.predicate = NSPredicate(format: "board = %@", currentBoard!)
@@ -382,7 +406,7 @@ class CoreDataModels {
         }
         
         do {
-            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Stories] {
+            if let result = try managedContext.fetch(fetchRequest) as? [Stories] {
                 
                 if result.count > 0 {
                     // delete and return
@@ -390,28 +414,28 @@ class CoreDataModels {
                         self.fetchSubtasks(item)
                         self.currentStory = item
                         self.deleteSubtask(true)
-                        managedContext.deleteObject(item)
+                        managedContext.delete(item)
                     }
                     
                     try managedContext.save()
                     
-                    return .Success
+                    return .success
                 } else {
-                    return .Error
+                    return .error
                 }
             } else {
                 print("No stories")
-                return .Warning
+                return .warning
             }
         } catch {
             print("Failed deleting story")
-            return .Error
+            return .error
         }
     }
     
-    func deleteSubtask(story: Bool) -> ReturnStatus {
+    func deleteSubtask(_ story: Bool) -> ReturnStatus {
         // Fetch the current active board
-        let fetchRequest = NSFetchRequest(entityName: "Subtasks")
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Subtasks")
         
         if story {
             fetchRequest.predicate = NSPredicate(format: "story = %@", currentStory!)
@@ -420,27 +444,27 @@ class CoreDataModels {
         }
         
         do {
-            if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
+            if let result = try managedContext.fetch(fetchRequest) as? [Subtasks] {
                 
                 if result.count > 0 {
                     // delete and return
                     for item in result {
-                        managedContext.deleteObject(item)
+                        managedContext.delete(item)
                     }
                     
                     try managedContext.save()
                     
-                    return .Success
+                    return .success
                 } else {
-                    return .Error
+                    return .error
                 }
             } else {
                 print("No stories")
-                return .Warning
+                return .warning
             }
         } catch {
             print("Failed deleting story")
-            return .Error
+            return .error
         }
     }
     
@@ -450,7 +474,7 @@ class CoreDataModels {
     *
     * =========================================== */
     
-    func stageName(row: Int, stageTotalCount: Int) -> String {
+    func stageName(_ row: Int, stageTotalCount: Int) -> String {
         switch (row, stageTotalCount) {
         case (0, 2):
             return (currentBoard?.stage_one_name)!
@@ -475,11 +499,11 @@ class CoreDataModels {
         }
     }
     
-    func setStages(items:[UITabBarItem], viewCntrls:[UIViewController]?) -> [UIViewController]? {
+    func setStages(_ items:[UITabBarItem], viewCntrls:[UIViewController]?) -> [UIViewController]? {
         var vc = viewCntrls
         var tabItems = items as [UITabBarItem]
         tabItems[tabItems.count - 1].title = "Complete"
-        tabItems[tabItems.count - 1].image = UIImage(named: "finished-flag")?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        tabItems[tabItems.count - 1].image = UIImage(named: "finished-flag")?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         tabItems[tabItems.count - 1].selectedImage = UIImage(named: "finished-flag")
         
         
@@ -488,38 +512,38 @@ class CoreDataModels {
             let stageOneImage = self.currentBoard?.stage_one_icon
         {
             tabItems[0].title = stageOneName
-            tabItems[0].image = UIImage(named: stageOneImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            tabItems[0].image = UIImage(named: stageOneImage)?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
             tabItems[0].selectedImage = UIImage(named: stageOneImage)
         }
         
         // Set stage 2 tabbar elements; if not enabled remove second stage
         if let stageTwoName = self.currentBoard?.stage_two_name,
             let stageTwoImage = self.currentBoard?.stage_two_icon,
-            let enabled = self.currentBoard?.stage_two where enabled == true
+            let enabled = self.currentBoard?.stage_two, enabled == true
         {
             tabItems[1].title = stageTwoName
-            tabItems[1].image = UIImage(named: stageTwoImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            tabItems[1].image = UIImage(named: stageTwoImage)?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
             tabItems[1].selectedImage = UIImage(named: stageTwoImage)
         } else if vc != nil {
-            vc?.removeAtIndex(1)
+            vc?.remove(at: 1)
         }
         
         // Set stage 3 tabbar elements; if not enabled remove second stage
         if let stageThreeName = self.currentBoard?.stage_three_name,
             let stageThreeImage = self.currentBoard?.stage_three_icon,
-            let enabled = self.currentBoard?.stage_three where enabled == true
+            let enabled = self.currentBoard?.stage_three, enabled == true
         {
             tabItems[2].title = stageThreeName
-            tabItems[2].image = UIImage(named: stageThreeImage)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+            tabItems[2].image = UIImage(named: stageThreeImage)?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
             tabItems[2].selectedImage = UIImage(named: stageThreeImage)
         } else if vc != nil {
-            vc?.removeAtIndex(2)
+            vc?.remove(at: 2)
         }
         
         return vc
     }
     
-    func setPriorityBG(priority: Int) -> UIColor {
+    func setPriorityBG(_ priority: Int) -> UIColor {
         switch priority {
         case 1:
             // Green
@@ -539,18 +563,18 @@ class CoreDataModels {
         }
     }
     
-    func subtaskCompletion(storyIndex: Int) -> Float {
+    func subtaskCompletion(_ storyIndex: Int) -> Float {
         var totalCount:Float = 0.0
         var completedSubtasks:Float = 0.0
         
         if storyIndex < self.allStories?.count {
             if let story = self.allStories?[storyIndex] {
                 // Set default values for CoreData properties
-                let fetchRequest = NSFetchRequest(entityName: "Subtasks")
+                let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Subtasks")
                 fetchRequest.predicate = NSPredicate(format: "story = %@", story)
                 
                 do {
-                    if let result = try managedContext.executeFetchRequest(fetchRequest) as? [Subtasks] {
+                    if let result = try managedContext.fetch(fetchRequest) as? [Subtasks] {
                         for task in result {
                             totalCount = totalCount + 1.0
                             
@@ -583,7 +607,7 @@ class CoreDataModels {
             for task in tasks {
                 totalCount = totalCount + 1.0
                 
-                if String(task.valueForKey("completed")!) == "1" {
+                if String((task describing: as AnyObject).value(forKey: "completed")!) == "1" {
                     completedSubtasks = completedSubtasks + 1.0
                 }
             }
@@ -606,7 +630,7 @@ class CoreDataModels {
                     for task in tasks {
                         totalCount += 1.0
                         
-                        if String(task.valueForKey("completed")!) == "1" {
+                        if String((task describing: as AnyObject).value(forKey: "completed")!) == "1" {
                             completedSubtasks += 1.0
                         }
                     }
@@ -617,7 +641,7 @@ class CoreDataModels {
         return self.calculateCompletionPercentage(totalCount, completedSubtasks: completedSubtasks)
     }
     
-    private func calculateCompletionPercentage(totalCount: Float, completedSubtasks: Float) -> Float {
+    fileprivate func calculateCompletionPercentage(_ totalCount: Float, completedSubtasks: Float) -> Float {
         if totalCount == completedSubtasks && completedSubtasks != 0.0 {
             return 1.0
         } else if completedSubtasks == 0.0 {

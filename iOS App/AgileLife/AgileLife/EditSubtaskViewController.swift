@@ -45,11 +45,11 @@ class EditSubtaskViewController: UIViewController, UITextFieldDelegate {
         name.text = CoreModels.currentSubtask!.name
         subtaskDescription.text = CoreModels.currentSubtask!.task_description
         name.delegate = self
-        deadline.date = CoreModels.currentSubtask!.deadline!
+        deadline.date = CoreModels.currentSubtask!.deadline! as Date
         
         if CoreModels.currentSubtask!.completed == true {
             taskCompleted = true
-            completeBtn.setTitle("Restart", forState: .Normal)
+            completeBtn.setTitle("Restart", for: UIControlState())
         }
     
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(EditSubtaskViewController.dismissKeyboard))
@@ -73,7 +73,7 @@ class EditSubtaskViewController: UIViewController, UITextFieldDelegate {
     *
     * =========================================== */
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         view.endEditing(true)
         return false
@@ -85,14 +85,14 @@ class EditSubtaskViewController: UIViewController, UITextFieldDelegate {
     *
     * =========================================== */
     
-    @IBAction func EditSubtask(sender: UIButton) {
+    @IBAction func EditSubtask(_ sender: UIButton) {
         // Notify the user if there is anything wrong with the required fields.
         if name.text == "" {
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Warning", message: "Please specify a subtask name.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Warning", message: "Please specify a subtask name.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
             return
         }
@@ -106,47 +106,47 @@ class EditSubtaskViewController: UIViewController, UITextFieldDelegate {
         
         // Dismiss view controller or notify the user based in the returned result of creating a board.
         switch creationResult {
-        case .Success:
+        case .success:
             
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
             
         default:
             
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
         }
     }
     
-    @IBAction func deleteSubtask(sender: UIButton) {
-        let alertController = UIAlertController(title: "Warning", message: "You're about to delete this subtask, please confirm.", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: { (UIAlertAction) -> Void in
+    @IBAction func deleteSubtask(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Warning", message: "You're about to delete this subtask, please confirm.", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) -> Void in
             self.CoreModels.deleteSubtask(false)
             self.delegate.didDeleteSubtask!(true)
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }))
         
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func completeSubtask(sender: UIButton) {
+    @IBAction func completeSubtask(_ sender: UIButton) {
         var message = "Are you sure you would like to complete this subtask?"
         
         if taskCompleted {
             message = "Restarting this subtask will make it incomplete, would you like to proceed?"
         }
         
-        let alertController = UIAlertController(title: "Warning", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.Destructive, handler: { (UIAlertAction) -> Void in
+        let alertController = UIAlertController(title: "Warning", message: message, preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Continue", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) -> Void in
             self.CoreModels.currentSubtask?.completed = true
             self.EditSubtask(sender)
         }))
         
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
 }

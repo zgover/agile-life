@@ -42,7 +42,7 @@ class CreateSubtaskViewController: UIViewController, UITextFieldDelegate {
         super.setDefualtNav(nil, statusBg: true, bg: true)
         name.delegate = self
         
-        deadline.date = NSDate()
+        deadline.date = Date()
 
         // Do any additional setup after loading the view.
     
@@ -68,7 +68,7 @@ class CreateSubtaskViewController: UIViewController, UITextFieldDelegate {
     *
     * =========================================== */
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         view.endEditing(true)
         return false
@@ -80,14 +80,14 @@ class CreateSubtaskViewController: UIViewController, UITextFieldDelegate {
     *
     * =========================================== */
     
-    @IBAction func createSubtask(sender: UIButton) {
+    @IBAction func createSubtask(_ sender: UIButton) {
         // Notify the user if there is anything wrong with the required fields.
         if name.text == "" {
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Warning", message: "Please specify a subtask name.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Warning", message: "Please specify a subtask name.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
             return
         }
@@ -109,17 +109,17 @@ class CreateSubtaskViewController: UIViewController, UITextFieldDelegate {
         
         // Dismiss view controller or notify the user based in the returned result of creating a board.
         switch creationResult {
-        case .Success:
+        case .success:
 
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
             
         default:
             
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
         }
     }

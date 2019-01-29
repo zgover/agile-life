@@ -16,10 +16,10 @@ extension Subtasks {
 
     @NSManaged var id: String?
     @NSManaged var name: String?
-    @NSManaged var deadline: NSDate?
+    @NSManaged var deadline: Date?
     @NSManaged var task_description: String?
     @NSManaged var completed: NSNumber?
-    @NSManaged var date_created: NSDate?
+    @NSManaged var date_created: Date?
     @NSManaged var story: Stories?
 
 }

@@ -23,7 +23,7 @@ class StageOneViewController: StageViewController {
         super.stageIcon = super.icons[super.stage]
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
 

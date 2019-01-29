@@ -24,7 +24,7 @@ extension Boards {
     @NSManaged var stage_one_icon: String?
     @NSManaged var stage_two_icon: String?
     @NSManaged var stage_three_icon: String?
-    @NSManaged var date_created: NSDate?
+    @NSManaged var date_created: Date?
     @NSManaged var stage_four_name: String?
     @NSManaged var stage_four_icon: String?
     @NSManaged var story_lists: NSOrderedSet?

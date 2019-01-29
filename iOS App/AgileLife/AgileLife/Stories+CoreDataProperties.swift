@@ -19,7 +19,7 @@ extension Stories {
     @NSManaged var notes: String?
     @NSManaged var stage: String?
     @NSManaged var priority: NSNumber?
-    @NSManaged var date_created: NSDate?
+    @NSManaged var date_created: Date?
     @NSManaged var board: Boards?
     @NSManaged var sub_tasks: NSSet?
 

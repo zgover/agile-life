@@ -35,9 +35,9 @@ class HomeScreenNavigationController: UINavigationController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         if directToCreateBoard == true {
-            self.visibleViewController?.performSegueWithIdentifier("createBoardSegue", sender: nil)
+            self.visibleViewController?.performSegue(withIdentifier: "createBoardSegue", sender: nil)
         }
     }
     
@@ -47,8 +47,8 @@ class HomeScreenNavigationController: UINavigationController {
     *
     * =========================================== */
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? HomeScreenViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? HomeScreenViewController {
             destination.directToCreateBoard = true
         }
     }

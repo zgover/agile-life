@@ -45,7 +45,7 @@ class StoryListViewController: UITabBarController {
         
         //performSegueWithIdentifier("createStorySegue", sender: nil)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        storyboard.instantiateViewControllerWithIdentifier("stage1View")
+        storyboard.instantiateViewController(withIdentifier: "stage1View")
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,7 +53,7 @@ class StoryListViewController: UITabBarController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {        
+    override func viewWillAppear(_ animated: Bool) {        
         CoreModels.fetchAll()
         self.title = CoreModels.currentBoard?.name
         self.viewControllers = CoreModels.setStages(self.tabBar.items!, viewCntrls: self.viewControllers)
@@ -117,10 +117,10 @@ class StoryListViewController: UITabBarController {
     *
     * =========================================== */
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? EditBoardViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? EditBoardViewController {
             destination.CoreModels = self.CoreModels
-        } else if let destination = segue.destinationViewController as? CreateStoryViewController {
+        } else if let destination = segue.destination as? CreateStoryViewController {
             destination.CoreModels = self.CoreModels
             destination.currentStage = self.selectedIndex
         }

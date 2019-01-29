@@ -67,26 +67,26 @@ class StageViewController: UIViewController, UITableViewDataSource, UITableViewD
         }
         
         // Register story list table view cell
-        tableView.registerNib(
+        tableView.register(
             UINib(nibName: StoryListCellIdentifier, bundle: nil),
             forCellReuseIdentifier: StoryListCellIdentifier
         )
         
         // Register story list table header identifier
-        tableView.registerNib(
+        tableView.register(
             UINib(nibName: StoryListHeaderIdentifier, bundle: nil),
             forHeaderFooterViewReuseIdentifier: StoryListHeaderIdentifier
         )
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0)
         CoreModels.fetchAll()
         CoreModels.fetchStories(stageName, _board: CoreModels!.currentBoard)
         tableView.reloadData()
         
         // Make sure to update the tabbar icon if they have recently edited the board icons
-        self.tabBarItem.image = UIImage(named: stageIcon)?.imageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal)
+        self.tabBarItem.image = UIImage(named: stageIcon)?.withRenderingMode(UIImageRenderingMode.alwaysOriginal)
         
         if let controller = self.tabBarController as? StoryListViewController {
             CoreModels.setStages(controller.tabBar.items!, viewCntrls: nil)
@@ -104,7 +104,7 @@ class StageViewController: UIViewController, UITableViewDataSource, UITableViewD
      *
      * =========================================== */
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         CoreModels.fetchAll()
         CoreModels.fetchStories(stageName, _board: CoreModels!.currentBoard)
         
@@ -115,16 +115,16 @@ class StageViewController: UIViewController, UITableViewDataSource, UITableViewD
         return 0
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 55
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier(StoryListCellIdentifier) as? StoryListTableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: StoryListCellIdentifier) as? StoryListTableViewCell {
             CoreModels.fetchAll()
             CoreModels.fetchStories(stageName, _board: CoreModels!.currentBoard)
             
@@ -141,19 +141,19 @@ class StageViewController: UIViewController, UITableViewDataSource, UITableViewD
         return UITableViewCell()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedStory = indexPath.row
         
         if let currentStory = CoreModels.allStories?[selectedStory] {
             CoreModels.currentStory = currentStory
             
-            performSegueWithIdentifier("storyDetailSegue", sender: nil)
+            performSegue(withIdentifier: "storyDetailSegue", sender: nil)
         }
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(StoryListHeaderIdentifier) as! StoryListTableHeader
-        header.createStory.addTarget(self, action: #selector(StageViewController.addStory), forControlEvents: .TouchUpInside)
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: StoryListHeaderIdentifier) as! StoryListTableHeader
+        header.createStory.addTarget(self, action: #selector(StageViewController.addStory), for: .touchUpInside)
         
         return header
     }
@@ -164,12 +164,12 @@ class StageViewController: UIViewController, UITableViewDataSource, UITableViewD
      *
      * =========================================== */
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if let destination = segue.destinationViewController as? StoryDetailViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? StoryDetailViewController {
             destination.CoreModels = self.CoreModels
             destination.selectedStory = selectedStory
             destination.currentStage = self.stage
-        } else if let destination = segue.destinationViewController as? CreateStoryViewController {
+        } else if let destination = segue.destination as? CreateStoryViewController {
             destination.CoreModels = self.CoreModels
             destination.currentStage = self.tabBarController?.selectedIndex
         }
@@ -182,7 +182,7 @@ class StageViewController: UIViewController, UITableViewDataSource, UITableViewD
      * =========================================== */
     
     func addStory() {
-        self.performSegueWithIdentifier("createStorySegue", sender: nil)
+        self.performSegue(withIdentifier: "createStorySegue", sender: nil)
     }
 
 }

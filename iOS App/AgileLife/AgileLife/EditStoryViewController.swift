@@ -66,7 +66,7 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         stage.selectRow(currentStage, inComponent: 0, animated: true)
     }
     
@@ -76,7 +76,7 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     *
     * =========================================== */
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         view.endEditing(true)
         return false
@@ -88,11 +88,11 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     *
     * =========================================== */
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var stageCount = 2
         
         if CoreModels.currentBoard?.stage_two == 1 {
@@ -108,13 +108,13 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
         return stageCount
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let stageName = CoreModels.stageName(row, stageTotalCount: stageTotalCount)
         
         return stageName
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedStage = CoreModels.stageName(row, stageTotalCount: stageTotalCount)
     }
     
@@ -124,22 +124,22 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
     *
     * =========================================== */
     
-    @IBAction func editStory(sender: UIButton) {
+    @IBAction func editStory(_ sender: UIButton) {
         // Notify the user if there is anything wrong with the required fields.
         if name.text == "" {
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Warning", message: "Please specify a story name.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Warning", message: "Please specify a story name.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
             return
         } else if selectedStage == nil {
             // Alert the user if this is true
-            let alertController = UIAlertController(title: "Warning", message: "Please specify the stage.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Warning", message: "Please specify the stage.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
             return
         }
@@ -148,36 +148,36 @@ class EditStoryViewController: UIViewController, UITextFieldDelegate, UIPickerVi
         CoreModels.currentStory?.name = name.text
         CoreModels.currentStory?.notes = notes.text
         CoreModels.currentStory?.stage = selectedStage
-        CoreModels.currentStory?.priority = priority.selectedSegmentIndex + 1
+        CoreModels.currentStory?.priority = priority.selectedSegmentIndex + 1 as NSNumber
         
         let creationResult = CoreModels.editStory()
         
         // Dismiss view controller or notify the user based in the returned result of creating a board.
         switch creationResult {
-        case .Success:
+        case .success:
             
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
             
         default:
             
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
         }
     }
 
-    @IBAction func deleteBoard(sender: UIButton) {
-        let alertController = UIAlertController(title: "Warning", message: "You're about to delete this story, please confirm.", preferredStyle: UIAlertControllerStyle.Alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: { (UIAlertAction) -> Void in
+    @IBAction func deleteBoard(_ sender: UIButton) {
+        let alertController = UIAlertController(title: "Warning", message: "You're about to delete this story, please confirm.", preferredStyle: UIAlertControllerStyle.alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.destructive, handler: { (UIAlertAction) -> Void in
             self.CoreModels.deleteStory(false)
             self.delegate.didDeleteSubtask!(true)
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
         }))
         
-        presentViewController(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
 }

@@ -15,7 +15,7 @@ import Foundation
 * =========================================== */
 
 enum ReturnStatus {
-    case Success
-    case Error
-    case Warning
+    case success
+    case error
+    case warning
 }

@@ -66,7 +66,7 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     *
     * =========================================== */
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         view.endEditing(true)
         return false
@@ -78,11 +78,11 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     *
     * =========================================== */
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
     
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         var stageCount = 2
         
         if CoreModels.currentBoard?.stage_two == 1 {
@@ -98,7 +98,7 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
         return stageCount
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         let stageName = CoreModels.stageName(row, stageTotalCount: stageTotalCount)
         selectedStage = stageName
         
@@ -109,7 +109,7 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
         return stageName
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedStage = CoreModels.stageName(row, stageTotalCount: stageTotalCount)
     }
     
@@ -119,22 +119,22 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
     *
     * =========================================== */
 
-    @IBAction func createStory(sender: UIButton) {
+    @IBAction func createStory(_ sender: UIButton) {
         // Notify the user if there is anything wrong with the required fields.
         if name.text == "" {
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Warning", message: "Please specify a story name.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Warning", message: "Please specify a story name.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
             return
         } else if selectedStage == nil {
             // Alert the user if this is true
-            let alertController = UIAlertController(title: "Warning", message: "Please specify the stage.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Warning", message: "Please specify the stage.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
             return
         }
@@ -147,17 +147,17 @@ class CreateStoryViewController: UIViewController, UITextFieldDelegate, UIPicker
         
         // Dismiss view controller or notify the user based in the returned result of creating a board.
         switch creationResult {
-        case .Success:
+        case .success:
             
-            self.navigationController?.popViewControllerAnimated(true)
+            self.navigationController?.popViewController(animated: true)
             
         default:
             
             // Alert the user if this fails
-            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+            let alertController = UIAlertController(title: "Error", message: "An error has occurred! Please review all fields and make sure they are correct, before you try again.", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.cancel, handler: nil))
             
-            presentViewController(alertController, animated: true, completion: nil)
+            present(alertController, animated: true, completion: nil)
             
         }
     }

@@ -50,19 +50,19 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         directToCreateBoard = false
         
         // Register board list table header identifier
-        tableView.registerNib(
+        tableView.register(
             UINib(nibName: blSideMenuHeaderIdentifier, bundle: nil),
             forHeaderFooterViewReuseIdentifier: blSideMenuHeaderIdentifier
         )
         
         // Register board list table footer identifier
-        tableView.registerNib(
+        tableView.register(
             UINib(nibName: blSideMenuFooterIdentifier, bundle: nil),
             forHeaderFooterViewReuseIdentifier: blSideMenuFooterIdentifier
         )
         
         // Register Agile Life table header identifier
-        tableView.registerNib(
+        tableView.register(
             UINib(nibName: alSideMenuHeaderIdentifier, bundle: nil),
             forHeaderFooterViewReuseIdentifier: alSideMenuHeaderIdentifier
         )
@@ -71,7 +71,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         percentComplete.text    = "\(Int(totalComplete * 100))%"
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         CoreModels.fetchAll()
         tableView.reloadData()
     }
@@ -86,12 +86,12 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     * MARK: Table View Delegates
     *
     * =========================================== */
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // Boards list and Agile Life List
         return 2
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             if let count = CoreModels.allBoards?.count {
                 return count
@@ -106,7 +106,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         return 0
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 {
             return 60.0
         }
@@ -114,38 +114,38 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 50
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        if let count = CoreModels.allBoards?.count where count < 1 {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if let count = CoreModels.allBoards?.count, count < 1 {
             return 45
         }
         
         return 0
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(blSideMenuHeaderIdentifier) as! BLSideMenuTableHeader
-            header.addBoardBtn.addTarget(self, action: #selector(SideMenuViewController.addBoard), forControlEvents: .TouchUpInside)
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: blSideMenuHeaderIdentifier) as! BLSideMenuTableHeader
+            header.addBoardBtn.addTarget(self, action: #selector(SideMenuViewController.addBoard), for: .touchUpInside)
             header.headerLabel.text = "Boards"
             return header
         } else if section == 1 {
-            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(alSideMenuHeaderIdentifier) as! ALSideMenuTableHeader
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: alSideMenuHeaderIdentifier) as! ALSideMenuTableHeader
             return header
         }
         
         return nil
     }
     
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 0 {
-            let header = tableView.dequeueReusableHeaderFooterViewWithIdentifier(blSideMenuFooterIdentifier) as! BLSideMenuTableFooter
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: blSideMenuFooterIdentifier) as! BLSideMenuTableFooter
             
-            if let count = CoreModels.allBoards?.count where count < 1 {
-                header.viewHistoryBtn.setTitle("Please create a story", forState: .Normal)
+            if let count = CoreModels.allBoards?.count, count < 1 {
+                header.viewHistoryBtn.setTitle("Please create a story", for: UIControlState())
                 
                 return header
             }
@@ -154,10 +154,10 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         return nil
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             // Build the board item cell
-            if let cell = tableView.dequeueReusableCellWithIdentifier(boardCellIdentifier, forIndexPath: indexPath) as? BLSideMenuCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: boardCellIdentifier, for: indexPath) as? BLSideMenuCell {
                 if let board = CoreModels.allBoards?[indexPath.row] {
                     CoreModels.fetchStories(nil, _board: CoreModels.allBoards![indexPath.row])
                     let storyCount                  = board.story_lists?.count
@@ -173,7 +173,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         } else if indexPath.section == 1 {
             // Build the menu item cells for the Agile Life section
-            if let cell = tableView.dequeueReusableCellWithIdentifier(agileCellIdentifier, forIndexPath: indexPath) as? AgileLifeTableViewCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: agileCellIdentifier, for: indexPath) as? AgileLifeTableViewCell {
                 cell.menuItem.text = menuItems[indexPath.row]
                 
                 return cell
@@ -183,19 +183,19 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         return UITableViewCell()
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 {
             // Open board detail view
             if let currentBoard = CoreModels.allBoards?[indexPath.row] {
                 CoreModels.currentBoard = currentBoard
-                performSegueWithIdentifier("boardDetailSegue", sender: nil)
+                performSegue(withIdentifier: "boardDetailSegue", sender: nil)
             }
         } else if indexPath.section == 1 {
             // Open corresponding menu item from the Agile Life section.
-            performSegueWithIdentifier("\(menuItems[indexPath.row].lowercaseString)Segue", sender: nil)
+            performSegue(withIdentifier: "\(menuItems[indexPath.row].lowercased())Segue", sender: nil)
         }
         
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        tableView.deselectRow(at: indexPath, animated: false)
     }
     
     /* ==========================================
@@ -203,11 +203,11 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     * MARK: Segue Methods
     *
     * =========================================== */
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Destinations
         
         // Home
-        if let destination = segue.destinationViewController as? HomeScreenNavigationController {
+        if let destination = segue.destination as? HomeScreenNavigationController {
             // Go directly to the create board screen
             if self.directToCreateBoard == true {
                 self.directToCreateBoard = false
@@ -221,7 +221,7 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         
         // Story List
-        else if let destination = segue.destinationViewController as? StoryListNavigationViewController,
+        else if let destination = segue.destination as? StoryListNavigationViewController,
             let targetController = destination.topViewController as? StoryListViewController {
             targetController.CoreModels = self.CoreModels
             //targetController.delegate = self
@@ -235,6 +235,6 @@ class SideMenuViewController: UIViewController, UITableViewDataSource, UITableVi
     * =========================================== */
     func addBoard() {
         self.directToCreateBoard = true
-        self.performSegueWithIdentifier("homeScreenSegue", sender: nil)
+        self.performSegue(withIdentifier: "homeScreenSegue", sender: nil)
     }
 }
